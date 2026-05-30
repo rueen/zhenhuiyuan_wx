@@ -43,10 +43,14 @@ Page({
 
   onRegionChange(e) {
     const [p, c, d] = e.detail.value;
+    const [pc, cc, dc] = e.detail.code;
     this.setData({
       'form.province_name': p,
       'form.city_name': c,
       'form.district_name': d,
+      'form.province_code': pc,
+      'form.city_code': cc,
+      'form.district_code': dc,
       regionDisplay: `${p} ${c} ${d}`,
     });
   },

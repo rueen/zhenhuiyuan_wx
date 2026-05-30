@@ -33,13 +33,11 @@ Page({
   },
 
   onEdit(e) {
-    e.stopPropagation();
     const id = e.currentTarget.dataset.id;
     wx.navigateTo({ url: `/pages/address-edit/address-edit?id=${id}` });
   },
 
   onDelete(e) {
-    e.stopPropagation();
     const id = e.currentTarget.dataset.id;
     wx.showModal({
       title: '删除地址',
@@ -56,7 +54,6 @@ Page({
   },
 
   async onSetDefault(e) {
-    e.stopPropagation();
     const id = e.currentTarget.dataset.id;
     try {
       await http.put(`/api/h5/addresses/${id}/default`);

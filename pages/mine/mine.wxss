@@ -48,14 +48,12 @@
 
 /* ── 已登录头部 ── */
 .mine-header {
-  background: linear-gradient(135deg, #8d570d 0%, #c07a1a 100%);
-  padding: var(--space-lg) var(--space-md) 0;
+  padding: var(--space-md) var(--space-md) 0;
 }
 .header-content {
-  background: rgba(255,255,255,0.12);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: var(--color-primary-light);
+  border-radius: var(--radius-lg);
   padding: var(--space-md);
-  backdrop-filter: blur(4px);
 }
 
 /* 用户信息行 */

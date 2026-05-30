@@ -16,11 +16,11 @@
         <text class="addr-detail">{{item.province_name}}{{item.city_name}}{{item.district_name}} {{item.detail}}</text>
       </view>
       <view class="addr-actions">
-        <view class="action-btn" bindtap="onSetDefault" data-id="{{item.id}}" wx:if="{{!item.is_default}}">
+        <view class="action-btn" catchtap="onSetDefault" data-id="{{item.id}}" wx:if="{{!item.is_default}}">
           设为默认
         </view>
-        <view class="action-btn" bindtap="onEdit" data-id="{{item.id}}">编辑</view>
-        <view class="action-btn action-btn--danger" bindtap="onDelete" data-id="{{item.id}}">删除</view>
+        <view class="action-btn" catchtap="onEdit" data-id="{{item.id}}">编辑</view>
+        <view class="action-btn action-btn--danger" catchtap="onDelete" data-id="{{item.id}}">删除</view>
       </view>
     </view>
 

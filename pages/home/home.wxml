@@ -1,6 +1,5 @@
 <view class="home-page">
   <view class="home-placeholder">
-    <view class="logo-text">贞慧缘</view>
     <view class="slogan">敬请期待</view>
   </view>
 </view>
