@@ -1,0 +1,105 @@
+<view class="withdrawal-page">
+
+  <!-- 余额概览 -->
+  <view class="balance-card">
+    <view class="balance-main">
+      <text class="balance-label">可提现余额</text>
+      <text class="balance-value price"><text class="price-symbol">¥</text>{{info ? info.withdrawable_balance : '--'}}</text>
+    </view>
+    <view class="balance-sub-row">
+      <view class="balance-sub-item">
+        <text class="sub-label">冻结中</text>
+        <text class="sub-value">¥{{info ? info.frozen_amount : '--'}}</text>
+      </view>
+      <view class="balance-sub-item">
+        <text class="sub-label">可用</text>
+        <text class="sub-value highlight">¥{{info ? info.available_amount : '--'}}</text>
+      </view>
+      <view class="balance-sub-item">
+        <text class="sub-label">最低提现</text>
+        <text class="sub-value">¥{{info ? info.min_amount : '--'}}</text>
+      </view>
+    </view>
+    <button class="btn btn-primary apply-btn" bindtap="onApply">申请提现</button>
+  </view>
+
+  <!-- 提现记录 -->
+  <view class="records-section">
+    <view class="records-title">提现记录</view>
+    <view class="record-card card" wx:for="{{records}}" wx:key="id">
+      <view class="record-top">
+        <text class="record-amount price"><text class="price-symbol">¥</text>{{item.amount}}</text>
+        <text class="record-status status-wd-{{item.status}}">{{item.statusText}}</text>
+      </view>
+      <view class="record-meta">
+        <text class="record-time">{{item.created_at}}</text>
+        <text wx:if="{{item.reject_reason}}" class="record-reason">驳回原因：{{item.reject_reason}}</text>
+      </view>
+    </view>
+
+    <view class="empty-wrap" wx:if="{{!loading && records.length === 0}}">
+      <text class="empty-icon">💰</text>
+      <text>暂无提现记录</text>
+    </view>
+    <view class="load-more" wx:if="{{loading}}">加载中…</view>
+    <view class="load-more" wx:if="{{!loading && noMore && records.length > 0}}">没有更多了</view>
+  </view>
+
+  <!-- 申请弹窗遮罩 -->
+  <view class="mask" wx:if="{{showApplyPanel}}" bindtap="onClosePanel"></view>
+
+  <!-- 申请面板 -->
+  <view class="apply-panel {{showApplyPanel ? 'apply-panel--show' : ''}}">
+    <view class="panel-header">
+      <text class="panel-title">申请提现</text>
+      <text class="panel-close" bindtap="onClosePanel">✕</text>
+    </view>
+
+    <!-- 选择账户 -->
+    <view class="panel-section">
+      <text class="panel-label">提现账户</text>
+      <view class="account-list">
+        <view
+          class="account-item {{selectedAccountId === item.id ? 'account-item--active' : ''}}"
+          wx:for="{{accounts}}"
+          wx:key="id"
+          bindtap="onSelectAccount"
+          data-id="{{item.id}}"
+        >
+          <text class="account-type">{{item.typeName}}</text>
+          <text class="account-no">{{item.account_no}}</text>
+        </view>
+        <view class="empty-wrap" wx:if="{{accounts.length === 0}}">
+          <text>暂无提现账户，请先添加</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 金额输入 -->
+    <view class="panel-section">
+      <view class="amount-label-row">
+        <text class="panel-label">提现金额</text>
+        <text class="amount-max" bindtap="onFillMax">全部提现</text>
+      </view>
+      <view class="amount-input-wrap">
+        <text class="amount-symbol">¥</text>
+        <input
+          class="amount-input"
+          type="digit"
+          placeholder="请输入金额"
+          placeholder-class="field-placeholder"
+          value="{{applyAmount}}"
+          bindinput="onAmountInput"
+        />
+      </view>
+      <text class="amount-hint">可用 ¥{{info ? info.available_amount : '--'}}</text>
+    </view>
+
+    <button
+      class="btn btn-primary btn-full {{submitting ? 'btn-disabled' : ''}}"
+      bindtap="onSubmitApply"
+      disabled="{{submitting}}"
+    >{{submitting ? '提交中…' : '确认提现'}}</button>
+    <view class="safe-bottom"></view>
+  </view>
+</view>

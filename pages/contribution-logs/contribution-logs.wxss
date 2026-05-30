@@ -1,0 +1,35 @@
+.log-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding: var(--space-md);
+}
+.log-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+.log-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+}
+.log-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+.log-remark {
+  font-size: var(--font-base);
+  color: var(--color-text);
+}
+.log-time {
+  font-size: var(--font-xs);
+  color: var(--color-text-hint);
+}
+.log-amount {
+  font-size: var(--font-lg);
+  font-weight: 700;
+}
+.log-amount--positive { color: var(--color-primary); }
+.log-amount--negative { color: var(--color-danger); }

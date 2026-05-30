@@ -1,0 +1,49 @@
+<view class="team-page">
+  <!-- 统计卡片 -->
+  <view class="stats-card card">
+    <view class="stat-item">
+      <text class="stat-value">{{teamData.direct_count || 0}}</text>
+      <text class="stat-label">直推人数</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-value">{{teamData.indirect_count || 0}}</text>
+      <text class="stat-label">间推人数</text>
+    </view>
+  </view>
+
+  <!-- Tab -->
+  <view class="depth-tabs card">
+    <view class="depth-tab {{activeDepth === 1 ? 'depth-tab--active' : ''}}" bindtap="onTabChange" data-depth="{{1}}">直推成员</view>
+    <view class="depth-tab {{activeDepth === 2 ? 'depth-tab--active' : ''}}" bindtap="onTabChange" data-depth="{{2}}">间推成员</view>
+  </view>
+
+  <!-- 成员列表 -->
+  <view class="member-list" wx:if="{{teamData}}">
+    <view
+      class="member-card card"
+      wx:for="{{currentList}}"
+      wx:key="id"
+    >
+      <view class="member-avatar">
+        <image wx:if="{{item.avatar}}" class="avatar-img" src="{{item.avatar}}" mode="aspectFill" />
+        <view wx:else class="avatar-default">
+          <text>{{item.nickname ? item.nickname[0] : '?'}}</text>
+        </view>
+      </view>
+      <view class="member-info">
+        <text class="member-name">{{item.nickname || '未设置昵称'}}</text>
+        <text class="member-level">{{item.level_name || '普通会员'}}</text>
+      </view>
+      <view class="member-right">
+        <text class="member-contribution">{{item.cumulative_contribution || 0}}</text>
+        <text class="member-contrib-label">贡献值</text>
+      </view>
+    </view>
+
+    <view class="empty-wrap" wx:if="{{listEmpty}}">
+      <text class="empty-icon">👥</text>
+      <text>暂无成员</text>
+    </view>
+  </view>
+</view>

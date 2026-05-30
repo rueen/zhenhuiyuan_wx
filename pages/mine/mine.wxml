@@ -1,0 +1,104 @@
+<view class="mine-page">
+
+  <!-- 未登录占位 -->
+  <view class="not-login-banner" wx:if="{{!profile}}" bindtap="onLoginTap">
+    <view class="not-login-avatar">
+      <view class="avatar-default-icon"></view>
+    </view>
+    <view class="not-login-info">
+      <text class="not-login-title">点击登录</text>
+      <text class="not-login-sub">登录后享受更多服务</text>
+    </view>
+    <text class="arrow-right">›</text>
+  </view>
+
+  <!-- 已登录头部 -->
+  <view class="mine-header" wx:if="{{profile}}">
+    <view class="header-content">
+      <view class="user-row">
+        <!-- 头像 -->
+        <view class="user-avatar">
+          <image wx:if="{{profile.avatar}}" class="avatar-img" src="{{profile.avatar}}" mode="aspectFill" />
+          <view wx:else class="avatar-default">
+            <text class="avatar-letter">{{profile.nickname ? profile.nickname[0] : '?'}}</text>
+          </view>
+        </view>
+        <!-- 昵称 + 等级 -->
+        <view class="user-meta">
+          <view class="user-name-row">
+            <text class="user-name">{{profile.nickname || '未设置昵称'}}</text>
+            <view class="level-badge">{{profile.level_name || '普通会员'}}</view>
+          </view>
+          <view class="invite-row">
+            <text class="invite-code-text">邀请码：{{profile.invite_code}}</text>
+            <view class="copy-btn" bindtap="onCopyInviteCode">复制</view>
+          </view>
+        </view>
+      </view>
+      <!-- 资产卡片 -->
+      <view class="stats-row">
+        <view class="stat-item" bindtap="onWithdrawTap">
+          <text class="stat-value">¥{{profile.withdrawable_balance}}</text>
+          <text class="stat-label">可提现余额</text>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item" bindtap="onContributionTap">
+          <text class="stat-value">{{profile.cumulative_contribution}}</text>
+          <text class="stat-label">累计贡献值</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 我的订单 -->
+  <view class="section" wx:if="{{profile}}">
+    <view class="card">
+      <view class="order-section-header">
+        <text class="section-title">我的订单</text>
+        <view class="section-more" bindtap="onAllOrdersTap">
+          <text>全部</text>
+          <text class="arrow-right">›</text>
+        </view>
+      </view>
+      <view class="order-tabs">
+        <view
+          class="order-tab"
+          wx:for="{{orderTabs}}"
+          wx:key="status"
+          bindtap="onOrderTabTap"
+          data-status="{{item.status}}"
+        >
+          <view class="order-tab-dot dot-{{item.status}}"></view>
+          <text class="order-tab-label">{{item.label}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="section" wx:if="{{profile}}">
+    <view class="card menu-list">
+      <view
+        class="menu-item"
+        wx:for="{{menuItems}}"
+        wx:key="path"
+        bindtap="onMenuTap"
+        data-path="{{item.path}}"
+      >
+        <text class="menu-item-label">{{item.label}}</text>
+        <text class="arrow-right">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 退出登录 -->
+  <view class="section logout-section" wx:if="{{profile}}">
+    <view class="card">
+      <view class="menu-item" bindtap="onLogout">
+        <text class="logout-text">退出登录</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="safe-bottom"></view>
+</view>

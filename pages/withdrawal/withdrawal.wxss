@@ -1,0 +1,173 @@
+.withdrawal-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+/* ── 余额卡片 ── */
+.balance-card {
+  background: linear-gradient(135deg, #8d570d 0%, #c07a1a 100%);
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+  margin-bottom: var(--space-md);
+}
+.balance-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+.balance-label {
+  font-size: var(--font-sm);
+  color: rgba(255,255,255,0.8);
+}
+.balance-value {
+  font-size: 80rpx;
+  font-weight: 700;
+  color: #fff;
+}
+.balance-sub-row {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: var(--space-md);
+}
+.balance-sub-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6rpx;
+}
+.sub-label { font-size: var(--font-xs); color: rgba(255,255,255,0.7); }
+.sub-value { font-size: var(--font-sm); color: #fff; font-weight: 500; }
+.sub-value.highlight { color: var(--color-primary-light); font-weight: 700; }
+
+.apply-btn {
+  background: rgba(255,255,255,0.2);
+  border: 1rpx solid rgba(255,255,255,0.6);
+  width: 100%;
+  border-radius: var(--radius-xl);
+  font-size: var(--font-md);
+  letter-spacing: 4rpx;
+}
+
+/* ── 提现记录 ── */
+.records-section {
+  padding: 0 var(--space-md);
+}
+.records-title {
+  font-size: var(--font-md);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+.record-card {
+  padding: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+.record-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+.record-amount { font-size: var(--font-xl); font-weight: 700; }
+.record-status { font-size: var(--font-sm); font-weight: 600; }
+.status-wd-0 { color: var(--color-warning); }
+.status-wd-1 { color: #2196f3; }
+.status-wd-2 { color: var(--color-success); }
+.status-wd-3 { color: var(--color-danger); }
+
+.record-meta { display: flex; flex-direction: column; gap: 6rpx; }
+.record-time { font-size: var(--font-xs); color: var(--color-text-hint); }
+.record-reason { font-size: var(--font-xs); color: var(--color-danger); }
+
+/* ── 遮罩 + 申请面板 ── */
+.mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 200;
+}
+.apply-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 300;
+  background: #fff;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+.apply-panel--show { transform: translateY(0); }
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+.panel-title { font-size: var(--font-lg); font-weight: 600; }
+.panel-close { font-size: var(--font-lg); color: var(--color-text-sub); padding: 10rpx; }
+
+.panel-section { margin-bottom: var(--space-md); }
+.panel-label {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+  margin-bottom: var(--space-xs);
+}
+.account-list { display: flex; flex-direction: column; gap: var(--space-xs); }
+.account-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border: 1rpx solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+.account-item--active {
+  border-color: var(--color-primary);
+  background: var(--color-primary-bg);
+}
+.account-type {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+  padding: 4rpx 16rpx;
+  background: var(--color-bg);
+  border-radius: 100rpx;
+  flex-shrink: 0;
+}
+.account-no { font-size: var(--font-base); color: var(--color-text); }
+
+.amount-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-xs);
+}
+.amount-max {
+  font-size: var(--font-sm);
+  color: var(--color-primary);
+}
+.amount-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  border-bottom: 2rpx solid var(--color-primary);
+  padding-bottom: var(--space-xs);
+  margin-bottom: var(--space-xs);
+}
+.amount-symbol {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.amount-input {
+  flex: 1;
+  font-size: var(--font-xl);
+  color: var(--color-text);
+  font-weight: 600;
+  height: 80rpx;
+}
+.amount-hint { font-size: var(--font-xs); color: var(--color-text-hint); }
+.field-placeholder { color: var(--color-text-hint); }

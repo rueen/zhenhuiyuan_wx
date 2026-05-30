@@ -1,0 +1,70 @@
+.addr-list-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding-bottom: 140rpx;
+}
+
+.addr-list {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.addr-card {
+  padding: var(--space-md);
+}
+.addr-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: 10rpx;
+}
+.addr-name {
+  font-size: var(--font-md);
+  font-weight: 600;
+  color: var(--color-text);
+}
+.addr-phone {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+}
+.default-badge {
+  padding: 4rpx 14rpx;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-radius: 100rpx;
+  font-size: var(--font-xs);
+}
+.addr-detail {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+  line-height: 1.5;
+}
+
+.addr-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+  padding-top: var(--space-xs);
+  border-top: 1rpx solid var(--color-border);
+}
+.action-btn {
+  font-size: var(--font-xs);
+  color: var(--color-text-sub);
+  padding: 6rpx 16rpx;
+  border-radius: 100rpx;
+  border: 1rpx solid var(--color-border);
+}
+.action-btn--danger { color: var(--color-danger); border-color: var(--color-danger); }
+
+.add-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1rpx solid var(--color-border);
+  padding: var(--space-sm) var(--space-md);
+}

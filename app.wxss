@@ -1,0 +1,181 @@
+/* ─────────────────────────────────────────
+   全局设计令牌（Design Tokens）
+   修改此处即可全局调整整体风格
+   ───────────────────────────────────────── */
+page {
+  /* 主题色 */
+  --color-primary:       #8d570d;
+  --color-primary-light: #f6e3bb;
+  --color-primary-bg:    #fdf8f1;
+
+  /* 文字色 */
+  --color-text:          #2c2c2c;
+  --color-text-sub:      #888888;
+  --color-text-hint:     #bbbbbb;
+
+  /* 背景 & 边框 */
+  --color-bg:            #f5f0ea;
+  --color-card:          #ffffff;
+  --color-border:        #ebebeb;
+
+  /* 功能色 */
+  --color-success:       #4caf50;
+  --color-warning:       #ff9800;
+  --color-danger:        #f44336;
+
+  /* 圆角 */
+  --radius-sm:  8rpx;
+  --radius-md:  16rpx;
+  --radius-lg:  24rpx;
+  --radius-xl:  40rpx;
+
+  /* 间距 */
+  --space-xs:   12rpx;
+  --space-sm:   20rpx;
+  --space-md:   28rpx;
+  --space-lg:   40rpx;
+  --space-xl:   56rpx;
+
+  /* 字号 */
+  --font-xs:    22rpx;
+  --font-sm:    24rpx;
+  --font-base:  28rpx;
+  --font-md:    32rpx;
+  --font-lg:    36rpx;
+  --font-xl:    44rpx;
+  --font-xxl:   56rpx;
+
+  /* 阴影 */
+  --shadow-sm:  0 2rpx 12rpx rgba(0,0,0,0.06);
+  --shadow-md:  0 4rpx 24rpx rgba(0,0,0,0.10);
+
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: var(--font-base);
+  line-height: 1.6;
+}
+
+/* ─── 通用重置（WXSS 不支持 * 选择器，按需枚举） ─── */
+view, text, input, textarea, button, image,
+scroll-view, swiper, swiper-item, picker {
+  box-sizing: border-box;
+}
+
+/* ─── 通用卡片 ─── */
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+/* ─── 通用分区 ─── */
+.section {
+  margin: var(--space-md) var(--space-md) 0;
+}
+
+/* ─── 通用列表项 ─── */
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-md);
+  background: var(--color-card);
+  border-bottom: 1rpx solid var(--color-border);
+}
+.list-item:last-child {
+  border-bottom: none;
+}
+
+/* ─── 通用按钮 ─── */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xl);
+  font-size: var(--font-base);
+  height: 80rpx;
+  padding: 0 var(--space-lg);
+  transition: opacity 0.15s;
+}
+.btn::after { border: none; }
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn-plain {
+  background: transparent;
+  border: 1rpx solid var(--color-primary);
+  color: var(--color-primary);
+}
+.btn-disabled {
+  opacity: 0.45;
+}
+.btn-full { width: 100%; }
+.btn-sm {
+  height: 56rpx;
+  font-size: var(--font-sm);
+  padding: 0 var(--space-md);
+}
+
+/* ─── 通用状态徽章 ─── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rpx 14rpx;
+  border-radius: 100rpx;
+  font-size: var(--font-xs);
+}
+.badge-primary {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+/* ─── 空状态 ─── */
+.empty-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-xl) var(--space-md);
+  color: var(--color-text-hint);
+  font-size: var(--font-sm);
+}
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: var(--space-sm);
+}
+
+/* ─── 加载更多 ─── */
+.load-more {
+  text-align: center;
+  padding: var(--space-md);
+  color: var(--color-text-hint);
+  font-size: var(--font-sm);
+}
+
+/* ─── 分割线 ─── */
+.divider {
+  height: 1rpx;
+  background: var(--color-border);
+}
+
+/* ─── 右箭头 ─── */
+.arrow-right {
+  color: var(--color-text-hint);
+  font-size: var(--font-md);
+}
+
+/* ─── 价格颜色 ─── */
+.price {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+.price-symbol {
+  font-size: var(--font-sm);
+}
+
+/* ─── 页面底部安全区 ─── */
+.safe-bottom {
+  height: env(safe-area-inset-bottom);
+}

@@ -1,0 +1,80 @@
+const http = require('../../utils/request');
+const { ORDER_STATUS } = require('../../utils/constant');
+
+Page({
+  data: {
+    order: null,
+    loading: true,
+    submitting: false,
+  },
+
+  onLoad(options) {
+    this.orderId = options.id;
+    this.loadOrder();
+  },
+
+  async loadOrder() {
+    try {
+      const order = await http.load(`/api/h5/orders/${this.orderId}`);
+      order.statusText = ORDER_STATUS[order.status] || '';
+      this.setData({ order, loading: false });
+    } catch (e) {
+      this.setData({ loading: false });
+    }
+  },
+
+  async onPay() {
+    wx.showModal({
+      title: '确认支付',
+      content: '确认支付此订单？',
+      success: async (res) => {
+        if (res.confirm) {
+          try {
+            await http.post(`/api/h5/orders/${this.orderId}/pay`);
+            wx.showToast({ title: '支付成功', icon: 'success' });
+            this.loadOrder();
+          } catch (e) {}
+        }
+      },
+    });
+  },
+
+  async onCancel() {
+    wx.showModal({
+      title: '取消订单',
+      content: '确认取消此订单？',
+      success: async (res) => {
+        if (res.confirm) {
+          try {
+            await http.post(`/api/h5/orders/${this.orderId}/cancel`);
+            wx.showToast({ title: '已取消', icon: 'success' });
+            this.loadOrder();
+          } catch (e) {}
+        }
+      },
+    });
+  },
+
+  async onConfirm() {
+    wx.showModal({
+      title: '确认收货',
+      content: '确认已收到商品？收货后触发结算。',
+      success: async (res) => {
+        if (res.confirm) {
+          try {
+            await http.post(`/api/h5/orders/${this.orderId}/confirm`);
+            wx.showToast({ title: '确认成功', icon: 'success' });
+            this.loadOrder();
+          } catch (e) {}
+        }
+      },
+    });
+  },
+
+  onCopyNo() {
+    wx.setClipboardData({
+      data: this.data.order.order_no,
+      success() { wx.showToast({ title: '已复制', icon: 'success' }); },
+    });
+  },
+});

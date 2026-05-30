@@ -1,0 +1,74 @@
+<view class="shop-page">
+
+  <!-- 搜索栏 -->
+  <view class="search-bar-wrap">
+    <view class="search-bar">
+      <view class="search-icon"></view>
+      <input
+        class="search-input"
+        placeholder="搜索商品"
+        placeholder-class="search-placeholder"
+        value="{{keyword}}"
+        bindinput="onSearchInput"
+        bindconfirm="onSearchConfirm"
+        confirm-type="search"
+      />
+    </view>
+  </view>
+
+  <!-- 主体内容 -->
+  <view class="shop-body" style="height: {{contentHeight}}px">
+
+    <!-- 分类侧边栏 -->
+    <scroll-view class="category-sidebar" scroll-y>
+      <view
+        wx:for="{{categories}}"
+        wx:key="id"
+        class="category-item {{activeCategoryId === item.id ? 'category-item--active' : ''}}"
+        bindtap="onCategoryTap"
+        data-id="{{item.id}}"
+      >
+        <view class="category-indicator"></view>
+        <text class="category-name">{{item.name}}</text>
+      </view>
+    </scroll-view>
+
+    <!-- 商品列表 -->
+    <scroll-view
+      class="product-scroll"
+      scroll-y
+      bindscrolltolower="onReachBottom"
+      lower-threshold="100"
+    >
+      <view class="product-grid">
+        <view
+          wx:for="{{products}}"
+          wx:key="id"
+          class="product-card card"
+          bindtap="onProductTap"
+          data-id="{{item.id}}"
+        >
+          <image class="product-cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
+          <view class="product-info">
+            <text class="product-name">{{item.name}}</text>
+            <view class="product-bottom">
+              <text class="product-price price"><text class="price-symbol">¥</text>{{item.price}}</text>
+              <text class="product-sales">{{item.sales}}人购</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 空态 -->
+      <view class="empty-wrap" wx:if="{{!loading && products.length === 0}}">
+        <text class="empty-icon">🛍️</text>
+        <text>暂无商品</text>
+      </view>
+
+      <!-- 加载更多 -->
+      <view class="load-more" wx:if="{{loading}}">加载中…</view>
+      <view class="load-more" wx:if="{{!loading && noMore && products.length > 0}}">没有更多了</view>
+    </scroll-view>
+
+  </view>
+</view>

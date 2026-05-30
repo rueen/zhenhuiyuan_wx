@@ -1,0 +1,165 @@
+.detail-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+.detail-scroll { height: 100vh; }
+
+/* ── 状态横幅 ── */
+.status-banner {
+  padding: var(--space-lg) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+.status-banner-0 { background: linear-gradient(135deg, #ff9800, #ffb74d); }
+.status-banner-1 { background: linear-gradient(135deg, #2196f3, #64b5f6); }
+.status-banner-2 { background: linear-gradient(135deg, #9c27b0, #ce93d8); }
+.status-banner-3 { background: linear-gradient(135deg, #4caf50, #81c784); }
+.status-banner-4 { background: linear-gradient(135deg, #9e9e9e, #bdbdbd); }
+
+.status-text {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  color: #fff;
+}
+.status-sub {
+  font-size: var(--font-sm);
+  color: rgba(255,255,255,0.8);
+}
+
+/* ── 地址卡 ── */
+.addr-card {
+  margin: var(--space-md) var(--space-md) 0;
+  padding: var(--space-md);
+}
+.addr-row {}
+.addr-meta {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: 10rpx;
+}
+.addr-name { font-size: var(--font-md); font-weight: 600; color: var(--color-text); }
+.addr-phone { font-size: var(--font-sm); color: var(--color-text-sub); }
+.addr-detail { font-size: var(--font-sm); color: var(--color-text-sub); line-height: 1.5; }
+
+/* ── 商品列表 ── */
+.items-card {
+  margin: var(--space-sm) var(--space-md) 0;
+  padding: var(--space-sm) var(--space-md);
+}
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xs) 0;
+  border-bottom: 1rpx solid var(--color-border);
+}
+.order-item:last-child { border-bottom: none; }
+.item-cover {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  flex-shrink: 0;
+}
+.item-info { flex: 1; }
+.item-name {
+  font-size: var(--font-sm);
+  color: var(--color-text);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.item-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8rpx;
+}
+.item-price { font-size: var(--font-base); font-weight: 600; }
+.item-qty { font-size: var(--font-xs); color: var(--color-text-hint); }
+
+/* ── 费用 ── */
+.fee-card {
+  margin: var(--space-sm) var(--space-md) 0;
+  padding: var(--space-md);
+}
+.fee-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 0;
+}
+.fee-label { font-size: var(--font-sm); color: var(--color-text-sub); }
+.fee-value { font-size: var(--font-sm); color: var(--color-text); }
+.fee-total-label { font-size: var(--font-base); font-weight: 600; color: var(--color-text); }
+.fee-total { font-size: var(--font-lg); font-weight: 700; }
+
+/* ── 物流 ── */
+.logistics-card {
+  margin: var(--space-sm) var(--space-md) 0;
+  padding: var(--space-md);
+}
+.card-title {
+  font-size: var(--font-base);
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+}
+.shipment {
+  display: flex;
+  gap: var(--space-sm);
+  padding: var(--space-xs) 0;
+}
+.ship-company {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+  flex-shrink: 0;
+}
+.ship-no {
+  font-size: var(--font-sm);
+  color: var(--color-text);
+}
+
+/* ── 订单信息 ── */
+.order-info-card {
+  margin: var(--space-sm) var(--space-md) 0;
+  padding: var(--space-sm) var(--space-md);
+}
+.info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-xs) 0;
+}
+.info-label { font-size: var(--font-sm); color: var(--color-text-sub); flex-shrink: 0; }
+.info-value-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+.info-value { font-size: var(--font-sm); color: var(--color-text); }
+.copy-btn {
+  padding: 4rpx 16rpx;
+  background: var(--color-primary-light);
+  border-radius: 100rpx;
+  font-size: var(--font-xs);
+  color: var(--color-primary);
+}
+
+/* ── 操作栏 ── */
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: #fff;
+  border-top: 1rpx solid var(--color-border);
+}
+.action-bar-inner {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+}
+.action-bar .btn { width: 220rpx; }

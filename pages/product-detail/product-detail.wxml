@@ -1,0 +1,87 @@
+<!-- 加载中 -->
+<view class="loading-wrap" wx:if="{{loading}}">
+  <text class="loading-text">加载中…</text>
+</view>
+
+<block wx:elif="{{product}}">
+  <scroll-view class="detail-scroll" scroll-y>
+
+    <!-- 图片轮播 -->
+    <swiper
+      class="img-swiper"
+      indicator-dots
+      indicator-color="rgba(255,255,255,0.5)"
+      indicator-active-color="#8d570d"
+      autoplay
+      circular
+      bindchange="onSwiperChange"
+    >
+      <swiper-item wx:for="{{product.detail_images}}" wx:key="*this">
+        <image
+          class="swiper-img"
+          src="{{item}}"
+          mode="aspectFill"
+          bindtap="onPreviewImg"
+          data-src="{{item}}"
+        />
+      </swiper-item>
+    </swiper>
+
+    <!-- 价格 & 名称 -->
+    <view class="product-info card">
+      <view class="price-row">
+        <text class="product-price price"><text class="price-symbol">¥</text>{{product.price}}</text>
+        <view class="sales-badge">{{product.sales}}人购</view>
+      </view>
+      <text class="product-name">{{product.name}}</text>
+      <view class="product-meta">
+        <text class="meta-item">库存 {{product.stock}} 件</text>
+        <text class="meta-divider">·</text>
+        <text class="meta-item">{{product.category_name || ''}}</text>
+      </view>
+    </view>
+
+    <!-- 数量选择 -->
+    <view class="section card quantity-card">
+      <text class="quantity-label">购买数量</text>
+      <view class="quantity-ctrl">
+        <view class="qty-btn {{quantity <= 1 ? 'qty-btn--disabled' : ''}}" bindtap="onMinus">−</view>
+        <input
+          class="qty-input"
+          type="number"
+          value="{{quantity}}"
+          bindinput="onQuantityInput"
+        />
+        <view class="qty-btn {{quantity >= product.stock ? 'qty-btn--disabled' : ''}}" bindtap="onPlus">+</view>
+      </view>
+    </view>
+
+    <!-- 商品详情图（拆开展示） -->
+    <view class="section card detail-images" wx:if="{{product.detail_images.length > 1}}">
+      <view class="detail-title">图文详情</view>
+      <image
+        class="detail-img"
+        wx:for="{{product.detail_images}}"
+        wx:key="*this"
+        src="{{item}}"
+        mode="widthFix"
+        lazy-load
+      />
+    </view>
+
+    <!-- 底部占位 -->
+    <view style="height: 160rpx;"></view>
+  </scroll-view>
+
+  <!-- 底部购买栏 -->
+  <view class="buy-bar">
+    <view class="buy-bar-inner">
+      <view class="total-row">
+        <text class="total-label">合计</text>
+        <text class="total-price price"><text class="price-symbol">¥</text>{{total}}</text>
+      </view>
+      <button class="btn btn-primary buy-btn" bindtap="onBuyNow">立即购买</button>
+    </view>
+    <view class="safe-bottom"></view>
+  </view>
+</block>

@@ -1,0 +1,74 @@
+.edit-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding: var(--space-md);
+  padding-bottom: 140rpx;
+}
+
+.form-card {
+  padding: 0 var(--space-md);
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  min-height: 96rpx;
+  gap: var(--space-sm);
+}
+.form-row--column {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--space-sm) 0;
+  gap: var(--space-xs);
+}
+.form-row--switch {
+  justify-content: space-between;
+}
+
+.field-label {
+  flex-shrink: 0;
+  width: 140rpx;
+  font-size: var(--font-base);
+  color: var(--color-text);
+}
+.field-input {
+  flex: 1;
+  font-size: var(--font-base);
+  color: var(--color-text);
+  height: 96rpx;
+}
+.field-value {
+  flex: 1;
+  font-size: var(--font-base);
+  color: var(--color-text);
+}
+.field-textarea {
+  width: 100%;
+  font-size: var(--font-base);
+  color: var(--color-text);
+  min-height: 120rpx;
+  line-height: 1.6;
+}
+.field-placeholder {
+  color: var(--color-text-hint);
+}
+
+.picker-row {
+  cursor: pointer;
+}
+
+.field-divider {
+  height: 1rpx;
+  background: var(--color-border);
+  margin: 0 -28rpx;
+}
+
+.submit-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1rpx solid var(--color-border);
+  padding: var(--space-sm) var(--space-md);
+}

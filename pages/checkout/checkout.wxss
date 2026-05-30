@@ -1,0 +1,134 @@
+.checkout-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+.checkout-scroll {
+  height: 100vh;
+}
+
+/* ── 地址卡 ── */
+.addr-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  margin: var(--space-md) var(--space-md) 0;
+}
+.addr-selected { flex: 1; }
+.addr-main {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: 10rpx;
+}
+.addr-name {
+  font-size: var(--font-md);
+  font-weight: 600;
+  color: var(--color-text);
+}
+.addr-phone {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+}
+.addr-detail {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+  line-height: 1.5;
+}
+.addr-empty {
+  flex: 1;
+  font-size: var(--font-base);
+  color: var(--color-text-hint);
+}
+
+/* ── 商品卡 ── */
+.goods-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  margin: var(--space-sm) var(--space-md) 0;
+}
+.goods-cover {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  background: var(--color-bg);
+}
+.goods-info { flex: 1; }
+.goods-name {
+  font-size: var(--font-base);
+  color: var(--color-text);
+  line-height: 1.4;
+  margin-bottom: var(--space-sm);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.goods-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.goods-price { font-size: var(--font-md); font-weight: 700; }
+.goods-qty { font-size: var(--font-sm); color: var(--color-text-sub); }
+
+/* ── 费用明细 ── */
+.fee-card {
+  margin: var(--space-sm) var(--space-md) 0;
+  padding: var(--space-md);
+}
+.fee-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10rpx 0;
+}
+.fee-label {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+}
+.fee-value {
+  font-size: var(--font-sm);
+  color: var(--color-text);
+}
+.fee-divider {
+  height: 1rpx;
+  background: var(--color-border);
+  margin: var(--space-xs) 0;
+}
+.fee-total-label { font-weight: 600; color: var(--color-text); font-size: var(--font-base); }
+.fee-total { font-size: var(--font-xl); font-weight: 700; }
+
+/* ── 底部提交栏 ── */
+.submit-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: #fff;
+  border-top: 1rpx solid var(--color-border);
+}
+.submit-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+}
+.total-label {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+}
+.total-price {
+  font-size: var(--font-xl);
+  font-weight: 700;
+}
+.submit-btn {
+  width: 280rpx;
+  border-radius: var(--radius-xl);
+  font-size: var(--font-md);
+  letter-spacing: 4rpx;
+}

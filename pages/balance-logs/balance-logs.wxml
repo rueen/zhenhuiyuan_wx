@@ -1,0 +1,20 @@
+<view class="log-page">
+  <view class="log-list">
+    <view class="log-item card" wx:for="{{list}}" wx:key="id">
+      <view class="log-left">
+        <text class="log-remark">{{item.remark || '余额变动'}}</text>
+        <text class="log-time">{{item.created_at}}</text>
+      </view>
+      <text class="log-amount {{item.amount > 0 ? 'log-amount--positive' : 'log-amount--negative'}}">
+        {{item.amount > 0 ? '+' : ''}}{{item.amount}}
+      </text>
+    </view>
+
+    <view class="empty-wrap" wx:if="{{!loading && list.length === 0}}">
+      <text class="empty-icon">💹</text>
+      <text>暂无余额记录</text>
+    </view>
+    <view class="load-more" wx:if="{{loading}}">加载中…</view>
+    <view class="load-more" wx:if="{{!loading && noMore && list.length > 0}}">没有更多了</view>
+  </view>
+</view>

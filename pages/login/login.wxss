@@ -1,0 +1,96 @@
+.login-page {
+  min-height: 100vh;
+  padding: 0 var(--space-lg);
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── 品牌区 ── */
+.brand-area {
+  padding-top: 120rpx;
+  padding-bottom: 80rpx;
+  text-align: center;
+}
+.brand-name {
+  font-size: var(--font-xxl);
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 10rpx;
+}
+.brand-sub {
+  margin-top: 16rpx;
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+  letter-spacing: 4rpx;
+}
+
+/* ── 表单卡片 ── */
+.form-card {
+  padding: 0 var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+.form-item {
+  display: flex;
+  align-items: center;
+  min-height: 100rpx;
+  gap: var(--space-sm);
+}
+.form-label {
+  width: 100rpx;
+  flex-shrink: 0;
+  font-size: var(--font-base);
+  color: var(--color-text);
+}
+.form-input {
+  flex: 1;
+  font-size: var(--font-base);
+  color: var(--color-text);
+  height: 100%;
+}
+.input-placeholder {
+  color: var(--color-text-hint);
+}
+.form-divider {
+  height: 1rpx;
+  background: var(--color-border);
+  margin: 0 -28rpx;
+}
+
+/* ── 邀请码折叠 ── */
+.form-invite-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80rpx;
+}
+.invite-toggle-text {
+  font-size: var(--font-sm);
+  color: var(--color-primary);
+}
+.invite-arrow {
+  font-size: 32rpx;
+  color: var(--color-text-hint);
+  transition: transform 0.2s;
+  display: inline-block;
+}
+.invite-arrow--open {
+  transform: rotate(90deg);
+}
+.invite-item {
+  border-top: 1rpx solid var(--color-border);
+}
+
+/* ── 登录按钮 ── */
+.login-btn {
+  margin-top: 0;
+  border-radius: var(--radius-xl);
+  font-size: var(--font-md);
+  letter-spacing: 4rpx;
+}
+.login-hint {
+  margin-top: var(--space-md);
+  text-align: center;
+  font-size: var(--font-xs);
+  color: var(--color-text-hint);
+}
