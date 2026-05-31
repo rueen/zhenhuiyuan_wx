@@ -61,6 +61,10 @@ scroll-view, swiper, swiper-item, picker {
   box-sizing: border-box;
 }
 
+button{
+  width: auto!important;
+}
+
 /* ─── 通用卡片 ─── */
 .card {
   background: var(--color-card);

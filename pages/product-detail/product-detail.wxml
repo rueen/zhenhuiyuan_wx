@@ -4,19 +4,16 @@
 </view>
 
 <block wx:elif="{{product}}">
-  <scroll-view class="detail-scroll" scroll-y>
 
-    <!-- 图片轮播 -->
+  <!-- ① 轮播图（固定在顶层背景，z-index 最低） -->
+  <view class="swiper-wrap">
     <swiper
       class="img-swiper"
-      indicator-dots
-      indicator-color="rgba(255,255,255,0.5)"
-      indicator-active-color="#8d570d"
-      autoplay
       circular
+      autoplay
       bindchange="onSwiperChange"
     >
-      <swiper-item wx:for="{{product.detail_images}}" wx:key="*this">
+      <swiper-item wx:for="{{product.main_images}}" wx:key="*this">
         <image
           class="swiper-img"
           src="{{item}}"
@@ -26,62 +23,114 @@
         />
       </swiper-item>
     </swiper>
-
-    <!-- 价格 & 名称 -->
-    <view class="product-info card">
-      <view class="price-row">
-        <text class="product-price price"><text class="price-symbol">¥</text>{{product.price}}</text>
-        <view class="sales-badge">{{product.sales}}人购</view>
-      </view>
-      <text class="product-name">{{product.name}}</text>
-      <view class="product-meta">
-        <text class="meta-item">库存 {{product.stock}} 件</text>
-        <text class="meta-divider">·</text>
-        <text class="meta-item">{{product.category_name || ''}}</text>
-      </view>
+    <!-- 右下角计数 -->
+    <view class="img-counter" wx:if="{{product.main_images && product.main_images.length > 1}}">
+      {{currentImg + 1}}/{{product.main_images.length}}
     </view>
+  </view>
 
-    <!-- 数量选择 -->
-    <view class="section card quantity-card">
-      <text class="quantity-label">购买数量</text>
-      <view class="quantity-ctrl">
-        <view class="qty-btn {{quantity <= 1 ? 'qty-btn--disabled' : ''}}" bindtap="onMinus">−</view>
-        <input
-          class="qty-input"
-          type="number"
-          value="{{quantity}}"
-          bindinput="onQuantityInput"
+  <!-- ② 自定义顶部导航（z-index 最高，始终悬浮）
+       位置通过 JS 计算：与系统胶囊按钮垂直对齐，分享按钮紧靠胶囊左侧 -->
+  <!-- 返回按钮（左侧） -->
+  <view
+    class="nav-btn nav-btn--circle"
+    style="position:fixed;left:{{navBackLeft}}px;top:{{navBtnTop}}px;width:{{navBtnSize}}px;height:{{navBtnSize}}px;z-index:20;"
+    bindtap="onBack"
+  >
+    <view class="icon-back"></view>
+  </view>
+  <!-- 分享按钮（系统胶囊左侧，避免重叠） -->
+  <button
+    class="nav-btn nav-btn--circle"
+    style="position:fixed;right:{{navShareRight}}px;top:{{navBtnTop}}px;width:{{navBtnSize}}px;height:{{navBtnSize}}px;z-index:20;"
+    open-type="share"
+  >
+    <view class="icon-share"></view>
+  </button>
+
+  <!-- ③ 主内容区（页面级滚动，白卡向上滑动覆盖轮播图） -->
+  <view class="detail-page">
+    <view class="content-card">
+
+      <!-- 商品名称 & 价格 -->
+      <view class="product-info">
+        <text class="product-name">{{product.name}}</text>
+        <view class="price-row">
+          <text class="product-price price"><text class="price-symbol">¥</text>{{product.price}}</text>
+          <view class="sales-badge" wx:if="{{product.sales}}">{{product.sales}}人购</view>
+        </view>
+        <view class="product-meta" wx:if="{{product.stock !== undefined}}">
+          <text class="meta-item">库存 {{product.stock}} 件</text>
+          <text class="meta-divider" wx:if="{{product.category_name}}">·</text>
+          <text class="meta-item" wx:if="{{product.category_name}}">{{product.category_name}}</text>
+        </view>
+      </view>
+
+      <!-- 图文详情 -->
+      <view class="detail-section" wx:if="{{product.detail_images && product.detail_images.length > 0}}">
+        <view class="section-title">商品详情</view>
+        <image
+          class="detail-img"
+          wx:for="{{product.detail_images}}"
+          wx:key="*this"
+          src="{{item}}"
+          mode="widthFix"
+          lazy-load
         />
-        <view class="qty-btn {{quantity >= product.stock ? 'qty-btn--disabled' : ''}}" bindtap="onPlus">+</view>
       </view>
+
+      <!-- 底部安全占位（为固定购买栏留空） -->
+      <view class="content-bottom-gap"></view>
     </view>
+  </view>
 
-    <!-- 商品详情图（拆开展示） -->
-    <view class="section card detail-images" wx:if="{{product.detail_images.length > 1}}">
-      <view class="detail-title">图文详情</view>
-      <image
-        class="detail-img"
-        wx:for="{{product.detail_images}}"
-        wx:key="*this"
-        src="{{item}}"
-        mode="widthFix"
-        lazy-load
-      />
-    </view>
-
-    <!-- 底部占位 -->
-    <view style="height: 160rpx;"></view>
-  </scroll-view>
-
-  <!-- 底部购买栏 -->
+  <!-- ④ 底部购买栏（固定底部） -->
   <view class="buy-bar">
     <view class="buy-bar-inner">
-      <view class="total-row">
-        <text class="total-label">合计</text>
-        <text class="total-price price"><text class="price-symbol">¥</text>{{total}}</text>
+      <!-- 左侧图标区 -->
+      <view class="buy-icon-group">
+        <view class="buy-icon-item">
+          <view class="buy-icon buy-icon--service"></view>
+          <text class="buy-icon-label">客服</text>
+        </view>
+        <view class="buy-icon-divider"></view>
+        <view class="buy-icon-item" bindtap="onCartTap">
+          <view class="buy-icon buy-icon--bag"></view>
+          <text class="buy-icon-label">购物袋</text>
+        </view>
       </view>
-      <button class="btn btn-primary buy-btn" bindtap="onBuyNow">立即购买</button>
+      <!-- 右侧操作按钮 -->
+      <view class="buy-actions">
+        <button class="btn btn-plain buy-action-btn" bindtap="onAddToCart">加入购物袋</button>
+        <button class="btn btn-primary buy-action-btn" bindtap="onBuyNow">立即购买</button>
+      </view>
     </view>
     <view class="safe-bottom"></view>
   </view>
+
+  <!-- 弹窗遮罩 -->
+  <view class="popup-mask" wx:if="{{showPopup}}" bindtap="onClosePopup"></view>
+
+  <!-- 数量选择弹窗 -->
+  <view class="qty-popup" wx:if="{{showPopup}}">
+    <view class="popup-header">
+      <image class="popup-cover" src="{{product.cover}}" mode="aspectFill" />
+      <view class="popup-meta">
+        <text class="popup-name">{{product.name}}</text>
+        <text class="popup-price price"><text class="price-symbol">¥</text>{{product.price}}</text>
+      </view>
+    </view>
+    <view class="popup-divider"></view>
+    <view class="popup-row">
+      <text class="popup-label">数量</text>
+      <view class="quantity-ctrl">
+        <view class="qty-btn {{quantity <= 1 ? 'qty-btn--disabled' : ''}}" bindtap="onMinus">−</view>
+        <text class="qty-num">{{quantity}}</text>
+        <view class="qty-btn {{quantity >= product.stock ? 'qty-btn--disabled' : ''}}" bindtap="onPlus">+</view>
+      </view>
+    </view>
+    <button class="btn btn-primary btn-full confirm-btn" bindtap="onConfirm">确定</button>
+    <view class="safe-bottom"></view>
+  </view>
+
 </block>
