@@ -155,15 +155,12 @@
   font-size: var(--font-base);
   font-weight: 600;
   color: var(--color-text);
-  margin-bottom: var(--space-sm);
-  padding-left: 12rpx;
-  border-left: 4rpx solid var(--color-primary);
+  margin-bottom: var(--space-md);
   display: block;
 }
 .detail-img {
   width: 100%;
   display: block;
-  margin-bottom: var(--space-xs);
 }
 
 /* 底部内容占位，避免内容被固定购买栏遮挡 */
