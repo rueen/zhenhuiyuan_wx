@@ -40,18 +40,24 @@
       bindscrolltolower="onReachBottom"
       lower-threshold="100"
     >
-      <view class="product-grid">
+      <!-- 分类标题 -->
+      <view class="category-title" wx:if="{{activeCategoryName}}">
+        <text class="category-title-text">{{activeCategoryName}}</text>
+      </view>
+
+      <!-- 商品行 -->
+      <view class="product-list">
         <view
           wx:for="{{products}}"
           wx:key="id"
-          class="product-card card"
+          class="product-row"
           bindtap="onProductTap"
           data-id="{{item.id}}"
         >
-          <image class="product-cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
+          <image class="product-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
           <view class="product-info">
             <text class="product-name">{{item.name}}</text>
-            <view class="product-bottom">
+            <view class="product-footer">
               <text class="product-price price"><text class="price-symbol">¥</text>{{item.price}}</text>
               <text class="product-sales">{{item.sales}}人购</text>
             </view>

@@ -4,7 +4,8 @@ Page({
   data: {
     categories: [],
     products: [],
-    activeCategoryId: 0,  // 0 = 全部
+    activeCategoryId: null,
+    activeCategoryName: '',
     keyword: '',
     page: 1,
     pageSize: 10,
@@ -37,8 +38,13 @@ Page({
   async loadCategories() {
     try {
       const list = await http.get('/api/h5/categories');
-      const categories = [{ id: 0, name: '全部' }, ...(list || [])];
-      this.setData({ categories });
+      const categories = list || [];
+      const first = categories[0] || {};
+      this.setData({
+        categories,
+        activeCategoryId: first.id ?? null,
+        activeCategoryName: first.name || '',
+      });
       this.loadProducts(true);
     } catch (e) {}
   },
@@ -73,7 +79,8 @@ Page({
   onCategoryTap(e) {
     const id = e.currentTarget.dataset.id;
     if (id === this.data.activeCategoryId) return;
-    this.setData({ activeCategoryId: id, noMore: false });
+    const cat = this.data.categories.find(c => c.id === id) || {};
+    this.setData({ activeCategoryId: id, activeCategoryName: cat.name || '', noMore: false });
     this.loadProducts(true);
   },
 

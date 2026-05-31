@@ -125,7 +125,7 @@ Authorization: Bearer <token>
 query：`page`、`pageSize`、`categoryId?`、`keyword?`。仅返回上架商品。
 
 ### GET /products/:id — 商品详情
-仅上架商品可见。返回含 `detail_images` 数组、`stock`、`sales`。
+仅上架商品可见。返回含 `main_images` 数组（详情页顶部轮播）、`detail_images` 数组（详情页底部图文）、`stock`、`sales`。
 
 ## 2.4 收货地址 Address（均需登录）
 
@@ -256,7 +256,7 @@ query：`status?`、`page`、`pageSize`。
 | PUT | /products/:id | product:save |
 | DELETE | /products/:id | product:delete |
 
-商品字段：`name`、`price`、`category_id`、`cover`、`weight`、`stock`、`status`、`detail_images`(数组)、`shipping_template_id?`、`sort?`。
+商品字段：`name`、`price`、`category_id`、`cover`、`weight`、`stock`、`status`、`main_images`(数组，详情页顶部轮播)、`detail_images`(数组，详情页底部图文)、`shipping_template_id?`、`sort?`。
 
 ## 3.5 运费模板 Shipping　权限前缀 `shipping:`
 
