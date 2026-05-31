@@ -14,7 +14,7 @@ page {
   --color-text-hint:     #bbbbbb;
 
   /* 背景 & 边框 */
-  --color-bg:            #f5f0ea;
+  --color-bg:            #f7f7f7;
   --color-card:          #ffffff;
   --color-border:        #ebebeb;
 
