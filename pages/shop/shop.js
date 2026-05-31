@@ -12,18 +12,10 @@ Page({
     total: 0,
     loading: false,
     noMore: false,
-    contentHeight: 0,
-    searchBarHeight: 0,
   },
 
   onLoad() {
-    const sys = wx.getSystemInfoSync();
-    // 内容区高度 = 窗口高度 - 导航栏 - 搜索栏 - 自定义tabBar
-    const navBarHeight = sys.statusBarHeight + 44;
-    const tabBarHeight = 56 + sys.safeArea.bottom - sys.screenHeight + sys.windowHeight;
-    const searchBarHeight = 96; // rpx to px: 96rpx ≈ 48px
-    const contentHeight = sys.windowHeight - navBarHeight - 48 - 56;
-    this.setData({ contentHeight });
+    // 内容区高度由 CSS flex:1 自动计算，无需 JS
   },
 
   onShow() {

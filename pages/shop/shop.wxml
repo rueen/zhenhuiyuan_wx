@@ -17,7 +17,7 @@
   </view>
 
   <!-- 主体内容 -->
-  <view class="shop-body" style="height: {{contentHeight}}px">
+  <view class="shop-body">
 
     <!-- 分类侧边栏 -->
     <scroll-view class="category-sidebar" scroll-y>
@@ -28,12 +28,11 @@
         bindtap="onCategoryTap"
         data-id="{{item.id}}"
       >
-        <view class="category-indicator"></view>
         <text class="category-name">{{item.name}}</text>
       </view>
     </scroll-view>
 
-    <!-- 商品列表 -->
+    <!-- 商品区域 -->
     <scroll-view
       class="product-scroll"
       scroll-y
@@ -45,12 +44,12 @@
         <text class="category-title-text">{{activeCategoryName}}</text>
       </view>
 
-      <!-- 商品行 -->
-      <view class="product-list">
+      <!-- 2 列商品网格 -->
+      <view class="product-grid">
         <view
           wx:for="{{products}}"
           wx:key="id"
-          class="product-row"
+          class="product-card"
           bindtap="onProductTap"
           data-id="{{item.id}}"
         >
@@ -58,8 +57,8 @@
           <view class="product-info">
             <text class="product-name">{{item.name}}</text>
             <view class="product-footer">
-              <text class="product-price price"><text class="price-symbol">¥</text>{{item.price}}</text>
-              <text class="product-sales">{{item.sales}}人购</text>
+              <text class="product-price"><text class="price-symbol">¥</text>{{item.price}}</text>
+              <view class="add-btn" catchtap="onProductTap" data-id="{{item.id}}">+</view>
             </view>
           </view>
         </view>
