@@ -1,0 +1,115 @@
+<view class="accounts-page">
+  <view class="account-list">
+    <view class="account-card card" wx:for="{{accounts}}" wx:key="id">
+      <view class="account-main">
+        <view class="account-top">
+          <view class="type-badge">{{item.typeName}}</view>
+          <text class="account-name">{{item.real_name}}</text>
+          <view class="default-badge" wx:if="{{item.is_default}}">默认</view>
+        </view>
+        <text class="account-no">{{item.account_no_mask}}</text>
+        <text class="bank-name" wx:if="{{item.bank_name}}">{{item.bank_name}}</text>
+      </view>
+      <view class="account-actions">
+        <view class="action-btn" catchtap="onSetDefault" data-id="{{item.id}}" wx:if="{{!item.is_default}}">设为默认</view>
+        <view class="action-btn" catchtap="onEdit" data-id="{{item.id}}">编辑</view>
+        <view class="action-btn action-btn--danger" catchtap="onDelete" data-id="{{item.id}}">删除</view>
+      </view>
+    </view>
+
+    <view class="empty-wrap" wx:if="{{!loading && accounts.length === 0}}">
+      <text class="empty-icon">💳</text>
+      <text>暂无提现账户，请先添加</text>
+    </view>
+  </view>
+
+  <view class="add-bar">
+    <button class="btn btn-primary btn-full" bindtap="onAdd">+ 新增提现账户</button>
+    <view class="safe-bottom"></view>
+  </view>
+</view>
+
+<!-- 遮罩 -->
+<view class="mask" wx:if="{{showAddPanel}}" bindtap="onClosePanel"></view>
+
+<!-- 新增/编辑账户面板 -->
+<view class="add-panel {{showAddPanel ? 'add-panel--show' : ''}}">
+  <view class="panel-header">
+    <text class="panel-title">{{editingId ? '编辑提现账户' : '新增提现账户'}}</text>
+    <text class="panel-close" bindtap="onClosePanel">✕</text>
+  </view>
+
+  <!-- 账户类型 -->
+  <view class="panel-section">
+    <text class="panel-label">账户类型</text>
+    <view class="type-tabs">
+      <view
+        class="type-tab {{form.account_type === 1 ? 'type-tab--active' : ''}}"
+        bindtap="onTypeChange"
+        data-type="{{1}}"
+      >银行卡</view>
+      <view
+        class="type-tab {{form.account_type === 2 ? 'type-tab--active' : ''}}"
+        bindtap="onTypeChange"
+        data-type="{{2}}"
+      >支付宝</view>
+      <view
+        class="type-tab {{form.account_type === 3 ? 'type-tab--active' : ''}}"
+        bindtap="onTypeChange"
+        data-type="{{3}}"
+      >微信</view>
+    </view>
+  </view>
+
+  <!-- 真实姓名 -->
+  <view class="panel-section">
+    <text class="panel-label">真实姓名</text>
+    <input
+      class="panel-input"
+      placeholder="请输入真实姓名"
+      placeholder-class="field-placeholder"
+      value="{{form.real_name}}"
+      bindinput="onFormInput"
+      data-key="real_name"
+    />
+  </view>
+
+  <!-- 账号 -->
+  <view class="panel-section">
+    <text class="panel-label">{{form.account_type === 1 ? '银行卡号' : (form.account_type === 2 ? '支付宝账号' : '微信账号')}}</text>
+    <input
+      class="panel-input"
+      placeholder="{{editingId ? '不修改请留空' : '请输入账号'}}"
+      placeholder-class="field-placeholder"
+      value="{{form.account_no}}"
+      bindinput="onFormInput"
+      data-key="account_no"
+    />
+  </view>
+
+  <!-- 银行名称（仅银行卡） -->
+  <view class="panel-section" wx:if="{{form.account_type === 1}}">
+    <text class="panel-label">开户银行</text>
+    <input
+      class="panel-input"
+      placeholder="请输入银行名称，如：中国工商银行"
+      placeholder-class="field-placeholder"
+      value="{{form.bank_name}}"
+      bindinput="onFormInput"
+      data-key="bank_name"
+    />
+  </view>
+
+  <!-- 设为默认（仅新增时显示） -->
+  <view class="panel-section panel-section--switch" wx:if="{{!editingId}}">
+    <text class="panel-label">设为默认账户</text>
+    <switch color="#869478" checked="{{form.is_default}}" bindchange="onDefaultChange" />
+  </view>
+
+  <button
+    class="btn btn-primary btn-full {{submitting ? 'btn-disabled' : ''}}"
+    bindtap="onSubmitForm"
+    disabled="{{submitting}}"
+  >{{submitting ? '保存中…' : '保存'}}</button>
+  <view class="safe-bottom"></view>
+</view>

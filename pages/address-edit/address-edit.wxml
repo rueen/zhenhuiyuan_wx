@@ -32,9 +32,7 @@
     <picker mode="region" value="{{[form.province_name, form.city_name, form.district_name]}}" bindchange="onRegionChange">
       <view class="form-row picker-row">
         <text class="field-label">所在地区</text>
-        <text class="field-value {{regionDisplay ? '' : 'field-placeholder'}}">
-          {{regionDisplay || '请选择省市区'}}
-        </text>
+        <text class="field-value {{regionDisplay ? '' : 'field-placeholder'}}">{{regionDisplay || '请选择省市区'}}</text>
         <text class="arrow-right">›</text>
       </view>
     </picker>
@@ -56,9 +54,9 @@
     <view class="field-divider"></view>
 
     <view class="form-row form-row--switch">
-      <text class="field-label">设为默认地址</text>
+      <text class="field-label">设为默认</text>
       <switch
-        color="#8d570d"
+        color="#869478"
         checked="{{form.is_default}}"
         bindchange="onDefaultChange"
       />

@@ -13,13 +13,14 @@
     "pages/team/team",
     "pages/withdrawal/withdrawal",
     "pages/withdrawal-records/withdrawal-records",
+    "pages/withdrawal-accounts/withdrawal-accounts",
     "pages/contribution-logs/contribution-logs",
     "pages/balance-logs/balance-logs"
   ],
   "tabBar": {
     "custom": true,
     "color": "#999999",
-    "selectedColor": "#8d570d",
+    "selectedColor": "#869478",
     "backgroundColor": "#ffffff",
     "list": [
       { "pagePath": "pages/home/home", "text": "首页" },

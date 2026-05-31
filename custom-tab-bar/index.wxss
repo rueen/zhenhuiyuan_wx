@@ -30,7 +30,7 @@
   line-height: 1;
 }
 .tab-item--active .tab-text {
-  color: #8d570d;
+  color: #869478;
 }
 
 /* ── 图标基础（SVG Data URI） ── */

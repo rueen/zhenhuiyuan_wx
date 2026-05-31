@@ -1,0 +1,154 @@
+.accounts-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding-bottom: 140rpx;
+}
+
+.account-list {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.account-card {
+  padding: var(--space-md);
+}
+.account-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: 10rpx;
+}
+.type-badge {
+  padding: 4rpx 16rpx;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-radius: 100rpx;
+  font-size: var(--font-xs);
+  flex-shrink: 0;
+}
+.account-name {
+  font-size: var(--font-md);
+  font-weight: 600;
+  color: var(--color-text);
+}
+.default-badge {
+  padding: 4rpx 14rpx;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-radius: 100rpx;
+  font-size: var(--font-xs);
+}
+.account-no {
+  font-size: var(--font-base);
+  color: var(--color-text);
+  display: block;
+  margin-bottom: 4rpx;
+}
+.bank-name {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+  display: block;
+}
+
+.account-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+  padding-top: var(--space-xs);
+  border-top: 1rpx solid var(--color-border);
+}
+.action-btn {
+  font-size: var(--font-xs);
+  color: var(--color-text-sub);
+  padding: 6rpx 16rpx;
+  border-radius: 100rpx;
+  border: 1rpx solid var(--color-border);
+}
+.action-btn--danger { color: var(--color-danger); border-color: var(--color-danger); }
+
+.add-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1rpx solid var(--color-border);
+  padding: var(--space-sm) var(--space-md);
+}
+
+/* ── 遮罩 + 新增面板 ── */
+.mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 200;
+}
+.add-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 300;
+  background: #fff;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+.add-panel--show { transform: translateY(0); }
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+.panel-title { font-size: var(--font-lg); font-weight: 600; }
+.panel-close { font-size: var(--font-lg); color: var(--color-text-sub); padding: 10rpx; }
+
+.panel-section {
+  margin-bottom: var(--space-md);
+}
+.panel-section--switch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.panel-label {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+  margin-bottom: var(--space-xs);
+  display: block;
+}
+.panel-section--switch .panel-label { margin-bottom: 0; }
+
+.type-tabs {
+  display: flex;
+  gap: var(--space-sm);
+}
+.type-tab {
+  flex: 1;
+  text-align: center;
+  padding: var(--space-xs) 0;
+  border: 1rpx solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+}
+.type-tab--active {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-primary-bg);
+}
+
+.panel-input {
+  width: 100%;
+  height: 80rpx;
+  border-bottom: 1rpx solid var(--color-border);
+  font-size: var(--font-base);
+  color: var(--color-text);
+  box-sizing: border-box;
+}

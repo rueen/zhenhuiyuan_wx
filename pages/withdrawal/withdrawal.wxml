@@ -31,6 +31,10 @@
           <text class="menu-item-label">余额流水</text>
           <text class="arrow-right">›</text>
         </view>
+        <view class="menu-item" bindtap="onAccountsTap">
+          <text class="menu-item-label">提现账户</text>
+          <text class="arrow-right">›</text>
+        </view>
       </view>
     </view>
   </view>

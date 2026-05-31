@@ -43,6 +43,10 @@ Page({
     wx.navigateTo({ url: '/pages/balance-logs/balance-logs' });
   },
 
+  onAccountsTap() {
+    wx.navigateTo({ url: '/pages/withdrawal-accounts/withdrawal-accounts' });
+  },
+
   onApply() {
     this.setData({ showApplyPanel: true });
   },

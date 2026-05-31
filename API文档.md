@@ -178,10 +178,14 @@ query：`status?`、`page`、`pageSize`。
 | --- | --- | --- |
 | GET | /withdrawal-accounts | 账户列表（卡号脱敏 `**** 1234`） |
 | POST | /withdrawal-accounts | 新增账户 |
+| GET | /withdrawal-accounts/:id | 账户详情 |
+| PUT | /withdrawal-accounts/:id | 编辑账户（字段均可选，仅更新传入项） |
 | PUT | /withdrawal-accounts/:id/default | 设为默认 |
 | DELETE | /withdrawal-accounts/:id | 删除 |
 
 新增账户字段：`account_type`(1/2/3)、`real_name`、`account_no`(卡号/账号，后端 AES 加密存储)、`bank_name`(银行卡必填)、`is_default?`。
+
+编辑账户字段（均为可选，只传需修改的字段）：`account_type?`、`real_name?`、`account_no?`、`bank_name?`。卡号/账号修改后后端重新加密存储，响应仍返回脱敏串。
 
 ### 提现申请
 
