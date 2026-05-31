@@ -10,14 +10,15 @@
   align-items: center;
   gap: var(--space-md);
   padding: var(--space-lg) var(--space-md);
-  background: linear-gradient(135deg, #8d570d 0%, #c07a1a 100%);
+  background: var(--color-primary-light);
   margin-bottom: var(--space-md);
 }
 .not-login-avatar {
   width: 96rpx;
   height: 96rpx;
   border-radius: 50%;
-  background: rgba(255,255,255,0.25);
+  background: var(--color-primary);
+  opacity: 0.4;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,43 +34,34 @@
   display: block;
   font-size: var(--font-lg);
   font-weight: 600;
-  color: #fff;
+  color: var(--color-text);
 }
 .not-login-sub {
   display: block;
   font-size: var(--font-sm);
-  color: rgba(255,255,255,0.7);
+  color: var(--color-text-sub);
   margin-top: 8rpx;
 }
-.not-login-banner .arrow-right {
-  color: rgba(255,255,255,0.7);
-  font-size: 40rpx;
-}
 
-/* ── 已登录头部 ── */
-.mine-header {
-  padding: var(--space-md) var(--space-md) 0;
-}
-.header-content {
-  background: var(--color-primary-light);
-  border-radius: var(--radius-lg);
+/* ── 已登录头部卡片 ── */
+.mine-header-card {
   padding: var(--space-md);
 }
 
 /* 用户信息行 */
 .user-row {
   display: flex;
-  align-items: center;
-  gap: var(--space-md);
+  align-items: flex-start;
+  gap: var(--space-sm);
   margin-bottom: var(--space-md);
 }
 .user-avatar {
-  width: 112rpx;
-  height: 112rpx;
+  width: 104rpx;
+  height: 104rpx;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
-  border: 4rpx solid rgba(255,255,255,0.5);
+  background: var(--color-border);
 }
 .avatar-img {
   width: 100%;
@@ -78,77 +70,99 @@
 .avatar-default {
   width: 100%;
   height: 100%;
-  background: rgba(255,255,255,0.25);
+  background: var(--color-primary-light);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .avatar-letter {
   font-size: var(--font-xl);
-  color: #fff;
+  color: var(--color-primary);
   font-weight: 600;
 }
-.user-meta { flex: 1; }
+
+.user-meta {
+  flex: 1;
+  padding-top: 8rpx;
+}
 .user-name-row {
   display: flex;
   align-items: center;
-  gap: 12rpx;
+  gap: var(--space-xs);
   margin-bottom: 10rpx;
 }
 .user-name {
   font-size: var(--font-lg);
-  font-weight: 600;
-  color: #fff;
+  font-weight: 700;
+  color: var(--color-text);
 }
 .level-badge {
-  padding: 4rpx 16rpx;
-  background: rgba(246,227,187,0.25);
-  border: 1rpx solid rgba(246,227,187,0.6);
-  border-radius: 100rpx;
-  font-size: var(--font-xs);
-  color: var(--color-primary-light);
-}
-.invite-row {
   display: flex;
   align-items: center;
-  gap: 12rpx;
-}
-.invite-code-text {
-  font-size: var(--font-sm);
-  color: rgba(255,255,255,0.75);
-}
-.copy-btn {
-  padding: 4rpx 16rpx;
-  background: rgba(255,255,255,0.2);
+  gap: 6rpx;
+  padding: 4rpx 14rpx;
+  background: var(--color-primary);
   border-radius: 100rpx;
   font-size: var(--font-xs);
   color: #fff;
+}
+.level-icon {
+  font-size: 18rpx;
+  opacity: 0.85;
+}
+.level-arrow {
+  font-size: var(--font-xs);
+  opacity: 0.75;
+}
+.level-hint {
+  font-size: var(--font-xs);
+  color: var(--color-text-sub);
+}
+
+/* 邀请码按钮（右上角） */
+.invite-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+  flex-shrink: 0;
+  padding-top: 4rpx;
+}
+.invite-icon-slot {
+  width: 48rpx;
+  height: 48rpx;
+  border: 2rpx solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+}
+.invite-btn-label {
+  font-size: var(--font-xs);
+  color: var(--color-text-sub);
 }
 
 /* 资产统计行 */
 .stats-row {
   display: flex;
-  background: #fff;
-  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  margin-top: 4rpx;
 }
 .stat-item {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--space-md) 0;
+  padding: var(--space-sm) 0;
   gap: 8rpx;
-}
-.stat-value {
-  font-size: var(--font-lg);
-  font-weight: 700;
-  color: var(--color-primary);
 }
 .stat-label {
   font-size: var(--font-xs);
   color: var(--color-text-sub);
+}
+.stat-value {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  color: var(--color-text);
 }
 .stat-divider {
   width: 1rpx;
@@ -158,9 +172,6 @@
 
 /* ── 订单区 ── */
 .order-section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: var(--space-md) var(--space-md) var(--space-sm);
 }
 .section-title {
@@ -168,52 +179,48 @@
   font-weight: 600;
   color: var(--color-text);
 }
-.section-more {
-  display: flex;
-  align-items: center;
-  gap: 4rpx;
-  font-size: var(--font-sm);
-  color: var(--color-text-sub);
-}
 
 .order-tabs {
   display: flex;
-  padding: 0 var(--space-sm) var(--space-md);
+  padding: var(--space-md) var(--space-xs) ;
 }
 .order-tab {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10rpx;
+  gap: 12rpx;
   padding: var(--space-xs) 0;
 }
-.order-tab-dot {
-  width: 44rpx;
-  height: 44rpx;
-  border-radius: 50%;
-  border: 2rpx solid currentColor;
+.order-tab-icon {
+  width: 52rpx;
+  height: 52rpx;
+  border: 2rpx solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
 }
-.dot-0 { color: var(--color-warning);  border-color: var(--color-warning); }
-.dot-1 { color: #2196f3; border-color: #2196f3; }
-.dot-2 { color: #9c27b0; border-color: #9c27b0; }
-.dot-3 { color: var(--color-success);  border-color: var(--color-success); }
-
 .order-tab-label {
   font-size: var(--font-xs);
   color: var(--color-text-sub);
 }
 
 /* ── 菜单列表 ── */
-.menu-list {}
+.menu-list-wrap{
+  padding: 0 var(--space-md);
+}
 .menu-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-md) var(--space-md);
+  padding: var(--space-md) 0;
   border-bottom: 1rpx solid var(--color-border);
 }
 .menu-item:last-child { border-bottom: none; }
+.menu-item-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
 .menu-item-label {
   font-size: var(--font-base);
   color: var(--color-text);
@@ -221,6 +228,12 @@
 
 /* ── 退出登录 ── */
 .logout-section { margin-top: var(--space-md); }
+.logout-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+}
 .logout-text {
   font-size: var(--font-base);
   color: var(--color-danger);

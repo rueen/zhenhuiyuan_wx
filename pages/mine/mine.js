@@ -11,9 +11,11 @@ Page({
       { status: 3, label: '已完成' },
     ],
     menuItems: [
-      { label: '我的团队',   path: '/pages/team/team',                   dot: false },
-      { label: '我的地址',   path: '/pages/address-list/address-list',    dot: false },
-      { label: '余额流水',   path: '/pages/balance-logs/balance-logs',    dot: false },
+      { label: '我的团队',        path: '/pages/team/team',                   dot: false },
+      { label: '我的地址',        path: '/pages/address-list/address-list',    dot: false },
+      { label: '我的分红',        path: '/pages/dividend/dividend',            dot: false },
+      { label: '用户协议与隐私条款', path: '/pages/agreement/agreement',         dot: false },
+      { label: '联系客服',        path: '/pages/service/service',              dot: false },
     ],
   },
 
