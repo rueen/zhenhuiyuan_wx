@@ -1,48 +1,38 @@
 <view class="withdrawal-page">
 
-  <!-- 余额概览 -->
+  <!-- 余额卡片 -->
   <view class="balance-card">
     <view class="balance-main">
       <text class="balance-label">可提现余额</text>
-      <text class="balance-value price"><text class="price-symbol">¥</text>{{info ? info.withdrawable_balance : '--'}}</text>
+      <text class="balance-value"><text class="price-symbol">¥</text>{{info ? info.withdrawable_balance : '--'}}</text>
     </view>
     <view class="balance-sub-row">
       <view class="balance-sub-item">
-        <text class="sub-label">冻结中</text>
+        <text class="sub-label">提现中</text>
         <text class="sub-value">¥{{info ? info.frozen_amount : '--'}}</text>
       </view>
       <view class="balance-sub-item">
         <text class="sub-label">可用</text>
-        <text class="sub-value highlight">¥{{info ? info.available_amount : '--'}}</text>
-      </view>
-      <view class="balance-sub-item">
-        <text class="sub-label">最低提现</text>
-        <text class="sub-value">¥{{info ? info.min_amount : '--'}}</text>
+        <text class="sub-value">¥{{info ? info.available_amount : '--'}}</text>
       </view>
     </view>
-    <button class="btn btn-primary apply-btn" bindtap="onApply">申请提现</button>
+    <button class="btn btn-primary btn-full" bindtap="onApply">申请提现</button>
   </view>
 
-  <!-- 提现记录 -->
-  <view class="records-section">
-    <view class="records-title">提现记录</view>
-    <view class="record-card card" wx:for="{{records}}" wx:key="id">
-      <view class="record-top">
-        <text class="record-amount price"><text class="price-symbol">¥</text>{{item.amount}}</text>
-        <text class="record-status status-wd-{{item.status}}">{{item.statusText}}</text>
-      </view>
-      <view class="record-meta">
-        <text class="record-time">{{item.created_at}}</text>
-        <text wx:if="{{item.reject_reason}}" class="record-reason">驳回原因：{{item.reject_reason}}</text>
+  <!-- 功能入口 -->
+  <view class="section">
+    <view class="card">
+      <view class="menu-list-wrap">
+        <view class="menu-item" bindtap="onRecordsTap">
+          <text class="menu-item-label">提现记录</text>
+          <text class="arrow-right">›</text>
+        </view>
+        <view class="menu-item" bindtap="onBalanceLogsTap">
+          <text class="menu-item-label">余额流水</text>
+          <text class="arrow-right">›</text>
+        </view>
       </view>
     </view>
-
-    <view class="empty-wrap" wx:if="{{!loading && records.length === 0}}">
-      <text class="empty-icon">💰</text>
-      <text>暂无提现记录</text>
-    </view>
-    <view class="load-more" wx:if="{{loading}}">加载中…</view>
-    <view class="load-more" wx:if="{{!loading && noMore && records.length > 0}}">没有更多了</view>
   </view>
 
   <!-- 申请弹窗遮罩 -->
@@ -92,7 +82,7 @@
           bindinput="onAmountInput"
         />
       </view>
-      <text class="amount-hint">可用 ¥{{info ? info.available_amount : '--'}}</text>
+      <text class="amount-hint">可用 ¥{{info ? info.available_amount : '--'}}，最低提现 ¥{{info ? info.min_amount : '--'}}</text>
     </view>
 
     <button

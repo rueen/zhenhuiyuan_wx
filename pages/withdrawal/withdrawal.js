@@ -1,17 +1,10 @@
 const http = require('../../utils/request');
-const { WITHDRAWAL_STATUS, ACCOUNT_TYPE } = require('../../utils/constant');
+const { ACCOUNT_TYPE } = require('../../utils/constant');
 
 Page({
   data: {
     info: null,
     accounts: [],
-    records: [],
-    page: 1,
-    pageSize: 10,
-    total: 0,
-    noMore: false,
-    loading: false,
-    // 申请提现
     showApplyPanel: false,
     selectedAccountId: null,
     applyAmount: '',
@@ -22,7 +15,6 @@ Page({
   onShow() {
     this.loadInfo();
     this.loadAccounts();
-    this.loadRecords(true);
   },
 
   async loadInfo() {
@@ -43,28 +35,12 @@ Page({
     } catch (e) {}
   },
 
-  async loadRecords(reset = false) {
-    if (this.data.loading) return;
-    if (!reset && this.data.noMore) return;
-
-    const page = reset ? 1 : this.data.page + 1;
-    this.setData({ loading: true });
-
-    try {
-      const res = await http.get('/api/h5/withdrawals', { page, pageSize: this.data.pageSize });
-      const list = (res.list || []).map(r => ({
-        ...r,
-        statusText: WITHDRAWAL_STATUS[r.status] || '',
-      }));
-      const records = reset ? list : [...this.data.records, ...list];
-      this.setData({ records, page, total: res.total, noMore: records.length >= res.total });
-    } catch (e) {}
-
-    this.setData({ loading: false });
+  onRecordsTap() {
+    wx.navigateTo({ url: '/pages/withdrawal-records/withdrawal-records' });
   },
 
-  onReachBottom() {
-    this.loadRecords(false);
+  onBalanceLogsTap() {
+    wx.navigateTo({ url: '/pages/balance-logs/balance-logs' });
   },
 
   onApply() {
@@ -108,7 +84,6 @@ Page({
       wx.showToast({ title: '申请成功', icon: 'success' });
       this.onClosePanel();
       this.loadInfo();
-      this.loadRecords(true);
     } finally {
       this.setData({ submitting: false });
     }

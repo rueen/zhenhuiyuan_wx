@@ -1,0 +1,29 @@
+.records-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding: var(--space-md);
+}
+.records-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+.record-item {
+  padding: var(--space-md);
+}
+.record-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+.record-amount { font-size: var(--font-xl); font-weight: 700; }
+.record-status { font-size: var(--font-sm); font-weight: 600; }
+.status-wd-0 { color: var(--color-warning); }
+.status-wd-1 { color: #2196f3; }
+.status-wd-2 { color: var(--color-success); }
+.status-wd-3 { color: var(--color-danger); }
+
+.record-meta { display: flex; flex-direction: column; gap: 6rpx; }
+.record-time { font-size: var(--font-xs); color: var(--color-text-hint); }
+.record-reason { font-size: var(--font-xs); color: var(--color-danger); }

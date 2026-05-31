@@ -12,6 +12,7 @@
     "pages/address-edit/address-edit",
     "pages/team/team",
     "pages/withdrawal/withdrawal",
+    "pages/withdrawal-records/withdrawal-records",
     "pages/contribution-logs/contribution-logs",
     "pages/balance-logs/balance-logs"
   ],

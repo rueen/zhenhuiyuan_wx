@@ -1,0 +1,21 @@
+<view class="records-page">
+  <view class="records-list">
+    <view class="record-item card" wx:for="{{records}}" wx:key="id">
+      <view class="record-top">
+        <text class="record-amount price"><text class="price-symbol">¥</text>{{item.amount}}</text>
+        <text class="record-status status-wd-{{item.status}}">{{item.statusText}}</text>
+      </view>
+      <view class="record-meta">
+        <text class="record-time">{{item.created_at}}</text>
+        <text wx:if="{{item.reject_reason}}" class="record-reason">驳回原因：{{item.reject_reason}}</text>
+      </view>
+    </view>
+
+    <view class="empty-wrap" wx:if="{{!loading && records.length === 0}}">
+      <text class="empty-icon">💰</text>
+      <text>暂无提现记录</text>
+    </view>
+    <view class="load-more" wx:if="{{loading}}">加载中…</view>
+    <view class="load-more" wx:if="{{!loading && noMore && records.length > 0}}">没有更多了</view>
+  </view>
+</view>
