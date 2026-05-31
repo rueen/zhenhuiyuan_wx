@@ -1,41 +1,32 @@
 <view class="mine-page">
 
-  <!-- 未登录占位 -->
-  <view class="not-login-banner" wx:if="{{!profile}}" bindtap="onLoginTap">
-    <view class="not-login-avatar">
-      <view class="avatar-default-icon"></view>
-    </view>
-    <view class="not-login-info">
-      <text class="not-login-title">点击登录</text>
-      <text class="not-login-sub">登录后享受更多服务</text>
-    </view>
-    <text class="arrow-right">›</text>
-  </view>
-
-  <!-- 已登录头部 -->
-  <view class="section" wx:if="{{profile}}">
+  <!-- 头部卡片 -->
+  <view class="section">
     <view class="card mine-header-card">
-      <!-- 用户信息行 -->
       <view class="user-row">
-        <view class="user-avatar">
-          <image wx:if="{{profile.avatar}}" class="avatar-img" src="{{profile.avatar}}" mode="aspectFill" />
-          <view wx:else class="avatar-default">
-            <text class="avatar-letter">{{profile.nickname ? profile.nickname[0] : '?'}}</text>
-          </view>
-        </view>
-        <view class="user-meta">
-          <view class="user-name-row">
-            <text class="user-name">{{profile.nickname || '未设置昵称'}}</text>
-            <view class="level-badge">
-              <text class="level-icon">◆</text>
-              <text>{{profile.level_name || '普卡'}}</text>
-              <text class="level-arrow">›</text>
+        <!-- 头像 + 用户信息，未登录时点击跳转登录 -->
+        <view class="user-info-area" bindtap="onUserAreaTap">
+          <view class="user-avatar">
+            <image wx:if="{{profile && profile.avatar}}" class="avatar-img" src="{{profile.avatar}}" mode="aspectFill" />
+            <view wx:else class="avatar-default">
+              <text wx:if="{{profile}}" class="avatar-letter">{{profile.nickname ? profile.nickname[0] : '?'}}</text>
             </view>
           </view>
-          <text class="level-hint">再获得{{profile.points_to_next_level || 1000}}贡献值升级为下一等级</text>
+          <view class="user-meta">
+            <view class="user-name-row">
+              <text class="user-name">{{profile ? (profile.nickname || '未设置昵称') : '点击登录'}}</text>
+              <view class="level-badge" wx:if="{{profile}}">
+                <text class="level-icon">◆</text>
+                <text>{{profile.level_name || '普卡'}}</text>
+                <text class="level-arrow">›</text>
+              </view>
+            </view>
+            <text class="level-hint" wx:if="{{profile}}">再获得{{profile.points_to_next_level || 1000}}贡献值升级为下一等级</text>
+            <text class="level-hint" wx:if="{{!profile}}">登录后享受更多服务</text>
+          </view>
         </view>
-        <!-- 邀请码入口 -->
-        <view class="invite-btn" bindtap="onCopyInviteCode">
+        <!-- 邀请码，仅登录后显示 -->
+        <view class="invite-btn" wx:if="{{profile}}" bindtap="onCopyInviteCode">
           <view class="invite-icon-slot"></view>
           <text class="invite-btn-label">邀请码</text>
         </view>
@@ -44,19 +35,19 @@
       <view class="stats-row">
         <view class="stat-item" bindtap="onWithdrawTap">
           <text class="stat-label">余额</text>
-          <text class="stat-value">¥{{profile.withdrawable_balance}}</text>
+          <text class="stat-value {{!profile ? 'stat-value--empty' : ''}}">{{profile ? '¥' + profile.withdrawable_balance : '--'}}</text>
         </view>
         <view class="stat-divider"></view>
         <view class="stat-item" bindtap="onContributionTap">
           <text class="stat-label">贡献值</text>
-          <text class="stat-value">{{profile.cumulative_contribution}}</text>
+          <text class="stat-value {{!profile ? 'stat-value--empty' : ''}}">{{profile ? profile.cumulative_contribution : '--'}}</text>
         </view>
       </view>
     </view>
   </view>
 
   <!-- 我的订单 -->
-  <view class="section" wx:if="{{profile}}">
+  <view class="section">
     <view class="card">
       <view class="order-tabs">
         <view
@@ -78,7 +69,7 @@
   </view>
 
   <!-- 功能菜单 -->
-  <view class="section" wx:if="{{profile}}">
+  <view class="section">
     <view class="card menu-list">
       <view class="menu-list-wrap">
         <view
@@ -87,6 +78,7 @@
           wx:key="path"
           bindtap="onMenuTap"
           data-path="{{item.path}}"
+          data-auth="{{item.auth}}"
         >
           <view class="menu-item-left">
             <text class="menu-item-label">{{item.label}}</text>
@@ -97,7 +89,7 @@
     </view>
   </view>
 
-  <!-- 退出登录 -->
+  <!-- 退出登录，仅登录后显示 -->
   <view class="section logout-section" wx:if="{{profile}}">
     <view class="card">
       <view class="logout-item" bindtap="onLogout">

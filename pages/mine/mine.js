@@ -11,11 +11,11 @@ Page({
       { status: 3, label: '已完成' },
     ],
     menuItems: [
-      { label: '我的团队',        path: '/pages/team/team',                   dot: false },
-      { label: '我的地址',        path: '/pages/address-list/address-list',    dot: false },
-      { label: '我的分红',        path: '/pages/dividend/dividend',            dot: false },
-      { label: '用户协议与隐私条款', path: '/pages/agreement/agreement',         dot: false },
-      { label: '联系客服',        path: '/pages/service/service',              dot: false },
+      { label: '我的团队',        path: '/pages/team/team',                 auth: true  },
+      { label: '我的地址',        path: '/pages/address-list/address-list', auth: true  },
+      { label: '我的分红',        path: '/pages/dividend/dividend',         auth: true  },
+      { label: '用户协议与隐私条款', path: '/pages/agreement/agreement',      auth: false },
+      { label: '联系客服',        path: '/pages/service/service',           auth: false },
     ],
   },
 
@@ -39,8 +39,18 @@ Page({
     } catch (e) {}
   },
 
-  onLoginTap() {
-    wx.navigateTo({ url: '/pages/login/login' });
+  _requireLogin() {
+    if (!isLoggedIn()) {
+      wx.navigateTo({ url: '/pages/login/login' });
+      return false;
+    }
+    return true;
+  },
+
+  onUserAreaTap() {
+    if (!isLoggedIn()) {
+      wx.navigateTo({ url: '/pages/login/login' });
+    }
   },
 
   onCopyInviteCode() {
@@ -51,23 +61,29 @@ Page({
   },
 
   onOrderTabTap(e) {
+    if (!this._requireLogin()) return;
     const status = e.currentTarget.dataset.status;
     wx.navigateTo({ url: `/pages/order-list/order-list?status=${status}` });
   },
 
   onAllOrdersTap() {
+    if (!this._requireLogin()) return;
     wx.navigateTo({ url: '/pages/order-list/order-list' });
   },
 
   onMenuTap(e) {
-    wx.navigateTo({ url: e.currentTarget.dataset.path });
+    const { path, auth } = e.currentTarget.dataset;
+    if (auth && !this._requireLogin()) return;
+    wx.navigateTo({ url: path });
   },
 
   onWithdrawTap() {
+    if (!this._requireLogin()) return;
     wx.navigateTo({ url: '/pages/withdrawal/withdrawal' });
   },
 
   onContributionTap() {
+    if (!this._requireLogin()) return;
     wx.navigateTo({ url: '/pages/contribution-logs/contribution-logs' });
   },
 
