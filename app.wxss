@@ -61,8 +61,8 @@ scroll-view, swiper, swiper-item, picker {
   box-sizing: border-box;
 }
 
-button{
-  width: auto!important;
+wx-button:not([size=mini]){
+  width: auto;
 }
 
 /* ─── 通用卡片 ─── */

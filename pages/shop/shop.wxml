@@ -58,7 +58,9 @@
             <text class="product-name">{{item.name}}</text>
             <view class="product-footer">
               <text class="product-price"><text class="price-symbol">¥</text>{{item.price}}</text>
-              <view class="add-btn" catchtap="onProductTap" data-id="{{item.id}}">+</view>
+              <view class="add-btn" catchtap="onProductTap" data-id="{{item.id}}">
+                <icon name="add" size="{{20}}" />
+              </view>
             </view>
           </view>
         </view>
