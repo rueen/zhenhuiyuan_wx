@@ -4,8 +4,8 @@
    ───────────────────────────────────────── */
 page {
   /* 主题色 */
-  --color-primary:       #869478;
-  --color-primary-light: #dde5d8;
+  --color-primary:       #c9a063;
+  --color-primary-light: #dad6d1;
   --color-primary-bg:    #f2f5f0;
 
   /* 文字色 */
