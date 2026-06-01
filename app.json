@@ -36,5 +36,8 @@
     "backgroundColor": "#f7f7f7"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "icon": "/components/icon/icon"
+  }
 }

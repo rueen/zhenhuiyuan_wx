@@ -1,3 +1,4 @@
+
 .mine-page {
   min-height: 100vh;
   background: var(--color-bg);
@@ -71,14 +72,6 @@
   font-size: var(--font-xs);
   color: #fff;
 }
-.level-icon {
-  font-size: 18rpx;
-  opacity: 0.85;
-}
-.level-arrow {
-  font-size: var(--font-xs);
-  opacity: 0.75;
-}
 .level-hint {
   font-size: var(--font-xs);
   color: var(--color-text-sub);
@@ -95,9 +88,9 @@
 .invite-icon-slot {
   width: 48rpx;
   height: 48rpx;
-  border: 2rpx solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: var(--color-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .invite-btn-label {
   font-size: var(--font-xs);
@@ -154,9 +147,9 @@
 .order-tab-icon {
   width: 52rpx;
   height: 52rpx;
-  border: 2rpx solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: var(--color-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .order-tab-label {
   font-size: var(--font-xs);

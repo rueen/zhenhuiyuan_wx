@@ -37,7 +37,7 @@
     style="position:fixed;left:{{navBackLeft}}px;top:{{navBtnTop}}px;width:{{navBtnSize}}px;height:{{navBtnSize}}px;z-index:20;"
     bindtap="onBack"
   >
-    <view class="icon-back"></view>
+    <icon name="arrow-l" size="{{16}}" color="#000" />
   </view>
   <!-- 分享按钮（系统胶囊左侧，避免重叠） -->
   <button
@@ -45,7 +45,7 @@
     style="position:fixed;right:{{navShareRight}}px;top:{{navBtnTop}}px;width:{{navBtnSize}}px;height:{{navBtnSize}}px;z-index:20;"
     open-type="share"
   >
-    <view class="icon-share"></view>
+    <icon name="share" size="{{16}}" color="#000" />
   </button>
 
   <!-- ③ 主内容区（页面级滚动，白卡向上滑动覆盖轮播图） -->
