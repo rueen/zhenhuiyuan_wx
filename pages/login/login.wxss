@@ -6,23 +6,16 @@
   flex-direction: column;
 }
 
-/* ── 品牌区 ── */
-.brand-area {
-  padding-top: 160rpx;
-  text-align: center;
+/* ── logo区 ── */
+.logo-area{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 180rpx;
 }
-.brand-name {
-  font-size: 80rpx;
-  font-weight: 700;
-  color: var(--color-primary);
-  letter-spacing: 12rpx;
-}
-.brand-sub {
-  margin-top: 24rpx;
-  font-size: var(--font-base);
-  font-weight: 500;
-  color: var(--color-text-sub);
-  letter-spacing: 4rpx;
+.logo{
+  width: 230rpx;
+  height: 200rpx;
 }
 
 /* ── 弹性占位 ── */

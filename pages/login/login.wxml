@@ -2,10 +2,9 @@
   <!-- 顶部安全距离 -->
   <safe-area-top extra-height="80"></safe-area-top>
 
-  <!-- 品牌区 -->
-  <view class="brand-area">
-    <view class="brand-name">贞慧缘</view>
-    <view class="brand-sub">发现美好 共享生活</view>
+  <!-- logo -->
+  <view class="logo-area">
+    <image src="https://zhenhuiyuan.oss-cn-hangzhou.aliyuncs.com/images/logo.png" mode="aspectFit" class="logo" />
   </view>
 
   <!-- 弹性占位 -->
