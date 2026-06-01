@@ -1,62 +1,45 @@
 <view class="login-page">
-  <!-- 顶部品牌区 -->
+  <!-- 品牌区 -->
   <view class="brand-area">
     <view class="brand-name">贞慧缘</view>
-    <view class="brand-sub">发现美好，共享生活</view>
+    <view class="brand-sub">发现美好 共享生活</view>
   </view>
 
-  <!-- 登录表单卡片 -->
-  <view class="form-card card">
-    <view class="form-item">
-      <text class="form-label">手机号</text>
-      <input
-        class="form-input"
-        type="number"
-        maxlength="11"
-        placeholder="请输入手机号"
-        placeholder-class="input-placeholder"
-        value="{{phone}}"
-        bindinput="onPhoneInput"
-      />
-    </view>
-    <view class="form-divider"></view>
-    <view class="form-item">
-      <text class="form-label">密码</text>
-      <input
-        class="form-input"
-        password
-        maxlength="32"
-        placeholder="请输入密码（6~32位）"
-        placeholder-class="input-placeholder"
-        value="{{password}}"
-        bindinput="onPasswordInput"
-      />
+  <!-- 弹性占位 -->
+  <view class="login-spacer"></view>
+
+  <!-- 邀请码输入 -->
+  <view class="invite-wrap">
+    <input
+      class="invite-input"
+      placeholder="邀请码（选填）"
+      placeholder-class="invite-placeholder"
+      value="{{inviteCode}}"
+      bindinput="onInviteInput"
+    />
+  </view>
+
+  <!-- 底部操作区 -->
+  <view class="login-footer">
+    <!-- 用户协议勾选 -->
+    <view class="agreement-wrap" bindtap="toggleAgreed">
+      <view class="checkbox {{agreed ? 'checkbox--checked' : ''}}"></view>
+      <text class="agreement-text">我已认真阅读并同意 </text>
+      <text class="agreement-link" catchtap="onAgreementTap">《用户协议和隐私政策》</text>
     </view>
 
-    <!-- 邀请码（可折叠） -->
-    <view class="form-divider"></view>
-    <view class="form-invite-toggle" bindtap="toggleInvite">
-      <text class="invite-toggle-text">有邀请码？点击填写</text>
-      <text class="invite-arrow {{showInvite ? 'invite-arrow--open' : ''}}">›</text>
-    </view>
-    <view class="form-item invite-item" hidden="{{!showInvite}}">
-      <text class="form-label">邀请码</text>
-      <input
-        class="form-input"
-        placeholder="选填，注册时绑定上级"
-        placeholder-class="input-placeholder"
-        value="{{inviteCode}}"
-        bindinput="onInviteInput"
-      />
+    <!-- 微信登录按钮 -->
+    <button
+      class="btn btn-primary btn-full wx-login-btn {{loading ? 'btn-disabled' : ''}}"
+      bindtap="onWxLogin"
+      disabled="{{loading}}"
+    >{{loading ? '登录中…' : '微信登录'}}</button>
+
+    <!-- 游客登录 -->
+    <view class="guest-login" bindtap="onGuestLogin">
+      <text class="guest-login-text">游客登录</text>
     </view>
   </view>
 
-  <!-- 登录按钮 -->
-  <button
-    class="btn btn-primary btn-full login-btn {{loading ? 'btn-disabled' : ''}}"
-    bindtap="onLogin"
-    disabled="{{loading}}"
-  >{{loading ? '登录中…' : '登录 / 注册'}}</button>
-
-  <view class="login-hint">未注册的手机号将自动注册账号</view>
+  <view class="safe-bottom"></view>
 </view>

@@ -1,96 +1,120 @@
 .login-page {
   min-height: 100vh;
   padding: 0 var(--space-lg);
-  background: var(--color-bg);
+  background: #fff;
   display: flex;
   flex-direction: column;
 }
 
 /* ── 品牌区 ── */
 .brand-area {
-  padding-top: 120rpx;
-  padding-bottom: 80rpx;
+  padding-top: 160rpx;
   text-align: center;
 }
 .brand-name {
-  font-size: var(--font-xxl);
+  font-size: 80rpx;
   font-weight: 700;
   color: var(--color-primary);
-  letter-spacing: 10rpx;
+  letter-spacing: 12rpx;
 }
 .brand-sub {
-  margin-top: 16rpx;
-  font-size: var(--font-sm);
+  margin-top: 24rpx;
+  font-size: var(--font-base);
+  font-weight: 500;
   color: var(--color-text-sub);
   letter-spacing: 4rpx;
 }
 
-/* ── 表单卡片 ── */
-.form-card {
-  padding: 0 var(--space-md);
-  margin-bottom: var(--space-lg);
-}
-.form-item {
-  display: flex;
-  align-items: center;
-  min-height: 100rpx;
-  gap: var(--space-sm);
-}
-.form-label {
-  width: 100rpx;
-  flex-shrink: 0;
-  font-size: var(--font-base);
-  color: var(--color-text);
-}
-.form-input {
+/* ── 弹性占位 ── */
+.login-spacer {
   flex: 1;
-  font-size: var(--font-base);
-  color: var(--color-text);
-  height: 100%;
-}
-.input-placeholder {
-  color: var(--color-text-hint);
-}
-.form-divider {
-  height: 1rpx;
-  background: var(--color-border);
-  margin: 0 -28rpx;
-}
-
-/* ── 邀请码折叠 ── */
-.form-invite-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   min-height: 80rpx;
 }
-.invite-toggle-text {
+
+/* ── 邀请码输入 ── */
+.invite-wrap {
+  margin-bottom: var(--space-xl);
+  padding: 0 var(--space-sm);
+}
+.invite-input {
+  width: 100%;
+  height: 96rpx;
+  background: var(--color-bg);
+  border-radius: 48rpx;
+  padding: 0 var(--space-lg);
+  font-size: var(--font-base);
+  color: var(--color-text);
+  text-align: center;
+}
+.invite-placeholder {
+  color: var(--color-text-hint);
+  text-align: center;
+}
+
+/* ── 底部操作区 ── */
+.login-footer {
+  padding-bottom: var(--space-xl);
+}
+
+/* ── 用户协议 ── */
+.agreement-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+}
+.checkbox {
+  width: 36rpx;
+  height: 36rpx;
+  border: 2rpx solid var(--color-border);
+  border-radius: var(--radius-sm);
+  margin-right: var(--space-xs);
+  flex-shrink: 0;
+  position: relative;
+}
+.checkbox--checked {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.checkbox--checked::after {
+  content: '';
+  position: absolute;
+  left: 8rpx;
+  top: 4rpx;
+  width: 10rpx;
+  height: 18rpx;
+  border: 3rpx solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+.agreement-text {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+}
+.agreement-link {
   font-size: var(--font-sm);
   color: var(--color-primary);
 }
-.invite-arrow {
-  font-size: 32rpx;
-  color: var(--color-text-hint);
-  transition: transform 0.2s;
-  display: inline-block;
-}
-.invite-arrow--open {
-  transform: rotate(90deg);
-}
-.invite-item {
-  border-top: 1rpx solid var(--color-border);
+
+/* ── 微信登录按钮 ── */
+.wx-login-btn {
+  height: 96rpx;
+  border-radius: 48rpx;
+  font-size: var(--font-md);
+  font-weight: 600;
+  letter-spacing: 4rpx;
+  margin-bottom: var(--space-lg);
 }
 
-/* ── 登录按钮 ── */
-.login-btn {
-  margin-top: 0;
-  border-radius: var(--radius-xl);
-  font-size: var(--font-md);
-  letter-spacing: 4rpx;
-}
-.login-hint {
-  margin-top: var(--space-md);
+/* ── 游客登录 ── */
+.guest-login {
   text-align: center;
-  font-size: var(--font-xs);
-  color: var(--color-text-hint);
+  padding: var(--space-sm) 0;
+}
+.guest-login-text {
+  font-size: var(--font-base);
+  color: var(--color-text-sub);
+  text-decoration: underline;
 }
