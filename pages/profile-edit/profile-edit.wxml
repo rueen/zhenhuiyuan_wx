@@ -13,7 +13,7 @@
         <view class="avatar-icon">👤</view>
       </view>
       <view class="avatar-edit-badge">
-        <icon name="add" size="{{14}}" color="#fff" />
+        <icon name="edit" size="{{12}}" color="#fff" />
       </view>
     </view>
     <text class="member-date" wx:if="{{memberDate}}">{{memberDate}} 成为 贞慧缘 会员</text>

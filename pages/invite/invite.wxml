@@ -55,7 +55,7 @@
     <!-- 复制邀请码 -->
     <view class="action-item" bindtap="onCopyCode">
       <view class="action-btn">
-        <icon name="order" size="{{28}}" color="#444" />
+        <icon name="copy" size="{{28}}" color="#444" />
       </view>
       <text class="action-label">复制邀请码</text>
     </view>
