@@ -1,4 +1,7 @@
 <view class="login-page">
+  <!-- 顶部安全距离 -->
+  <safe-area-top extra-height="80"></safe-area-top>
+
   <!-- 品牌区 -->
   <view class="brand-area">
     <view class="brand-name">贞慧缘</view>
