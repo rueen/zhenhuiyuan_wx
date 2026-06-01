@@ -15,7 +15,8 @@
     "pages/withdrawal-records/withdrawal-records",
     "pages/withdrawal-accounts/withdrawal-accounts",
     "pages/contribution-logs/contribution-logs",
-    "pages/balance-logs/balance-logs"
+    "pages/balance-logs/balance-logs",
+    "pages/profile-edit/profile-edit"
   ],
   "tabBar": {
     "custom": true,

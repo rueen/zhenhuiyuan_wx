@@ -1,0 +1,68 @@
+<view class="profile-edit-page">
+
+  <!-- 头部：头像 + 会员信息 -->
+  <view class="header-section">
+    <view class="avatar-wrap" bindtap="onChooseAvatar">
+      <image
+        wx:if="{{form.avatar}}"
+        class="avatar-img"
+        src="{{form.avatar}}"
+        mode="aspectFill"
+      />
+      <view wx:else class="avatar-placeholder">
+        <view class="avatar-icon">👤</view>
+      </view>
+      <view class="avatar-edit-badge">
+        <icon name="add" size="{{14}}" color="#fff" />
+      </view>
+    </view>
+    <text class="member-date" wx:if="{{memberDate}}">{{memberDate}} 成为 贞慧缘 会员</text>
+  </view>
+
+  <!-- 表单 -->
+  <view class="form-section card">
+    <!-- 昵称 -->
+    <view class="form-row">
+      <view class="form-label">
+        <text>昵称</text>
+        <text class="required">*</text>
+      </view>
+      <input
+        type="nickname"
+        class="form-input"
+        placeholder="请输入昵称"
+        placeholder-class="form-placeholder"
+        value="{{form.nickname}}"
+        bindinput="onNicknameInput"
+        maxlength="20"
+      />
+    </view>
+    <view class="form-divider"></view>
+    <!-- 手机 -->
+    <view class="form-row">
+      <view class="form-label">
+        <text>手机</text>
+      </view>
+      <!-- 已绑定：只读展示 -->
+      <text wx:if="{{form.phone}}" class="form-value">{{form.phone}}</text>
+      <!-- 未绑定：授权获取 -->
+      <button
+        wx:else
+        class="get-phone-btn"
+        open-type="getPhoneNumber"
+        bindgetphonenumber="onGetPhoneNumber"
+      >点击绑定</button>
+    </view>
+  </view>
+
+  <!-- 底部保存按钮 -->
+  <view class="footer-bar">
+    <button
+      class="btn btn-primary btn-full {{submitting ? 'btn-disabled' : ''}}"
+      bindtap="onSave"
+      disabled="{{submitting}}"
+    >{{submitting ? '保存中…' : '保 存'}}</button>
+    <view class="safe-bottom"></view>
+  </view>
+
+</view>

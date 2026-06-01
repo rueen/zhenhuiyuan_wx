@@ -50,7 +50,9 @@ Page({
   onUserAreaTap() {
     if (!isLoggedIn()) {
       wx.navigateTo({ url: '/pages/login/login' });
+      return;
     }
+    wx.navigateTo({ url: '/pages/profile-edit/profile-edit' });
   },
 
   onCopyInviteCode() {

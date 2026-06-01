@@ -1,0 +1,138 @@
+.profile-edit-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding-bottom: calc(140rpx + env(safe-area-inset-bottom));
+}
+
+/* ── 头部头像区 ── */
+.header-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx var(--space-md) 50rpx;
+  background: var(--color-card);
+  margin-bottom: var(--space-md);
+}
+
+.avatar-wrap {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+  margin-bottom: var(--space-sm);
+}
+
+.avatar-img,
+.avatar-placeholder {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar-placeholder {
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-icon {
+  font-size: 80rpx;
+  line-height: 1;
+  opacity: 0.5;
+}
+
+.avatar-edit-badge {
+  position: absolute;
+  bottom: 4rpx;
+  right: 4rpx;
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3rpx solid #fff;
+}
+
+.member-date {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+  margin-top: var(--space-xs);
+}
+
+/* ── 表单 ── */
+.form-section {
+  margin: 0 var(--space-md);
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-md);
+  min-height: 100rpx;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+  font-size: var(--font-base);
+  color: var(--color-text);
+  flex-shrink: 0;
+  width: 120rpx;
+}
+
+.required {
+  color: var(--color-danger);
+  font-size: var(--font-base);
+}
+
+.form-input {
+  flex: 1;
+  text-align: right;
+  font-size: var(--font-base);
+  color: var(--color-text);
+  height: 60rpx;
+}
+
+.form-placeholder {
+  color: var(--color-text-hint);
+}
+
+.form-value {
+  font-size: var(--font-base);
+  color: var(--color-text-sub);
+}
+
+button.get-phone-btn {
+  font-size: var(--font-base);
+  color: var(--color-primary);
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  height: auto;
+  line-height: normal;
+  border-radius: 0;
+  padding: 0;
+  font-weight: normal;
+}
+.get-phone-btn::after { border: none; }
+
+.form-divider {
+  height: 1rpx;
+  background: var(--color-border);
+  margin: 0 var(--space-md);
+}
+
+/* ── 底部栏 ── */
+.footer-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-bg);
+  padding: var(--space-md) var(--space-lg);
+}
