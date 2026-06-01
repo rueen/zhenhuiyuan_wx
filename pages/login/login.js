@@ -8,6 +8,12 @@ Page({
     loading: false,
   },
 
+  onLoad(options) {
+    if (options.invite_code) {
+      this.setData({ inviteCode: options.invite_code });
+    }
+  },
+
   onInviteInput(e) {
     this.setData({ inviteCode: e.detail.value });
   },

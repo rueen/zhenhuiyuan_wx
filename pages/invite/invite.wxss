@@ -1,0 +1,122 @@
+.invite-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
+}
+
+/* ── 海报区 ── */
+.poster-wrap {
+  padding: var(--space-lg) 0 0;
+  display: flex;
+  justify-content: center;
+}
+
+.poster-card {
+  background: #ffffff;
+  width: 80%;
+  padding: 60rpx 0 50rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 头像 */
+.poster-avatar-wrap {
+  margin-bottom: var(--space-sm);
+}
+
+.poster-avatar {
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.poster-avatar--placeholder {
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.poster-avatar-icon {
+  font-size: 64rpx;
+  line-height: 1;
+  opacity: 0.45;
+}
+
+/* 邀请文案 */
+.poster-invite-text {
+  font-size: var(--font-base);
+  color: var(--color-text-sub);
+  margin-bottom: var(--space-lg);
+  margin-top: var(--space-xs);
+}
+
+/* 小程序码 */
+.poster-qr-wrap {
+  margin-bottom: var(--space-md);
+}
+
+.poster-qr {
+  width: 400rpx;
+  height: 400rpx;
+}
+
+.poster-qr--loading {
+  width: 400rpx;
+  height: 400rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+}
+
+.poster-qr-hint {
+  font-size: var(--font-sm);
+  color: var(--color-text-hint);
+}
+
+/* 邀请码 */
+.poster-code {
+  font-size: var(--font-base);
+  color: var(--color-text-sub);
+}
+
+/* ── 底部操作栏 ── */
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-card);
+  border-top: 1rpx solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: var(--space-md) var(--space-lg);
+  padding-bottom: calc(var(--space-md) + env(safe-area-inset-bottom));
+}
+
+.action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.action-btn,
+button.action-btn {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-label {
+  font-size: var(--font-xs);
+  color: var(--color-text-sub);
+}

@@ -1,0 +1,64 @@
+<view class="invite-page">
+
+  <!-- 海报卡片 -->
+  <view class="poster-wrap">
+    <view class="poster-card">
+      <!-- 头像 -->
+      <view class="poster-avatar-wrap">
+        <image
+          wx:if="{{profile && profile.avatar}}"
+          class="poster-avatar"
+          src="{{profile.avatar}}"
+          mode="aspectFill"
+        />
+        <view wx:else class="poster-avatar poster-avatar--placeholder">
+          <text class="poster-avatar-icon">👤</text>
+        </view>
+      </view>
+      <!-- 邀请文案 -->
+      <text class="poster-invite-text">{{profile.nickname || '好友'}}邀请您加入 贞慧缘</text>
+      <!-- 小程序码 -->
+      <view class="poster-qr-wrap">
+        <image wx:if="{{qrcodeUrl}}" class="poster-qr" src="{{qrcodeUrl}}" mode="aspectFit" />
+        <view wx:else class="poster-qr poster-qr--loading">
+          <text class="poster-qr-hint">{{qrcodeLoading ? '加载中…' : '加载失败'}}</text>
+        </view>
+      </view>
+      <!-- 邀请码 -->
+      <text class="poster-code">邀请码：{{profile.invite_code}}</text>
+    </view>
+  </view>
+
+  <!-- 离屏 Canvas，用于生成海报 -->
+  <canvas
+    type="2d"
+    id="poster-canvas"
+    style="position:fixed;left:-9999rpx;top:0;width:600px;height:850px;"
+  />
+
+  <!-- 底部操作栏 -->
+  <view class="action-bar">
+    <!-- 发送好友：open-type="share" -->
+    <view class="action-item">
+      <button class="action-btn" open-type="share">
+        <icon name="share" size="{{28}}" color="#444" />
+      </button>
+      <text class="action-label">发送好友</text>
+    </view>
+    <!-- 下载海报 -->
+    <view class="action-item" bindtap="onDownloadPoster">
+      <view class="action-btn">
+        <icon name="download" size="{{28}}" color="#444" />
+      </view>
+      <text class="action-label">下载海报</text>
+    </view>
+    <!-- 复制邀请码 -->
+    <view class="action-item" bindtap="onCopyCode">
+      <view class="action-btn">
+        <icon name="order" size="{{28}}" color="#444" />
+      </view>
+      <text class="action-label">复制邀请码</text>
+    </view>
+  </view>
+
+</view>

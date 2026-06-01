@@ -56,10 +56,7 @@ Page({
   },
 
   onCopyInviteCode() {
-    wx.setClipboardData({
-      data: this.data.profile.invite_code,
-      success() { wx.showToast({ title: '邀请码已复制', icon: 'success' }); },
-    });
+    wx.navigateTo({ url: '/pages/invite/invite' });
   },
 
   onOrderTabTap(e) {
