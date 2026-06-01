@@ -16,8 +16,9 @@ Page({
   },
 
   async loadQrCode() {
+    const { profile } = this.data;
     try {
-      const res = await http.get('/api/h5/member/invite-qrcode');
+      const res = await http.get('/api/h5/member/qrcode', { path: `/pages/login/login?invite_code=${profile?.invite_code || ''}`});
       this.setData({ qrcodeUrl: res.url, qrcodeLoading: false });
     } catch (e) {
       this.setData({ qrcodeLoading: false });
