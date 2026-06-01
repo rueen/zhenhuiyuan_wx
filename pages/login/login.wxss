@@ -28,9 +28,16 @@
 .invite-wrap {
   margin-bottom: var(--space-xl);
   padding: 0 var(--space-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+.invite-text{
+  color: var(--color-text-sub);
 }
 .invite-input {
-  width: 100%;
+  width: 280rpx;
   height: 96rpx;
   background: var(--color-bg);
   border-radius: 48rpx;

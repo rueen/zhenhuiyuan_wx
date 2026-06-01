@@ -12,9 +12,10 @@
 
   <!-- 邀请码输入 -->
   <view class="invite-wrap">
+    <text class="invite-text">邀请码</text>
     <input
       class="invite-input"
-      placeholder="邀请码（选填）"
+      placeholder="选填"
       placeholder-class="invite-placeholder"
       value="{{inviteCode}}"
       bindinput="onInviteInput"
@@ -27,7 +28,7 @@
     <view class="agreement-wrap" bindtap="toggleAgreed">
       <view class="checkbox {{agreed ? 'checkbox--checked' : ''}}"></view>
       <text class="agreement-text">我已认真阅读并同意 </text>
-      <text class="agreement-link" catchtap="onAgreementTap">《用户协议和隐私政策》</text>
+      <text class="agreement-link" catchtap="onAgreementTap">《用户协议和隐私条款》</text>
     </view>
 
     <!-- 微信登录按钮 -->
