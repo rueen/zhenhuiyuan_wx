@@ -115,7 +115,7 @@ Page({
     this.setData({ showPopup: false });
     try {
       await http.post('/api/h5/cart', { product_id: popupProduct.id, quantity });
-      wx.showToast({ title: '已加入购物车', icon: 'success' });
+      wx.showToast({ title: '已加入购物袋', icon: 'success' });
     } catch (e) {}
   },
 });

@@ -1,6 +1,6 @@
 # 贞慧缘电商平台 · 前端对接 API 文档
 
-> 版本：v1.0　｜　最后更新：2026-05-29
+> 版本：v1.1　｜　最后更新：2026-06-02
 > 后端：Node.js + Express + MySQL + JWT。本文档供 C 端（微信小程序）与管理端（Web）前端对接使用。
 
 ---
@@ -140,20 +140,49 @@ query：`page`、`pageSize`、`categoryId?`、`keyword?`。仅返回上架商品
 
 新增/更新地址字段：`receiver_name`(必填)、`phone`(必填)、`detail`(必填)、`province_code/city_code/district_code`、`province_name/city_name/district_name`、`is_default`。地区编码+名称由前端地区插件提供。
 
-## 2.5 订单 Order（均需登录）
+## 2.5 购物车 Cart（均需登录）
+
+> 购物车仅存「商品 + 数量」；勾选状态由前端临时管理、不落库。结算时把选中的购物车项 id 传给下单接口（见 2.6）。
+
+| 方法 | 路径 | 说明 |
+| --- | --- | --- |
+| GET | /cart | 购物车列表（含商品实时信息与失效标记） |
+| GET | /cart/count | 购物车商品种类数（用于角标） |
+| POST | /cart | 加入购物车（已存在同商品则累加数量） |
+| PUT | /cart/:id | 修改某项数量 |
+| DELETE | /cart/:id | 删除单项 |
+| DELETE | /cart | 清空购物车 |
+
+加入购物车：`{ product_id, quantity }`（`quantity` 1~999）。商品须存在且上架；同一商品重复加购累加数量（上限 999）。
+修改数量：`{ quantity }`（1~999）。
+
+列表项字段：`id`（购物车项 id，下单用）、`product_id`、`product_name`、`product_cover`、`price`、`quantity`、`subtotal`、`stock`、`status`、`invalid`。
+
+> `invalid=true` 表示该项已失效（商品下架或库存不足以满足当前数量），前端应置灰且不可勾选下单。商品信息（价/图/库存/状态）实时取自商品表，可能与加购时不同。
+
+响应 `data`：`{ items, total_quantity }`（`total_quantity` 为各项数量之和；金额请前端按勾选项的 `subtotal` 自行汇总）。
+
+## 2.6 订单 Order（均需登录）
 
 ### POST /orders/preview — 下单预览（算运费）
-请求体：
+请求体（`items` 与 `cart_item_ids` 二选一）：
 
 ```json
 { "items": [{ "product_id": 1, "quantity": 2 }], "address_id": 10 }
 ```
-`address_id` 可选（不传则运费按未选地址处理）。响应 `data`：`{ items, product_amount, shipping_fee, pay_amount, address }`。
+
+或从购物车合并下单，传选中的购物车项 id：
+
+```json
+{ "cart_item_ids": [3, 5], "address_id": 10 }
+```
+
+`address_id` 可选（不传则运费按未选地址处理）。传 `cart_item_ids` 时后端从购物车反查商品（须全部归属本人且存在，否则报错）。响应 `data`：`{ items, product_amount, shipping_fee, pay_amount, address }`。
 
 > 运费规则：按商品「有效运费模板」（自身模板或默认模板）分组累计重量后分别计费再合计；未配置任何模板则不计运费。
 
 ### POST /orders — 创建订单
-请求体同上，`address_id` **必填**。创建即原子预扣库存（防超卖），订单状态 `待付款`。响应：订单详情。
+请求体同上（`items` 与 `cart_item_ids` 二选一），`address_id` **必填**。创建即原子预扣库存（防超卖），订单状态 `待付款`。传 `cart_item_ids` 时，**下单成功后在同一事务内删除这些购物车项**（下单与清空购物车原子一致，任一失败则整体回滚）。响应：订单详情。
 
 ### GET /orders — 我的订单列表（分页）
 query：`status?`、`page`、`pageSize`。
@@ -170,7 +199,7 @@ query：`status?`、`page`、`pageSize`。
 ### POST /orders/:id/confirm — 确认收货
 `待收货 → 已完成`，**同一事务触发结算**（贡献值 + 返利 + 自动升级 + 销量累加）。
 
-## 2.6 提现 Withdrawal（均需登录）
+## 2.7 提现 Withdrawal（均需登录）
 
 ### 提现账户
 
@@ -198,12 +227,12 @@ query：`status?`、`page`、`pageSize`。
 
 发起提现：`{ account_id, amount }`。校验：`amount ≥ 最低门槛` 且 `≤ 可用余额`（可用 = 余额 − 冻结；冻结 = 待审核+待打款金额合计）。
 
-## 2.7 业绩分红 Dividend（需登录）
+## 2.8 业绩分红 Dividend（需登录）
 
 ### GET /dividends — 我的分红明细（分页）
 返回本人各周期应分记录：`period_name`、`start_date/end_date`、`level_name`、`member_contribution`、`share_amount`。
 
-## 2.8 OSS 直传签名（需登录）
+## 2.9 OSS 直传签名（需登录）
 
 ### GET /oss/signature
 返回阿里云 OSS PostObject 直传签名：`{ host, dir, accessKeyId, policy, signature, expire, maxSize }`。前端以 `multipart/form-data` 直传，`key` 须以 `dir` 为前缀。

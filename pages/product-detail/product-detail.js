@@ -16,7 +16,7 @@ Page({
     navBtnSize: 32,
     /** 控制数量选择弹窗 */
     showPopup: false,
-    /** 弹窗确认后的行为：'buy' 立即购买 | 'cart' 加入购物车 */
+    /** 弹窗确认后的行为：'buy' 立即购买 | 'cart' 加入购物袋 */
     popupAction: '',
   },
 
@@ -79,7 +79,7 @@ Page({
     });
   },
 
-  /** 跳转购物车页面（待实现） */
+  /** 跳转购物袋页面（待实现） */
   onCartTap() {
     wx.showToast({ title: '功能开发中', icon: 'none' });
   },
@@ -92,7 +92,7 @@ Page({
     this.setData({ showPopup: true, popupAction: 'buy', quantity: 1 });
   },
 
-  /** 点击「加入购物车」：弹出数量选择 */
+  /** 点击「加入购物袋」：弹出数量选择 */
   onAddToCart() {
     if (!isLoggedIn()) {
       return wx.navigateTo({ url: '/pages/login/login' });
@@ -118,7 +118,7 @@ Page({
     } else if (action === 'cart') {
       try {
         await http.post('/api/h5/cart', { product_id: product.id, quantity });
-        wx.showToast({ title: '已加入购物车', icon: 'success' });
+        wx.showToast({ title: '已加入购物袋', icon: 'success' });
       } catch (e) {}
     }
   },
