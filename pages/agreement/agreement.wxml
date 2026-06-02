@@ -1,0 +1,56 @@
+<!--pages/agreement/agreement.wxml-->
+<view class="agreement-page">
+
+  <!-- 标签切换 -->
+  <view class="tab-container">
+    <view class="tab-item {{activeTab === 'user' ? 'tab-active' : ''}}"
+          bindtap="onTabSwitch" data-tab="user">
+      <text class="tab-text">用户协议</text>
+    </view>
+    <view class="tab-item {{activeTab === 'privacy' ? 'tab-active' : ''}}"
+          bindtap="onTabSwitch" data-tab="privacy">
+      <text class="tab-text">隐私条款</text>
+    </view>
+  </view>
+
+  <!-- 用户协议内容 -->
+  <view class="content-container" wx:if="{{activeTab === 'user'}}">
+    <!-- 加载中 -->
+    <view class="state-wrap" wx:if="{{userLoading}}">
+      <view class="loading-dot"></view>
+      <text class="state-text">加载中…</text>
+    </view>
+    <!-- 加载失败 -->
+    <view class="state-wrap" wx:elif="{{userError}}">
+      <text class="state-text state-error">加载失败，请重试</text>
+      <view class="retry-btn" bindtap="onRetryUser">重新加载</view>
+    </view>
+    <!-- 内容为空 -->
+    <view class="state-wrap" wx:elif="{{!userContent}}">
+      <text class="state-text">暂无内容</text>
+    </view>
+    <!-- 富文本内容 -->
+    <rich-text class="rich-text" wx:else nodes="{{userContent}}"></rich-text>
+  </view>
+
+  <!-- 隐私条款内容 -->
+  <view class="content-container" wx:if="{{activeTab === 'privacy'}}">
+    <!-- 加载中 -->
+    <view class="state-wrap" wx:if="{{privacyLoading}}">
+      <view class="loading-dot"></view>
+      <text class="state-text">加载中…</text>
+    </view>
+    <!-- 加载失败 -->
+    <view class="state-wrap" wx:elif="{{privacyError}}">
+      <text class="state-text state-error">加载失败，请重试</text>
+      <view class="retry-btn" bindtap="onRetryPrivacy">重新加载</view>
+    </view>
+    <!-- 内容为空 -->
+    <view class="state-wrap" wx:elif="{{!privacyContent}}">
+      <text class="state-text">暂无内容</text>
+    </view>
+    <!-- 富文本内容 -->
+    <rich-text class="rich-text" wx:else nodes="{{privacyContent}}"></rich-text>
+  </view>
+
+</view>

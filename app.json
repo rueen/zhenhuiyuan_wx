@@ -18,7 +18,8 @@
     "pages/contribution-logs/contribution-logs",
     "pages/balance-logs/balance-logs",
     "pages/profile-edit/profile-edit",
-    "pages/invite/invite"
+    "pages/invite/invite",
+    "pages/agreement/agreement"
   ],
   "tabBar": {
     "custom": true,
