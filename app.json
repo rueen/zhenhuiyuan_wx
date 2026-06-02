@@ -22,7 +22,7 @@
   "tabBar": {
     "custom": true,
     "color": "#999999",
-    "selectedColor": "#869478",
+    "selectedColor": "#c9a063",
     "backgroundColor": "#ffffff",
     "list": [
       { "pagePath": "pages/home/home", "text": "首页" },
