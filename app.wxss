@@ -68,6 +68,7 @@ button{
 }
 wx-button:not([size=mini]){
   width: auto;
+  margin: 0;
 }
 
 /* ─── 通用卡片 ─── */

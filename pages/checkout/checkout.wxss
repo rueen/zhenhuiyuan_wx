@@ -12,7 +12,6 @@
   align-items: center;
   gap: var(--space-sm);
   padding: var(--space-md);
-  margin: var(--space-md) var(--space-md) 0;
 }
 .addr-selected { flex: 1; }
 .addr-main {
@@ -47,7 +46,6 @@
   align-items: center;
   gap: var(--space-md);
   padding: var(--space-md);
-  margin: var(--space-sm) var(--space-md) 0;
 }
 .goods-cover {
   width: 160rpx;
@@ -126,7 +124,7 @@
   font-size: var(--font-xl);
   font-weight: 700;
 }
-.submit-btn {
+button.submit-btn {
   width: 280rpx;
   border-radius: var(--radius-xl);
   font-size: var(--font-md);
