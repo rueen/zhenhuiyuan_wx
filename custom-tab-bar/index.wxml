@@ -7,10 +7,7 @@
     data-index="{{index}}"
     data-path="{{item.pagePath}}"
   >
-    <view class="icon-wrap">
-      <icon name="{{item.icon}}" size="{{30}}" color="#000" />
-      <view class="icon-bg"></view>
-    </view>
+    <view class="tab-icon tab-icon--{{item.icon}} {{selected === index ? 'tab-icon--active' : ''}}"></view>
     <text class="tab-text">{{item.text}}</text>
   </view>
 </view>
