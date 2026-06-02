@@ -66,11 +66,7 @@
         </view>
       </view>
 
-      <!-- 空态 -->
-      <view class="empty-wrap" wx:if="{{!loading && products.length === 0}}">
-        <text class="empty-icon">🛍️</text>
-        <text>暂无商品</text>
-      </view>
+      <empty wx:if="{{!loading && products.length === 0}}" text="暂无商品" />
 
       <!-- 加载更多 -->
       <view class="load-more" wx:if="{{loading}}">加载中…</view>

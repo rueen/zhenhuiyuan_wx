@@ -41,9 +41,6 @@
       </view>
     </view>
 
-    <view class="empty-wrap" wx:if="{{listEmpty}}">
-      <text class="empty-icon">👥</text>
-      <text>暂无成员</text>
-    </view>
+    <empty wx:if="{{listEmpty}}" />
   </view>
 </view>

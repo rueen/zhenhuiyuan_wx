@@ -10,10 +10,7 @@
       </text>
     </view>
 
-    <view class="empty-wrap" wx:if="{{!loading && list.length === 0}}">
-      <text class="empty-icon">💹</text>
-      <text>暂无余额记录</text>
-    </view>
+    <empty wx:if="{{!loading && list.length === 0}}" text="暂无余额记录" />
     <view class="load-more" wx:if="{{loading}}">加载中…</view>
     <view class="load-more" wx:if="{{!loading && noMore && list.length > 0}}">没有更多了</view>
   </view>

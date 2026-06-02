@@ -63,9 +63,7 @@
           <text class="account-type">{{item.typeName}}</text>
           <text class="account-no">{{item.account_no}}</text>
         </view>
-        <view class="empty-wrap" wx:if="{{accounts.length === 0}}">
-          <text>暂无提现账户，请先添加</text>
-        </view>
+        <empty wx:if="{{accounts.length === 0}}" text="暂无提现账户，请先添加" />
       </view>
     </view>
 

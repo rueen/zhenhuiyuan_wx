@@ -1,0 +1,19 @@
+@import "/style/iconfont.wxss";
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 40rpx;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  color: #cccccc;
+}
+
+.empty-text {
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: #bbbbbb;
+}
