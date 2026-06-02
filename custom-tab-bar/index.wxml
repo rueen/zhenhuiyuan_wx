@@ -7,7 +7,9 @@
     data-index="{{index}}"
     data-path="{{item.pagePath}}"
   >
-    <image class="tab-icon" src="{{selected === index ? item.selectedIconPath : item.iconPath}}" mode="aspectFit"></image>
+    <view class="tab-icon">
+      <image class="tab-icon-img" src="{{selected === index ? item.selectedIconPath : item.iconPath}}" mode="aspectFit"></image>
+    </view>
     <text class="tab-text">{{item.text}}</text>
   </view>
 </view>
