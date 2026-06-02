@@ -1,9 +1,9 @@
 <view class="cart-page">
 
   <!-- 标题区 -->
-  <view class="cart-head" wx:if="{{!loading && items.length}}">
+  <view class="cart-head">
     <text class="cart-title">购物袋</text>
-    <text class="cart-count">共{{totalQuantity}}件</text>
+    <text class="cart-count">共{{cartCount}}件</text>
   </view>
 
   <!-- 列表 -->

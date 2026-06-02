@@ -154,3 +154,35 @@
   color: var(--color-primary);
   line-height: 1;
 }
+
+/* ── 悬浮购物袋入口 ── */
+.cart-fab {
+  position: fixed;
+  right: var(--space-md);
+  bottom: calc(env(safe-area-inset-bottom) + 130rpx);
+  z-index: 50;
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart-fab-badge {
+  position: absolute;
+  top: -6rpx;
+  right: -6rpx;
+  min-width: 32rpx;
+  height: 32rpx;
+  padding: 0 8rpx;
+  border-radius: 100rpx;
+  background: var(--color-danger);
+  color: #fff;
+  font-size: var(--font-xs);
+  line-height: 32rpx;
+  text-align: center;
+  border: 2rpx solid #fff;
+}
+

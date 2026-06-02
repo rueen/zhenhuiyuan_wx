@@ -18,12 +18,31 @@ Page({
     showPopup: false,
     /** 弹窗确认后的行为：'buy' 立即购买 | 'cart' 加入购物袋 */
     popupAction: '',
+    /** 购物袋商品种类数（角标） */
+    cartCount: 0,
   },
 
   onLoad(options) {
     this._initNavLayout();
     this.productId = options.id;
     this.loadProduct();
+  },
+
+  onShow() {
+    this.loadCartCount();
+  },
+
+  /** 购物袋商品种类数（角标） */
+  async loadCartCount() {
+    if (!isLoggedIn()) {
+      this.setData({ cartCount: 0 });
+      return;
+    }
+    try {
+      const res = await http.get('/api/h5/cart/count');
+      const count = typeof res === 'number' ? res : (res && res.count) || 0;
+      this.setData({ cartCount: count });
+    } catch (e) {}
   },
 
   /**
@@ -122,6 +141,7 @@ Page({
       try {
         await http.post('/api/h5/cart', { product_id: product.id, quantity });
         wx.showToast({ title: '已加入购物袋', icon: 'success' });
+        this.loadCartCount();
       } catch (e) {}
     }
   },

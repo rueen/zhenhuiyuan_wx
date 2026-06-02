@@ -4,7 +4,8 @@ const { isLoggedIn } = require('../../utils/auth');
 Page({
   data: {
     items: [],
-    totalQuantity: 0,
+    /** 购物袋商品种类数 */
+    cartCount: 0,
     loading: true,
     selectAll: false,
     selectedItemCount: 0,
@@ -26,7 +27,10 @@ Page({
   },
 
   onShow() {
-    if (isLoggedIn()) this.loadCart();
+    if (isLoggedIn()) {
+      this.loadCart();
+      this.loadCartCount();
+    }
   },
 
   async loadCart() {
@@ -41,11 +45,24 @@ Page({
         offset: 0,
         checked: it.invalid ? false : (hadData ? !!prevChecked[it.id] : true),
       }));
-      this.setData({ items, totalQuantity: res.total_quantity || 0, loading: false });
+      this.setData({ items, loading: false });
       this._computeSummary();
     } catch (e) {
       this.setData({ loading: false });
     }
+  },
+
+  /** 购物袋商品种类数（角标） */
+  async loadCartCount() {
+    if (!isLoggedIn()) {
+      this.setData({ cartCount: 0 });
+      return;
+    }
+    try {
+      const res = await http.get('/api/h5/cart/count');
+      const count = typeof res === 'number' ? res : (res && res.count) || 0;
+      this.setData({ cartCount: count });
+    } catch (e) {}
   },
 
   _computeSummary() {

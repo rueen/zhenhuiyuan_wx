@@ -99,6 +99,7 @@
         <view class="buy-icon-item" bindtap="onCartTap">
           <view class="buy-icon">
             <icon name="cart" size="{{24}}" />
+            <view class="buy-cart-badge" wx:if="{{cartCount > 0}}">{{cartCount > 99 ? '99+' : cartCount}}</view>
           </view>
           <text class="buy-icon-label">购物袋</text>
         </view>

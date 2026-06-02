@@ -15,6 +15,7 @@ Page({
     noMore: false,
     showPopup: false,
     popupProduct: {},
+    cartCount: 0,
   },
 
   onLoad() {
@@ -28,6 +29,20 @@ Page({
     if (this.data.categories.length === 0) {
       this.loadCategories();
     }
+    this.loadCartCount();
+  },
+
+  /** 购物袋商品种类数（角标） */
+  async loadCartCount() {
+    if (!isLoggedIn()) {
+      this.setData({ cartCount: 0 });
+      return;
+    }
+    try {
+      const res = await http.get('/api/h5/cart/count');
+      const count = typeof res === 'number' ? res : (res && res.count) || 0;
+      this.setData({ cartCount: count });
+    } catch (e) {}
   },
 
   async loadCategories() {
@@ -96,6 +111,14 @@ Page({
     wx.navigateTo({ url: `/pages/product-detail/product-detail?id=${e.currentTarget.dataset.id}` });
   },
 
+  /** 跳转购物袋 */
+  onCartTap() {
+    if (!isLoggedIn()) {
+      return wx.navigateTo({ url: '/pages/login/login' });
+    }
+    wx.navigateTo({ url: '/pages/cart/cart' });
+  },
+
   onAddBtnTap(e) {
     if (!isLoggedIn()) {
       return wx.navigateTo({ url: '/pages/login/login' });
@@ -116,6 +139,7 @@ Page({
     try {
       await http.post('/api/h5/cart', { product_id: popupProduct.id, quantity });
       wx.showToast({ title: '已加入购物袋', icon: 'success' });
+      this.loadCartCount();
     } catch (e) {}
   },
 });
