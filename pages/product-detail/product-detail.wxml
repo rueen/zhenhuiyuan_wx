@@ -112,29 +112,13 @@
     <view class="safe-bottom"></view>
   </view>
 
-  <!-- 弹窗遮罩 -->
-  <view class="popup-mask" wx:if="{{showPopup}}" bindtap="onClosePopup"></view>
-
   <!-- 数量选择弹窗 -->
-  <view class="qty-popup" wx:if="{{showPopup}}">
-    <view class="popup-header">
-      <image class="popup-cover" src="{{product.cover}}" mode="aspectFill" />
-      <view class="popup-meta">
-        <text class="popup-name">{{product.name}}</text>
-        <text class="popup-price price"><text class="price-symbol">¥</text>{{product.price}}</text>
-      </view>
-    </view>
-    <view class="popup-divider"></view>
-    <view class="popup-row">
-      <text class="popup-label">数量</text>
-      <view class="quantity-ctrl">
-        <view class="qty-btn {{quantity <= 1 ? 'qty-btn--disabled' : ''}}" bindtap="onMinus">−</view>
-        <text class="qty-num">{{quantity}}</text>
-        <view class="qty-btn {{quantity >= product.stock ? 'qty-btn--disabled' : ''}}" bindtap="onPlus">+</view>
-      </view>
-    </view>
-    <button class="btn btn-primary btn-full confirm-btn" bindtap="onConfirm">确定</button>
-    <view class="safe-bottom"></view>
-  </view>
+  <qty-popup
+    show="{{showPopup}}"
+    product="{{product}}"
+    action="{{popupAction}}"
+    bindconfirm="onPopupConfirm"
+    bindclose="onClosePopup"
+  />
 
 </block>

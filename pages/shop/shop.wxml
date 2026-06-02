@@ -58,7 +58,7 @@
             <text class="product-name">{{item.name}}</text>
             <view class="product-footer">
               <text class="product-price"><text class="price-symbol">¥</text>{{item.price}}</text>
-              <view class="add-btn" catchtap="onProductTap" data-id="{{item.id}}">
+              <view class="add-btn" catchtap="onAddBtnTap" data-id="{{item.id}}">
                 <icon name="add" size="{{20}}" />
               </view>
             </view>
@@ -75,3 +75,13 @@
 
   </view>
 </view>
+
+<!-- 数量选择弹窗 -->
+<qty-popup
+  show="{{showPopup}}"
+  offset-bottom="50px"
+  product="{{popupProduct}}"
+  action="cart"
+  bindconfirm="onPopupConfirm"
+  bindclose="onClosePopup"
+/>

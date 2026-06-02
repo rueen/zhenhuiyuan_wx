@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "商店"
+  "navigationBarTitleText": "商店",
+  "usingComponents": {
+    "qty-popup": "/components/qty-popup/qty-popup"
+  }
 }

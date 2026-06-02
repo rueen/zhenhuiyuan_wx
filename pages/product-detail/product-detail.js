@@ -4,7 +4,6 @@ const { isLoggedIn } = require('../../utils/auth');
 Page({
   data: {
     product: null,
-    quantity: 1,
     currentImg: 0,
     loading: true,
     /** 返回按钮距左边距（px） */
@@ -85,21 +84,6 @@ Page({
     wx.showToast({ title: '功能开发中', icon: 'none' });
   },
 
-  /** 数量减少 */
-  onMinus() {
-    if (this.data.quantity <= 1) return;
-    this.setData({ quantity: this.data.quantity - 1 });
-  },
-
-  /** 数量增加 */
-  onPlus() {
-    const { quantity, product } = this.data;
-    if (quantity >= product.stock) {
-      return wx.showToast({ title: '库存不足', icon: 'none' });
-    }
-    this.setData({ quantity: quantity + 1 });
-  },
-
   /** 点击「立即购买」：弹出数量选择 */
   onBuyNow() {
     if (!isLoggedIn()) {
@@ -121,16 +105,17 @@ Page({
     this.setData({ showPopup: false });
   },
 
-  /** 弹窗确认 */
-  async onConfirm() {
-    const { product, quantity, popupAction } = this.data;
+  /** 弹窗确认，接收组件 confirm 事件 */
+  async onPopupConfirm(e) {
+    const { quantity, action } = e.detail;
+    const { product } = this.data;
     this.setData({ showPopup: false });
 
-    if (popupAction === 'buy') {
+    if (action === 'buy') {
       wx.navigateTo({
         url: `/pages/checkout/checkout?productId=${product.id}&quantity=${quantity}`,
       });
-    } else if (popupAction === 'cart') {
+    } else if (action === 'cart') {
       try {
         await http.post('/api/h5/cart', { product_id: product.id, quantity });
         wx.showToast({ title: '已加入购物车', icon: 'success' });

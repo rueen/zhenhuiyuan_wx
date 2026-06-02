@@ -1,4 +1,5 @@
 const http = require('../../utils/request');
+const { isLoggedIn } = require('../../utils/auth');
 
 Page({
   data: {
@@ -12,10 +13,12 @@ Page({
     total: 0,
     loading: false,
     noMore: false,
+    showPopup: false,
+    popupProduct: {},
   },
 
   onLoad() {
-    // 内容区高度由 CSS flex:1 自动计算，无需 JS
+    
   },
 
   onShow() {
@@ -91,5 +94,28 @@ Page({
 
   onProductTap(e) {
     wx.navigateTo({ url: `/pages/product-detail/product-detail?id=${e.currentTarget.dataset.id}` });
+  },
+
+  onAddBtnTap(e) {
+    if (!isLoggedIn()) {
+      return wx.navigateTo({ url: '/pages/login/login' });
+    }
+    const id = e.currentTarget.dataset.id;
+    const product = this.data.products.find(p => p.id === id) || {};
+    this.setData({ showPopup: true, popupProduct: product });
+  },
+
+  onClosePopup() {
+    this.setData({ showPopup: false });
+  },
+
+  async onPopupConfirm(e) {
+    const { quantity } = e.detail;
+    const { popupProduct } = this.data;
+    this.setData({ showPopup: false });
+    try {
+      await http.post('/api/h5/cart', { product_id: popupProduct.id, quantity });
+      wx.showToast({ title: '已加入购物车', icon: 'success' });
+    } catch (e) {}
   },
 });

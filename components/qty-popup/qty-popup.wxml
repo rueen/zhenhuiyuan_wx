@@ -1,0 +1,27 @@
+<view wx:if="{{show}}">
+  <view class="popup-mask" bindtap="onClose"></view>
+  <view class="qty-popup" style="bottom: {{offsetBottom}}">
+    <view class="popup-header">
+      <image class="popup-cover" src="{{product.cover}}" mode="aspectFill" />
+      <view class="popup-meta">
+        <text class="popup-name">{{product.name}}</text>
+        <text class="popup-price price"><text class="price-symbol">¥</text>{{product.price}}</text>
+      </view>
+    </view>
+    <view class="popup-divider"></view>
+    <view class="popup-row">
+      <text class="popup-label">数量</text>
+      <view class="quantity-ctrl">
+        <view class="qty-btn {{quantity <= 1 ? 'qty-btn--disabled' : ''}}" bindtap="onMinus">
+          <icon name="reduce" size="{{20}}" />
+        </view>
+        <text class="qty-num">{{quantity}}</text>
+        <view class="qty-btn {{product.stock && quantity >= product.stock ? 'qty-btn--disabled' : ''}}" bindtap="onPlus">
+          <icon name="add" size="{{20}}" />
+        </view>
+      </view>
+    </view>
+    <button class="btn btn-primary btn-full confirm-btn" bindtap="onConfirm">确定</button>
+    <view class="safe-bottom"></view>
+  </view>
+</view>

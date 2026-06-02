@@ -1,4 +1,6 @@
 {
   "navigationStyle": "custom",
-  "backgroundColor": "#000000"
+  "usingComponents": {
+    "qty-popup": "/components/qty-popup/qty-popup"
+  }
 }
