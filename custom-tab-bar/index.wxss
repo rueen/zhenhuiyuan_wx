@@ -35,6 +35,6 @@
 
 /* ── 图标 ── */
 .tab-icon {
-  width: 48rpx;
-  height: 48rpx;
+  width: 52rpx;
+  height: 52rpx;
 }
