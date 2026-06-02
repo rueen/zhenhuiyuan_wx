@@ -80,8 +80,11 @@
 
 <!-- 悬浮购物袋入口 -->
 <view class="cart-fab" bindtap="onCartTap">
-  <icon name="cart" size="{{28}}" color="#2c2c2c" />
-  <view class="cart-fab-badge" wx:if="{{cartCount > 0}}">{{cartCount > 99 ? '99+' : cartCount}}</view>
+  <view class="cart-icon-wrap">
+    <icon name="cart" size="{{30}}" color="#000" />
+    <view class="cart-fab-badge">{{cartCount > 99 ? '99' : cartCount}}</view>
+  </view>
+  <text class="cart-count-text" wx:if="{{cartCount > 0}}">{{cartCount}}件商品</text>
 </view>
 
 <!-- 数量选择弹窗 -->
