@@ -19,6 +19,10 @@
   content: "\e840";
 }
 
+.icon-search:before {
+  content: "\e626";
+}
+
 .icon-empty:before {
   content: "\e64c";
 }

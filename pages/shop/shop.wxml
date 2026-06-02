@@ -3,7 +3,9 @@
   <!-- 搜索栏 -->
   <view class="search-bar-wrap">
     <view class="search-bar">
-      <view class="search-icon"></view>
+      <view class="search-icon">
+        <icon name="search" size="{{20}}" color="#999" />
+      </view>
       <input
         class="search-input"
         placeholder="搜索商品"

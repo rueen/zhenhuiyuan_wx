@@ -166,9 +166,6 @@ wx-button:not([size=mini]){
   color: var(--color-primary);
   font-weight: 600;
 }
-.price-symbol {
-  font-size: var(--font-sm);
-}
 
 /* ─── 页面底部安全区 ─── */
 .safe-bottom {
