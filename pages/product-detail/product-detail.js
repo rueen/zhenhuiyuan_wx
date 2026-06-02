@@ -79,9 +79,12 @@ Page({
     });
   },
 
-  /** 跳转购物袋页面（待实现） */
+  /** 跳转购物袋页面 */
   onCartTap() {
-    wx.showToast({ title: '功能开发中', icon: 'none' });
+    if (!isLoggedIn()) {
+      return wx.navigateTo({ url: '/pages/login/login' });
+    }
+    wx.navigateTo({ url: '/pages/cart/cart' });
   },
 
   /** 点击「立即购买」：弹出数量选择 */

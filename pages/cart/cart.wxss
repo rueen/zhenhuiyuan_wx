@@ -1,0 +1,216 @@
+@import "/app.wxss";
+
+.cart-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--color-bg);
+}
+
+/* ── 标题 ── */
+.cart-head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-md) var(--space-sm);
+  background: var(--color-bg);
+}
+.cart-title {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  color: var(--color-text);
+}
+.cart-count {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+}
+
+/* ── 列表 ── */
+.cart-scroll {
+  flex: 1;
+  overflow: hidden;
+}
+.list-bottom-gap {
+  height: var(--space-md);
+}
+
+.cart-item-wrap {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.cart-item {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--color-card);
+  border-bottom: 1rpx solid var(--color-border);
+  transition: transform 0.2s;
+}
+.cart-item--invalid {
+  opacity: 0.55;
+}
+
+/* ── 勾选框 ── */
+.checkbox-hit {
+  flex-shrink: 0;
+  padding: var(--space-xs);
+  margin: calc(-1 * var(--space-xs));
+}
+.checkbox {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 2rpx solid var(--color-text-hint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+.checkbox--on {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.checkbox--disabled {
+  background: var(--color-bg);
+  border-color: var(--color-border);
+}
+.checkbox-tick {
+  width: 10rpx;
+  height: 18rpx;
+  border: 4rpx solid #fff;
+  border-top: 0;
+  border-left: 0;
+  transform: translateY(-2rpx) rotate(45deg);
+}
+
+/* ── 商品信息 ── */
+.item-cover {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  background: var(--color-bg);
+}
+.item-info {
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.item-name {
+  font-size: var(--font-base);
+  color: var(--color-text);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.item-tag {
+  align-self: flex-start;
+  margin-top: var(--space-xs);
+  font-size: var(--font-xs);
+  color: var(--color-text-sub);
+  background: var(--color-bg);
+  padding: 2rpx 12rpx;
+  border-radius: 100rpx;
+}
+.item-bottom {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.item-price {
+  font-size: var(--font-lg);
+  font-weight: 700;
+}
+
+/* ── 数量编辑入口 ── */
+.qty-edit {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 8rpx 16rpx;
+  background: var(--color-bg);
+  border-radius: 100rpx;
+}
+.qty-text {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+}
+
+/* ── 滑动操作 ── */
+.swipe-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 1rpx;
+  z-index: 1;
+  display: flex;
+}
+.swipe-btn {
+  width: 160rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-base);
+  color: #fff;
+}
+.swipe-edit {
+  background: var(--color-text-sub);
+}
+.swipe-delete {
+  background: var(--color-danger);
+}
+
+/* ── 空状态 ── */
+.cart-empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── 结算栏 ── */
+.checkout-bar {
+  flex-shrink: 0;
+  background: var(--color-card);
+  border-top: 1rpx solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+.checkout-bar-inner {
+  display: flex;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  gap: var(--space-sm);
+}
+.bar-all {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-shrink: 0;
+}
+.bar-all-label {
+  font-size: var(--font-base);
+  color: var(--color-text);
+}
+.bar-total {
+  flex: 1;
+  text-align: right;
+}
+.bar-total-price {
+  font-size: var(--font-lg);
+  font-weight: 700;
+}
+.checkout-btn {
+  flex-shrink: 0;
+  width: 220rpx;
+}

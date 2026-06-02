@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "购物袋",
+  "usingComponents": {
+    "qty-popup": "/components/qty-popup/qty-popup"
+  }
+}

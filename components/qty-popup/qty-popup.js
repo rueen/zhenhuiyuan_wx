@@ -3,6 +3,7 @@ Component({
     show:         { type: Boolean, value: false },
     product:      { type: Object,  value: {} },
     action:       { type: String,  value: 'cart' },
+    initial:      { type: Number,  value: 1 },
     offsetBottom: { type: String,  value: '0px' },
   },
 
@@ -10,7 +11,7 @@ Component({
 
   observers: {
     show(val) {
-      if (val) this.setData({ quantity: 1 });
+      if (val) this.setData({ quantity: this.data.initial || 1 });
     },
   },
 

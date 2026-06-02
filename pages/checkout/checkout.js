@@ -2,8 +2,7 @@ const http = require('../../utils/request');
 
 Page({
   data: {
-    product: null,
-    quantity: 1,
+    items: [],
     addresses: [],
     selectedAddress: null,
     preview: null,
@@ -11,34 +10,42 @@ Page({
   },
 
   onLoad(options) {
-    this.productId = options.productId;
-    this.setData({ quantity: parseInt(options.quantity) || 1 });
+    if (options.cartItemIds) {
+      this.mode = 'cart';
+      this.cartItemIds = options.cartItemIds.split(',').map(Number);
+    } else {
+      this.mode = 'single';
+      this.productId = options.productId;
+      this.quantity = parseInt(options.quantity) || 1;
+    }
     this.init();
+  },
+
+  /** 构造下单/预览的商品入参（两种来源二选一） */
+  _orderBody() {
+    return this.mode === 'cart'
+      ? { cart_item_ids: this.cartItemIds }
+      : { items: [{ product_id: this.productId, quantity: this.quantity }] };
   },
 
   async init() {
     wx.showLoading({ title: '加载中', mask: true });
     try {
-      const [product, addresses] = await Promise.all([
-        http.get(`/api/h5/products/${this.productId}`),
-        http.get('/api/h5/addresses'),
-      ]);
+      const addresses = await http.get('/api/h5/addresses');
       const defaultAddr = addresses.find(a => a.is_default) || addresses[0] || null;
-      this.setData({ product, addresses, selectedAddress: defaultAddr });
-      if (defaultAddr) this.refreshPreview();
+      this.setData({ addresses, selectedAddress: defaultAddr });
+      await this.refreshPreview();
     } catch (e) {}
     wx.hideLoading();
   },
 
   async refreshPreview() {
-    const { selectedAddress, quantity } = this.data;
-    const body = {
-      items: [{ product_id: this.productId, quantity }],
-    };
+    const { selectedAddress } = this.data;
+    const body = this._orderBody();
     if (selectedAddress) body.address_id = selectedAddress.id;
     try {
       const preview = await http.post('/api/h5/orders/preview', body);
-      this.setData({ preview });
+      this.setData({ preview, items: preview.items || [] });
     } catch (e) {}
   },
 
@@ -55,17 +62,16 @@ Page({
   },
 
   async onSubmit() {
-    const { selectedAddress, quantity, submitting } = this.data;
+    const { selectedAddress, submitting } = this.data;
     if (submitting) return;
     if (!selectedAddress) {
       return wx.showToast({ title: '请选择收货地址', icon: 'none' });
     }
     this.setData({ submitting: true });
     try {
-      const order = await http.post('/api/h5/orders', {
-        items: [{ product_id: this.productId, quantity }],
-        address_id: selectedAddress.id,
-      });
+      const body = this._orderBody();
+      body.address_id = selectedAddress.id;
+      const order = await http.post('/api/h5/orders', body);
       wx.redirectTo({ url: `/pages/order-detail/order-detail?id=${order.id}` });
     } finally {
       this.setData({ submitting: false });

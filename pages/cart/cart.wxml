@@ -1,0 +1,97 @@
+<view class="cart-page">
+
+  <!-- 标题区 -->
+  <view class="cart-head" wx:if="{{!loading && items.length}}">
+    <text class="cart-title">购物袋</text>
+    <text class="cart-count">共{{totalQuantity}}件</text>
+  </view>
+
+  <!-- 列表 -->
+  <scroll-view class="cart-scroll" scroll-y wx:if="{{!loading && items.length}}">
+    <view
+      class="cart-item-wrap"
+      wx:for="{{items}}"
+      wx:key="id"
+    >
+      <!-- 滑动操作区 -->
+      <view class="swipe-actions">
+        <view class="swipe-btn swipe-edit" data-index="{{index}}" catchtap="onEditItem">编辑</view>
+        <view class="swipe-btn swipe-delete" data-index="{{index}}" catchtap="onDeleteItem">删除</view>
+      </view>
+
+      <!-- 主体 -->
+      <view
+        class="cart-item {{item.invalid ? 'cart-item--invalid' : ''}}"
+        style="transform: translateX({{item.offset}}px);"
+        data-index="{{index}}"
+        bindtouchstart="onTouchStart"
+        bindtouchmove="onTouchMove"
+        bindtouchend="onTouchEnd"
+      >
+        <!-- 勾选 -->
+        <view class="checkbox-hit" data-index="{{index}}" catchtap="onToggleItem">
+          <view class="checkbox {{item.checked ? 'checkbox--on' : ''}} {{item.invalid ? 'checkbox--disabled' : ''}}">
+            <view class="checkbox-tick" wx:if="{{item.checked}}"></view>
+          </view>
+        </view>
+
+        <!-- 商品 -->
+        <image
+          class="item-cover"
+          src="{{item.product_cover}}"
+          mode="aspectFill"
+          data-index="{{index}}"
+          catchtap="onItemTap"
+        />
+        <view class="item-info" data-index="{{index}}" catchtap="onItemTap">
+          <text class="item-name">{{item.product_name}}</text>
+          <text class="item-tag" wx:if="{{item.invalid}}">已失效</text>
+          <view class="item-bottom">
+            <text class="item-price price"><text class="price-symbol">¥</text>{{item.price}}</text>
+            <view class="qty-edit" data-index="{{index}}" catchtap="onEditItem">
+              <text class="qty-text">数量 {{item.quantity}}</text>
+              <icon name="edit" size="{{16}}" color="#888888" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="list-bottom-gap"></view>
+  </scroll-view>
+
+  <!-- 空状态 -->
+  <view class="cart-empty" wx:if="{{!loading && !items.length}}">
+    <empty icon="cart" text="购物袋还是空的" />
+  </view>
+
+  <!-- 底部结算栏 -->
+  <view class="checkout-bar" wx:if="{{!loading && items.length}}">
+    <view class="checkout-bar-inner">
+      <view class="bar-all" bindtap="onToggleAll">
+        <view class="checkbox {{selectAll ? 'checkbox--on' : ''}}">
+          <view class="checkbox-tick" wx:if="{{selectAll}}"></view>
+        </view>
+        <text class="bar-all-label">全选</text>
+      </view>
+      <view class="bar-total">
+        <text class="bar-total-price price"><text class="price-symbol">¥</text>{{selectedAmount}}</text>
+      </view>
+      <button
+        class="btn btn-primary checkout-btn {{selectedItemCount ? '' : 'btn-disabled'}}"
+        bindtap="onCheckout"
+      >去结算{{selectedItemCount ? '(' + selectedItemCount + ')' : ''}}</button>
+    </view>
+    <view class="safe-bottom"></view>
+  </view>
+
+  <!-- 数量编辑弹窗 -->
+  <qty-popup
+    show="{{showPopup}}"
+    product="{{popupProduct}}"
+    initial="{{editInitial}}"
+    bindconfirm="onPopupConfirm"
+    bindclose="onClosePopup"
+  />
+
+</view>

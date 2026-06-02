@@ -1,4 +1,4 @@
-<view class="checkout-page" wx:if="{{product}}">
+<view class="checkout-page">
   <scroll-view class="checkout-scroll" scroll-y>
 
     <!-- 收货地址 -->
@@ -17,13 +17,13 @@
     </view>
 
     <!-- 商品信息 -->
-    <view class="section card goods-card">
-      <image class="goods-cover" src="{{product.cover}}" mode="aspectFill" />
+    <view class="section card goods-card" wx:for="{{items}}" wx:key="product_id">
+      <image class="goods-cover" src="{{item.product_cover}}" mode="aspectFill" />
       <view class="goods-info">
-        <text class="goods-name">{{product.name}}</text>
+        <text class="goods-name">{{item.product_name}}</text>
         <view class="goods-bottom">
-          <text class="goods-price price"><text class="price-symbol">¥</text>{{product.price}}</text>
-          <text class="goods-qty">×{{quantity}}</text>
+          <text class="goods-price price"><text class="price-symbol">¥</text>{{item.price}}</text>
+          <text class="goods-qty">×{{item.quantity}}</text>
         </view>
       </view>
     </view>
