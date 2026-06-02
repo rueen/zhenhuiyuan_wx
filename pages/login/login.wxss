@@ -33,11 +33,8 @@
   justify-content: center;
   gap: var(--space-sm);
 }
-.invite-text{
-  color: var(--color-text-sub);
-}
 .invite-input {
-  width: 280rpx;
+  width: 380rpx;
   height: 96rpx;
   background: var(--color-bg);
   border-radius: 48rpx;

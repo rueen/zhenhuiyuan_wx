@@ -12,10 +12,9 @@
 
   <!-- 邀请码输入 -->
   <view class="invite-wrap">
-    <text class="invite-text">邀请码</text>
     <input
       class="invite-input"
-      placeholder="选填"
+      placeholder="邀请码（选填）"
       placeholder-class="invite-placeholder"
       value="{{inviteCode}}"
       bindinput="onInviteInput"
