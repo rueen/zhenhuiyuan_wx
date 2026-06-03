@@ -54,7 +54,7 @@
 
 /* ── 通用分区 ── */
 .section {
-  margin: var(--space-md) var(--space-md) 0;
+  margin: var(--space-lg) var(--space-lg) 0;
 }
 
 .section-header {
@@ -70,13 +70,13 @@
 /* ── 中医学堂：左大右二格 ── */
 .school-grid {
   display: flex;
-  gap: 12rpx;
+  gap: 16rpx;
   border-radius: var(--radius-md);
   overflow: hidden;
 }
 
 .school-left {
-  flex: 1.1;
+  flex: 1;
   border-radius: var(--radius-md);
   overflow: hidden;
 }
@@ -91,7 +91,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 12rpx;
+  gap: 16rpx;
 }
 
 .school-right-item {
