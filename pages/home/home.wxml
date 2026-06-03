@@ -1,5 +1,90 @@
-<view class="home-page">
-  <view class="home-placeholder">
-    <view class="slogan">敬请期待</view>
+<!--pages/home/home.wxml-->
+<scroll-view class="home-page" scroll-y>
+
+  <!-- ① 顶部 Banner 轮播 -->
+  <view class="banner-wrap" wx:if="{{bannerAds.length > 0}}">
+    <swiper
+      class="banner-swiper"
+      style="height: {{bannerSwiperHeight}}px"
+      circular
+      autoplay
+      interval="4000"
+      bindchange="onBannerChange"
+    >
+      <swiper-item
+        wx:for="{{bannerAds}}"
+        wx:key="id"
+        bindtap="onBannerTap"
+        data-index="{{index}}"
+      >
+        <image class="banner-img" src="{{item.image}}" mode="aspectFill" />
+      </swiper-item>
+    </swiper>
+    <!-- 圆点指示器 -->
+    <view class="banner-dots">
+      <view
+        wx:for="{{bannerAds}}"
+        wx:key="id"
+        class="banner-dot {{index === bannerCurrent ? 'banner-dot--active' : ''}}"
+      ></view>
+    </view>
   </view>
-</view>
+
+  <!-- ② 中医学堂 -->
+  <view class="section" wx:if="{{schoolAds.length > 0}}">
+    <view class="section-header">
+      <text class="section-title">中医学堂</text>
+    </view>
+    <view class="school-grid">
+      <!-- 左侧大图：Ad[0] -->
+      <view
+        class="school-left"
+        wx:if="{{schoolAds[0]}}"
+        bindtap="onSchoolTap"
+        data-index="0"
+      >
+        <image class="school-img-left" src="{{schoolAds[0].image}}" mode="aspectFill" />
+      </view>
+      <!-- 右侧两格 -->
+      <view class="school-right" wx:if="{{schoolAds.length > 1}}">
+        <!-- Ad[1] -->
+        <view
+          class="school-right-item"
+          bindtap="onSchoolTap"
+          data-index="1"
+        >
+          <image class="school-img-right" src="{{schoolAds[1].image}}" mode="aspectFill" />
+        </view>
+        <!-- Ad[2] -->
+        <view
+          class="school-right-item"
+          wx:if="{{schoolAds[2]}}"
+          bindtap="onSchoolTap"
+          data-index="2"
+        >
+          <image class="school-img-right" src="{{schoolAds[2].image}}" mode="aspectFill" />
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ③ 新品发售 -->
+  <view class="section" wx:if="{{newProductAds.length > 0}}">
+    <view class="section-header">
+      <text class="section-title">新品发售</text>
+    </view>
+    <view class="new-product-list">
+      <view
+        class="new-product-item"
+        wx:for="{{newProductAds}}"
+        wx:key="id"
+        bindtap="onNewProductTap"
+        data-index="{{index}}"
+      >
+        <image class="new-product-img" src="{{item.image}}" mode="widthFix" />
+      </view>
+    </view>
+  </view>
+
+  <view class="safe-bottom"></view>
+</scroll-view>

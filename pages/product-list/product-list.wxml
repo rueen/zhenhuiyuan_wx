@@ -1,0 +1,55 @@
+<!--pages/product-list/product-list.wxml-->
+<view class="product-list-page">
+
+  <!-- 加载失败 -->
+  <view class="state-wrap" wx:if="{{loadError}}">
+    <text class="state-text state-error">加载失败，请重试</text>
+    <view class="retry-btn" bindtap="onRetry">重新加载</view>
+  </view>
+
+  <!-- 首次加载中 -->
+  <view class="state-wrap" wx:elif="{{loading && products.length === 0}}">
+    <view class="loading-dot"></view>
+    <text class="state-text">加载中…</text>
+  </view>
+
+  <!-- 商品网格 -->
+  <block wx:elif="{{products.length > 0}}">
+    <view class="product-grid">
+      <view
+        class="product-card"
+        wx:for="{{products}}"
+        wx:key="id"
+        bindtap="onProductTap"
+        data-id="{{item.id}}"
+      >
+        <image class="product-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
+        <view class="product-info">
+          <text class="product-name">{{item.name}}</text>
+          <view class="product-footer">
+            <text class="product-price"><text class="price-symbol">¥</text>{{item.price}}</text>
+            <view class="add-btn" catchtap="onAddBtnTap" data-id="{{item.id}}">
+              <icon name="add" size="{{20}}" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="load-more" wx:if="{{loading}}">加载中…</view>
+    <view class="load-more" wx:elif="{{noMore}}">没有更多了</view>
+  </block>
+
+  <!-- 空态 -->
+  <empty wx:elif="{{!loading}}" text="暂无商品" />
+
+</view>
+
+<!-- 加购弹窗 -->
+<qty-popup
+  show="{{showPopup}}"
+  product="{{popupProduct}}"
+  action="cart"
+  bindconfirm="onPopupConfirm"
+  bindclose="onClosePopup"
+/>

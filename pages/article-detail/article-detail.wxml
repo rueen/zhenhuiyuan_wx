@@ -1,0 +1,30 @@
+<!--pages/article-detail/article-detail.wxml-->
+<view class="detail-page">
+
+  <!-- 加载中 -->
+  <view class="state-wrap" wx:if="{{loading}}">
+    <view class="loading-dot"></view>
+    <text class="state-text">加载中…</text>
+  </view>
+
+  <!-- 加载失败 -->
+  <view class="state-wrap" wx:elif="{{loadError}}">
+    <text class="state-text state-error">加载失败，请重试</text>
+    <view class="retry-btn" bindtap="onRetry">重新加载</view>
+  </view>
+
+  <!-- 文章内容 -->
+  <block wx:elif="{{content}}">
+    <view class="article-header">
+      <text class="article-title">{{title}}</text>
+      <text class="article-date" wx:if="{{updatedAt}}">{{updatedAt}}</text>
+    </view>
+    <view class="article-body">
+      <rich-text nodes="{{content}}"></rich-text>
+    </view>
+  </block>
+
+  <!-- 空态 -->
+  <empty wx:elif="{{!loading}}" text="文章不存在" />
+
+</view>

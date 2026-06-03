@@ -1,17 +1,124 @@
+/**
+ * pages/home/home.wxss
+ * 首页样式
+ */
+
 .home-page {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: var(--color-bg);
+  height: 100vh;
+  padding-bottom: 70px;
 }
 
-.home-placeholder {
+/* ── 顶部 Banner ── */
+.banner-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.banner-swiper {
+  width: 100%;
+  /* 高度由 JS 根据图片实际比例动态注入内联 style，此处不设固定值 */
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* 圆点指示器 */
+.banner-dots {
+  position: absolute;
+  bottom: 20rpx;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 12rpx;
+}
+
+.banner-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s;
+}
+
+.banner-dot--active {
+  width: 28rpx;
+  border-radius: 6rpx;
+  background: #fff;
+}
+
+/* ── 通用分区 ── */
+.section {
+  margin: var(--space-md) var(--space-md) 0;
+}
+
+.section-header {
+  margin-bottom: var(--space-sm);
+}
+
+.section-title {
+  font-size: var(--font-lg);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* ── 中医学堂：左大右二格 ── */
+.school-grid {
+  display: flex;
+  gap: 12rpx;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.school-left {
+  flex: 1.1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.school-img-left {
+  width: 100%;
+  height: 320rpx;
+  display: block;
+}
+
+.school-right {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 24rpx;
+  gap: 12rpx;
 }
 
-.slogan {
-  font-size: 28rpx;
+.school-right-item {
+  flex: 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.school-img-right {
+  width: 100%;
+  height: 154rpx;
+  display: block;
+}
+
+/* ── 新品发售：纵向平铺 ── */
+.new-product-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.new-product-item {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.new-product-img {
+  width: 100%;
+  display: block;
 }

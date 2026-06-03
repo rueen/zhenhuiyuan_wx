@@ -19,7 +19,11 @@
     "pages/balance-logs/balance-logs",
     "pages/profile-edit/profile-edit",
     "pages/invite/invite",
-    "pages/agreement/agreement"
+    "pages/agreement/agreement",
+    "pages/article-column/article-column",
+    "pages/article-detail/article-detail",
+    "pages/product-list/product-list",
+    "pages/webview/webview"
   ],
   "tabBar": {
     "custom": true,

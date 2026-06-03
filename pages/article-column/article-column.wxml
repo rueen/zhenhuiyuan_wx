@@ -1,0 +1,40 @@
+<!--pages/article-column/article-column.wxml-->
+<view class="column-page">
+
+  <!-- 加载失败 -->
+  <view class="state-wrap" wx:if="{{loadError}}">
+    <text class="state-text state-error">加载失败，请重试</text>
+    <view class="retry-btn" bindtap="onRetry">重新加载</view>
+  </view>
+
+  <!-- 首次加载中 -->
+  <view class="state-wrap" wx:elif="{{loading && articles.length === 0}}">
+    <view class="loading-dot"></view>
+    <text class="state-text">加载中…</text>
+  </view>
+
+  <!-- 列表 -->
+  <block wx:elif="{{articles.length > 0}}">
+    <view
+      class="article-item"
+      wx:for="{{articles}}"
+      wx:key="id"
+      bindtap="onArticleTap"
+      data-id="{{item.id}}"
+    >
+      <view class="article-content">
+        <text class="article-title">{{item.title}}</text>
+        <text class="article-date">{{item.updated_at}}</text>
+      </view>
+      <icon name="arrow-r" size="{{16}}" color="#bbb" />
+    </view>
+
+    <!-- 加载更多 -->
+    <view class="load-more" wx:if="{{loading}}">加载中…</view>
+    <view class="load-more" wx:elif="{{noMore}}">没有更多了</view>
+  </block>
+
+  <!-- 空态 -->
+  <empty wx:elif="{{!loading}}" text="暂无文章" />
+
+</view>
