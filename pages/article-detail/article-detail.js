@@ -43,7 +43,7 @@ Page({
       wx.setNavigationBarTitle({ title: article.title || '文章详情' });
       this.setData({
         title: article.title || '',
-        content: article.content || '',
+        content: this._processContent(article.content || ''),
         updatedAt: article.updated_at || '',
       });
     } catch (e) {
@@ -51,6 +51,27 @@ Page({
     } finally {
       this.setData({ loading: false });
     }
+  },
+
+  /**
+   * 对富文本 HTML 做预处理：
+   * 给所有 <img> 标签注入 max-width:100%;height:auto 内联样式，防止图片溢出屏幕
+   * @param {string} html - 原始 HTML 字符串
+   * @returns {string} 处理后的 HTML 字符串
+   */
+  _processContent(html) {
+    if (!html) return '';
+    return html.replace(/<img([^>]*?)>/gi, (match, attrs) => {
+      // 已有 style 属性：在现有值末尾追加
+      if (/style\s*=/i.test(attrs)) {
+        return `<img${attrs.replace(
+          /style\s*=\s*(['"])(.*?)\1/i,
+          (_, q, s) => `style=${q}${s};max-width:100%;height:auto;display:block;${q}`
+        )}>`;
+      }
+      // 没有 style 属性：直接添加
+      return `<img${attrs} style="max-width:100%;height:auto;display:block;">`;
+    });
   },
 
   /**
