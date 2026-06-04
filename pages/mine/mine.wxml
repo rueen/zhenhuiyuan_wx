@@ -36,12 +36,18 @@
       <view class="stats-row">
         <view class="stat-item" bindtap="onWithdrawTap">
           <text class="stat-label">余额</text>
-          <text class="stat-value {{!profile ? 'stat-value--empty' : ''}}">{{profile ? '¥' + profile.withdrawable_balance : '--'}}</text>
+          <view class="stat-value-wrap">
+            <text class="stat-value {{!profile ? 'stat-value--empty' : ''}}">{{profile ? '¥' + profile.withdrawable_balance : '--'}}</text>
+            <icon name="arrow-r" size="{{12}}" wx:if="{{profile}}" />
+          </view>
         </view>
         <view class="stat-divider"></view>
         <view class="stat-item" bindtap="onContributionTap">
           <text class="stat-label">贡献值</text>
-          <text class="stat-value {{!profile ? 'stat-value--empty' : ''}}">{{profile ? profile.cumulative_contribution : '--'}}</text>
+          <view class="stat-value-wrap">
+            <text class="stat-value {{!profile ? 'stat-value--empty' : ''}}">{{profile ? profile.cumulative_contribution : '--'}}</text>
+            <icon name="arrow-r" size="{{12}}" wx:if="{{profile}}" />
+          </view>
         </view>
       </view>
     </view>

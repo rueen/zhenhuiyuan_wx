@@ -116,10 +116,13 @@
   font-size: var(--font-xs);
   color: var(--color-text-sub);
 }
-.stat-value {
+.stat-value-wrap{
   font-size: var(--font-lg);
   font-weight: 700;
   color: var(--color-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .stat-value--empty {
   color: var(--color-text-hint);
