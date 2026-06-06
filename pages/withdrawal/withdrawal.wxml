@@ -61,7 +61,7 @@
           data-id="{{item.id}}"
         >
           <text class="account-type">{{item.typeName}}</text>
-          <text class="account-no">{{item.account_no}}</text>
+          <text class="account-no">{{item.account_no_mask}}</text>
         </view>
         <empty wx:if="{{accounts.length === 0}}" text="暂无提现账户，请先添加" />
       </view>

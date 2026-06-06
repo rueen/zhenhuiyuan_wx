@@ -32,7 +32,7 @@ Page({
     if (prevPage) {
       wx.navigateBack();
     } else {
-      wx.switchTab({ url: '/pages/index/index' });
+      wx.switchTab({ url: '/pages/home/home' });
     }
   },
 
@@ -69,7 +69,7 @@ Page({
       if (prevPage) {
         wx.navigateBack();
       } else {
-        wx.switchTab({ url: '/pages/mine/mine' });
+        wx.switchTab({ url: '/pages/home/home' });
       }
     } catch (err) {
       // 请求失败由 request.js 统一 toast，此处仅重置 loading
