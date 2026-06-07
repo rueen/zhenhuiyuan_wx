@@ -1,6 +1,5 @@
 const http = require('../../utils/request');
-const { BASE_URL } = require('../../utils/constant');
-const { getToken } = require('../../utils/auth');
+const { uploadImage } = require('../../utils/upload');
 
 Page({
   data: {
@@ -57,7 +56,6 @@ Page({
     try {
       const res = await http.post('/api/h5/member/decrypt-phone', { code: e.detail.code });
       this.setData({ 'form.phone': res.phone });
-      // 同步全局用户信息
       const app = getApp();
       if (app.globalData.userInfo) {
         app.globalData.userInfo.phone = res.phone;
@@ -80,7 +78,7 @@ Page({
       let avatarUrl = this.data.form.avatar;
 
       if (this.data.avatarChanged) {
-        avatarUrl = await this._uploadAvatar(this.data.form.avatar);
+        avatarUrl = await uploadImage(this.data.form.avatar, 'avatar');
       }
 
       await http.put('/api/h5/member/profile', {
@@ -88,7 +86,6 @@ Page({
         avatar: avatarUrl,
       });
 
-      // 同步全局用户信息
       const app = getApp();
       if (app.globalData.userInfo) {
         app.globalData.userInfo.nickname = nickname.trim();
@@ -102,35 +99,5 @@ Page({
     } finally {
       this.setData({ submitting: false });
     }
-  },
-
-  _uploadAvatar(tempPath) {
-    return new Promise((resolve, reject) => {
-      const token = getToken();
-      wx.uploadFile({
-        url: BASE_URL + '/api/h5/upload',
-        filePath: tempPath,
-        name: 'file',
-        header: token ? { Authorization: `Bearer ${token}` } : {},
-        success(res) {
-          try {
-            const data = JSON.parse(res.data);
-            if (data.code === 0) {
-              resolve(data.data.url);
-            } else {
-              wx.showToast({ title: data.message || '头像上传失败', icon: 'none' });
-              reject(new Error(data.message));
-            }
-          } catch (e) {
-            wx.showToast({ title: '头像上传失败', icon: 'none' });
-            reject(e);
-          }
-        },
-        fail(err) {
-          wx.showToast({ title: '头像上传失败', icon: 'none' });
-          reject(err);
-        },
-      });
-    });
   },
 });
