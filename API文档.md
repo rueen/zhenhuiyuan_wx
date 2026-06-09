@@ -1,6 +1,6 @@
 # 贞慧缘电商平台 · 前端对接 API 文档
 
-> 版本：v1.3　｜　最后更新：2026-06-03
+> 版本：v1.4　｜　最后更新：2026-06-09
 > 后端：Node.js + Express + MySQL + JWT。本文档供 C 端（微信小程序）与管理端（Web）前端对接使用。
 
 ---
@@ -84,6 +84,7 @@ Authorization: Bearer <token>
 **文章状态 `status`**：`1` 发布、`0` 草稿。
 **广告启用状态 `status`**：`1` 启用、`0` 禁用。
 **广告时间状态 `time_status`**：`not_started` 未开始、`active` 进行中、`ended` 已结束（动态计算，不存库）。
+**硬件开关 `hardware_enabled`**：`1` 已开通、`0` 未开通。
 
 ---
 
@@ -108,7 +109,7 @@ Authorization: Bearer <token>
 响应 `data`：`{ token, member, isNew }`。
 
 ### GET /auth/profile — 当前会员资料
-需登录。返回会员信息（含 `level_name`、`cumulative_contribution`、`withdrawable_balance`、`invite_code`、`parent_id`、`first_consumed_at`）。
+需登录。返回会员信息（含 `level_name`、`cumulative_contribution`、`withdrawable_balance`、`invite_code`、`parent_id`、`first_consumed_at`、`hardware_enabled`、`mac_address`）。
 
 ## 2.2 会员 Member（均需登录）
 
@@ -315,8 +316,27 @@ query 参数：
 | PUT | /members/:id | member:update | 改昵称/手机号/状态 |
 | PUT | /members/:id/parent | member:parent | 变更上级（含闭包链重建、环路校验） |
 | PUT | /members/:id/level | member:level | 手动调整等级（置锁定，不再自动降级） |
+| PUT | /members/:id/device | member:update | 设置硬件开关与设备码 |
+| GET | /members/:id/health-records | member:detail | 查询某会员体检记录 |
 
 > 管理端手动绑定/变更上级须记录操作人；手动调级会写 `member_level_change_log`（source=manual）并锁定等级。
+
+### PUT /members/:id/device — 硬件设备绑定
+
+两字段独立控制，可按需单独传其中一个：
+
+| 字段 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| hardware_enabled | number | 否 | `1` 开通 / `0` 关闭 |
+| mac_address | string\|null | 否 | 设备码，最长 64 字符；传 `null` 表示解绑 |
+
+状态语义：
+-  +  有値 → 已开通并绑定设备
+-  +  → 已开通，设备待分配
+-  +  有値 → 临时关闭，保留绑定记录
+-  +  → 未开通
+
+响应：更新后的会员详情（同 ）。
 
 ## 3.3 会员等级 Level　权限前缀 `level:`
 
