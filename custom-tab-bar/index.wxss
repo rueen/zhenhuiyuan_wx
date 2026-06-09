@@ -21,15 +21,15 @@
   padding: 12rpx 0 10rpx;
   gap: 6rpx;
   transition: color 0.2s;
+  color: #999;
 }
 
 /* ── 文字 ── */
 .tab-text {
   font-size: 22rpx;
-  color: #999;
   line-height: 1;
 }
-.tab-item--active .tab-text {
+.tab-item--active {
   color: #c9a063;
 }
 
@@ -39,13 +39,7 @@
   height: 50rpx;
   position: relative;
   overflow: hidden;
-}
-.tab-icon-img{
-  width: 60rpx;
-  height: 60rpx;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -30rpx;
-  margin-top: -30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
