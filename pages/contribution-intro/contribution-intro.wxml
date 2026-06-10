@@ -1,0 +1,125 @@
+<view class="intro-page">
+  <scroll-view scroll-y class="intro-scroll">
+
+    <!-- 顶部说明 -->
+    <view class="intro-header section">
+      <view class="intro-header-card card">
+        <view class="intro-title-row">
+          <view class="intro-icon-wrap">
+            <icon name="shixinwujiaoxing" size="{{30}}" color="#c9a063" />
+          </view>
+          <text class="intro-main-title">贡献值</text>
+        </view>
+        <text class="intro-subtitle">衡量您在平台贡献程度的积分，不可提现，专用于升级会员等级和参与分红权重计算</text>
+      </view>
+    </view>
+
+    <!-- 如何获取 -->
+    <view class="section">
+      <view class="card intro-section-card">
+        <view class="section-title-row">
+          <view class="section-title-dot"></view>
+          <text class="section-title">如何获取贡献值？</text>
+        </view>
+        <text class="section-desc">每笔订单结算后自动发放，来自您自己购买以及您邀请的成员购买。</text>
+
+        <!-- 自购 -->
+        <view class="earn-item">
+          <view class="earn-item-header">
+            <view class="earn-badge earn-badge--self">自购</view>
+            <text class="earn-title">您自己完成一笔购买</text>
+          </view>
+          <view class="formula-box">
+            <text class="formula-text">贡献值 = 实付金额 × {{rules.contribution_coefficient}} × {{rules.contribution_self_rate_pct}}%</text>
+          </view>
+        </view>
+
+        <!-- 直推 -->
+        <view class="earn-item">
+          <view class="earn-item-header">
+            <view class="earn-badge earn-badge--direct">直推</view>
+            <text class="earn-title">直接邀请的成员完成购买</text>
+          </view>
+          <view class="formula-box">
+            <text class="formula-text">贡献值 = 该成员实付金额 × {{rules.contribution_coefficient}} × {{rules.contribution_direct_rate_pct}}%</text>
+          </view>
+        </view>
+
+        <!-- 间推 -->
+        <view class="earn-item">
+          <view class="earn-item-header">
+            <view class="earn-badge earn-badge--indirect">间推</view>
+            <text class="earn-title">邀请链更下层成员完成购买</text>
+          </view>
+          <view class="formula-box">
+            <text class="formula-text">贡献值 = 该成员实付金额 × {{rules.contribution_coefficient}} × {{rules.contribution_indirect_rate_pct}}%</text>
+          </view>
+          <text class="earn-tip">间推不限层级，邀请链越长、下级越活跃，您获得的贡献值越多</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 贡献值用途 -->
+    <view class="section">
+      <view class="card intro-section-card">
+        <view class="section-title-row">
+          <view class="section-title-dot"></view>
+          <text class="section-title">贡献值有什么用？</text>
+        </view>
+
+        <view class="usage-list">
+          <view class="usage-item">
+            <view class="usage-icon-wrap">
+              <icon name="grade" size="{{28}}" color="#c9a063" />
+            </view>
+            <view class="usage-content">
+              <text class="usage-title">升级会员等级</text>
+              <text class="usage-desc">累计贡献值达到门槛后，系统自动升级，一旦升级不会降级</text>
+            </view>
+          </view>
+          <view class="usage-divider"></view>
+          <view class="usage-item">
+            <view class="usage-icon-wrap">
+              <icon name="dividend" size="{{28}}" color="#c9a063" />
+            </view>
+            <view class="usage-content">
+              <text class="usage-title">参与业绩分红</text>
+              <text class="usage-desc">贡献值越多，在所在等级内的分红占比越高</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 当前进度，仅登录后显示 -->
+    <view class="section" wx:if="{{profile}}">
+      <view class="card intro-section-card">
+        <view class="section-title-row">
+          <view class="section-title-dot"></view>
+          <text class="section-title">我的贡献值进度</text>
+        </view>
+        <view class="progress-wrap">
+          <view class="progress-row">
+            <text class="progress-label">累计贡献值</text>
+            <text class="progress-value">{{profile.cumulative_contribution}}</text>
+          </view>
+          <view class="progress-row" wx:if="{{profile.next_level}}">
+            <text class="progress-label">距升至 {{profile.next_level.name}}</text>
+            <text class="progress-value progress-value--gap">还差 {{profile.gap_to_next_level}} 贡献值</text>
+          </view>
+          <view class="progress-row" wx:else>
+            <text class="progress-label">当前等级</text>
+            <text class="progress-value progress-value--top">已是最高等级</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 查看流水 -->
+    <view class="section btn-section">
+      <view class="btn btn-primary btn-full" bindtap="onViewLogs" wx:if="{{isLoggedIn}}">查看贡献值流水</view>
+    </view>
+
+    <view class="safe-bottom"></view>
+  </scroll-view>
+</view>

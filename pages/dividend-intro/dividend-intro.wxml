@@ -1,0 +1,129 @@
+<view class="intro-page">
+  <scroll-view scroll-y class="intro-scroll">
+
+    <!-- 顶部说明 -->
+    <view class="intro-header section">
+      <view class="intro-header-card card">
+        <view class="intro-title-row">
+          <view class="intro-icon-wrap">
+            <icon name="xiaohonghua" size="{{30}}" color="#c9a063" />
+          </view>
+          <text class="intro-main-title">业绩分红</text>
+        </view>
+        <text class="intro-subtitle">平台每期从全平台销售额中提取一定比例作为分红池，按各等级会员的贡献值占比分配</text>
+        <view class="intro-note">
+          <text class="intro-note-text">分红为额外奖励，不影响返利余额，由平台线下转账发放</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 分红池说明 -->
+    <view class="section" wx:if="{{rules}}">
+      <view class="card intro-section-card">
+        <view class="section-title-row">
+          <view class="section-title-dot"></view>
+          <text class="section-title">分红池如何形成？</text>
+        </view>
+        <view class="formula-box">
+          <text class="formula-text">本期分红池 = 本期全平台销售额 × {{rules.dividend_pool_extract_rate_pct}}%</text>
+        </view>
+        <view class="pool-split-row">
+          <view class="pool-split-item pool-split-item--charity">
+            <text class="pool-split-pct">{{rules.dividend_charity_rate_pct}}%</text>
+            <text class="pool-split-label">公益捐赠</text>
+          </view>
+          <view class="pool-split-arrow">→</view>
+          <view class="pool-split-item pool-split-item--member">
+            <text class="pool-split-pct">{{rules.dividend_member_rate_pct}}%</text>
+            <text class="pool-split-label">会员分红</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 按等级切分 -->
+    <view class="section" wx:if="{{levels.length > 0}}">
+      <view class="card intro-section-card">
+        <view class="section-title-row">
+          <view class="section-title-dot"></view>
+          <text class="section-title">各等级分红占比</text>
+        </view>
+        <view class="level-pool-list">
+          <view class="level-pool-item" wx:for="{{levels}}" wx:key="id">
+            <text class="level-pool-name">{{item.name}}</text>
+            <view class="level-pool-bar-wrap">
+              <view class="level-pool-bar" style="width: {{item.dividend_pool_rate * 100}}%"></view>
+            </view>
+            <text class="level-pool-pct">{{item.dividend_pool_rate_pct}}%</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 计算公式 -->
+    <view class="section">
+      <view class="card intro-section-card">
+        <view class="section-title-row">
+          <view class="section-title-dot"></view>
+          <text class="section-title">您的分红如何计算？</text>
+        </view>
+        <view class="step-list">
+          <view class="step-item">
+            <view class="step-num">1</view>
+            <view class="step-content">
+              <text class="step-title">确定所在等级的分红额</text>
+              <text class="step-desc">本期分红池 × 您所在等级的分红占比</text>
+            </view>
+          </view>
+          <view class="step-item">
+            <view class="step-num">2</view>
+            <view class="step-content">
+              <text class="step-title">按贡献值占比分配</text>
+              <text class="step-desc">您的应得分红 = 本等级分红额 × (您的本期贡献值 ÷ 本等级全员本期贡献值合计)</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 如何多得分红 -->
+    <view class="section">
+      <view class="card intro-section-card">
+        <view class="section-title-row">
+          <view class="section-title-dot"></view>
+          <text class="section-title">如何多得分红？</text>
+        </view>
+        <view class="tips-list">
+          <view class="tip-item">
+            <view class="tip-icon">1</view>
+            <view class="tip-content">
+              <text class="tip-title">提升会员等级</text>
+              <text class="tip-desc">等级越高，所在等级占池比例通常越大</text>
+            </view>
+          </view>
+          <view class="tip-item">
+            <view class="tip-icon">2</view>
+            <view class="tip-content">
+              <text class="tip-title">多消费、多邀请</text>
+              <text class="tip-desc">贡献值越多，在等级内的分红占比越高</text>
+            </view>
+          </view>
+          <view class="tip-item">
+            <view class="tip-icon">3</view>
+            <view class="tip-content">
+              <text class="tip-title">引导下级活跃</text>
+              <text class="tip-desc">直推和间推下级的购买同样计入您的贡献值，贡献越大分红越多</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 我的分红记录，仅登录后显示 -->
+    <view class="section btn-section" wx:if="{{isLoggedIn}}">
+      <view class="btn btn-primary btn-full" bindtap="onViewDividends">查看我的分红记录</view>
+    </view>
+
+    <view class="safe-bottom"></view>
+  </scroll-view>
+</view>

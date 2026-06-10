@@ -86,6 +86,10 @@ Page({
     wx.navigateTo({ url: '/pages/contribution-logs/contribution-logs' });
   },
 
+  onLevelTap() {
+    wx.navigateTo({ url: '/pages/level-intro/level-intro' });
+  },
+
   onLogout() {
     wx.showModal({
       title: '确认退出',

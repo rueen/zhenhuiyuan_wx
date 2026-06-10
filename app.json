@@ -24,7 +24,10 @@
     "pages/article-detail/article-detail",
     "pages/product-list/product-list",
     "pages/webview/webview",
-    "pages/health/health"
+    "pages/health/health",
+    "pages/contribution-intro/contribution-intro",
+    "pages/dividend-intro/dividend-intro",
+    "pages/level-intro/level-intro"
   ],
   "tabBar": {
     "custom": true,

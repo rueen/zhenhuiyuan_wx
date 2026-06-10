@@ -1,0 +1,225 @@
+.level-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding-bottom: calc(var(--space-xl) + env(safe-area-inset-bottom));
+}
+
+/* ── 顶部横幅 ── */
+.level-banner {
+  background: linear-gradient(135deg, var(--color-primary), #e0b87a);
+  padding: var(--space-lg) var(--space-md) var(--space-xl);
+}
+.banner-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.banner-level-name {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  color: #fff;
+}
+.banner-progress-text {
+  font-size: var(--font-sm);
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 10rpx;
+}
+.banner-gap {
+  font-weight: 700;
+  color: #fff;
+  margin: 0 4rpx;
+}
+.banner-bar-bg {
+  height: 12rpx;
+  background: rgba(255,255,255,0.3);
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+.banner-bar-fill {
+  height: 100%;
+  background: #fff;
+  border-radius: 6rpx;
+  transition: width 0.4s ease;
+}
+.banner-progress-nums {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8rpx;
+}
+.banner-progress-nums text {
+  font-size: var(--font-xs);
+  color: rgba(255,255,255,0.7);
+}
+.banner-top-text {
+  font-size: var(--font-base);
+  color: rgba(255,255,255,0.9);
+}
+.banner-contribution {
+  font-size: var(--font-sm);
+  color: rgba(255,255,255,0.75);
+}
+
+/* ── 等级 tabs ── */
+.level-tabs-wrap {
+  white-space: nowrap;
+  background: var(--color-card);
+  padding: 0 var(--space-sm);
+  box-shadow: var(--shadow-sm);
+}
+.level-tabs {
+  display: inline-flex;
+  gap: 0;
+}
+.level-tab {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-md) var(--space-md);
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+  white-space: nowrap;
+  border-bottom: 4rpx solid transparent;
+  transition: color 0.2s;
+}
+.level-tab--active {
+  color: var(--color-primary);
+  font-weight: 600;
+  border-bottom-color: var(--color-primary);
+}
+
+/* ── 等级卡片 ── */
+.level-card-wrap {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.level-card {
+  overflow: visible;
+}
+.level-card-header {
+  padding: var(--space-md) var(--space-md) 0;
+}
+.level-card-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-xs);
+}
+.level-card-name {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  color: var(--color-text);
+}
+.level-card-badge {
+  padding: 4rpx 16rpx;
+  background: var(--color-primary);
+  border-radius: 100rpx;
+  font-size: var(--font-xs);
+  color: #fff;
+}
+.level-threshold-row {
+  margin-bottom: var(--space-sm);
+}
+.level-threshold-label {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+}
+.level-divider {
+  height: 1rpx;
+  background: var(--color-border);
+  margin: var(--space-sm) var(--space-md);
+}
+
+/* ── 权益列表 ── */
+.benefit-list {
+  padding: 0 var(--space-md) var(--space-md);
+}
+.benefit-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) 0;
+}
+.benefit-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex: 1;
+}
+.benefit-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+.benefit-name {
+  font-size: var(--font-base);
+  font-weight: 600;
+  color: var(--color-text);
+}
+.benefit-desc {
+  font-size: var(--font-xs);
+  color: var(--color-text-sub);
+  line-height: 1.5;
+}
+.benefit-value {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-left: var(--space-xs);
+}
+.benefit-right-row {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+  flex-shrink: 0;
+  margin-left: var(--space-xs);
+}
+.benefit-divider {
+  height: 1rpx;
+  background: var(--color-border);
+  margin-left: 68rpx;
+}
+
+/* ── 说明提示 ── */
+.level-tip-card {
+  background: var(--color-primary-bg);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+.level-tip-title {
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+.level-tip-text {
+  font-size: var(--font-xs);
+  color: var(--color-text-sub);
+  line-height: 1.7;
+}
+
+/* ── 底部链接 ── */
+.bottom-links {
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.bottom-link-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+}
+.bottom-link-text {
+  font-size: var(--font-base);
+  color: var(--color-primary);
+}
+.bottom-link-divider {
+  height: 1rpx;
+  background: var(--color-border);
+  margin: 0 var(--space-md);
+}

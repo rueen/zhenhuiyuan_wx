@@ -1,0 +1,140 @@
+<view class="level-page">
+
+  <!-- 顶部当前等级横幅，仅登录后显示 -->
+  <view class="level-banner" wx:if="{{profile}}">
+    <view class="banner-inner">
+      <view class="banner-level-name">{{profile.level_name}}</view>
+      <view class="banner-progress-wrap" wx:if="{{profile.next_level}}">
+        <view class="banner-progress-text">
+          <text>距升至 {{profile.next_level.name}} 还差</text>
+          <text class="banner-gap">{{profile.gap_to_next_level}}</text>
+          <text>贡献值</text>
+        </view>
+        <view class="banner-bar-bg">
+          <view class="banner-bar-fill" style="width: {{profile.progress_pct}}%"></view>
+        </view>
+        <view class="banner-progress-nums">
+          <text>{{profile.cumulative_contribution}}</text>
+          <text>{{profile.next_level.upgrade_threshold}}</text>
+        </view>
+      </view>
+      <view class="banner-progress-wrap" wx:else>
+        <text class="banner-top-text">您已是最高等级会员</text>
+        <text class="banner-contribution">累计贡献值 {{profile.cumulative_contribution}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 等级选择 tabs -->
+  <scroll-view scroll-x class="level-tabs-wrap" wx:if="{{levels.length > 0}}">
+    <view class="level-tabs">
+      <view
+        class="level-tab {{activeIndex === index ? 'level-tab--active' : ''}}"
+        wx:for="{{levels}}"
+        wx:key="id"
+        bindtap="onTabTap"
+        data-index="{{index}}"
+      >
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 等级权益卡片 -->
+  <view class="level-card-wrap" wx:if="{{currentLevel}}">
+    <view class="level-card card">
+
+      <!-- 等级名称 & 门槛 -->
+      <view class="level-card-header">
+        <view class="level-card-name-wrap">
+          <icon name="grade" size="{{20}}" color="#c9a063" />
+          <text class="level-card-name">{{currentLevel.name}}</text>
+          <view class="level-card-badge" wx:if="{{profile && profile.level_name === currentLevel.name}}">当前等级</view>
+        </view>
+        <view class="level-threshold-row">
+          <text class="level-threshold-label" wx:if="{{currentLevel.is_default}}">注册即享，无门槛</text>
+          <text class="level-threshold-label" wx:else>累计贡献值 ≥ {{currentLevel.upgrade_threshold}} 自动升级</text>
+        </view>
+      </view>
+
+      <view class="level-divider"></view>
+
+      <!-- 权益列表 -->
+      <view class="benefit-list">
+        <!-- 自购返利 -->
+        <view class="benefit-item">
+          <view class="benefit-left">
+            <view class="benefit-info">
+              <text class="benefit-name">自购返利</text>
+              <text class="benefit-desc">每购一单，实付金额按比例返入可提现余额</text>
+            </view>
+          </view>
+          <text class="benefit-value">{{currentLevel.self_rebate_rate_pct}}%</text>
+        </view>
+
+        <view class="benefit-divider"></view>
+
+        <!-- 直推返利 -->
+        <view class="benefit-item">
+          <view class="benefit-left">
+            <view class="benefit-info">
+              <text class="benefit-name">直推团队返利</text>
+              <text class="benefit-desc">直推下级处于本等级时，其购买为您带来的返利</text>
+            </view>
+          </view>
+          <text class="benefit-value">{{currentLevel.parent_rebate_rate_pct}}%</text>
+        </view>
+
+        <view class="benefit-divider"></view>
+
+        <!-- 间推返利 -->
+        <view class="benefit-item">
+          <view class="benefit-left">
+            <view class="benefit-info">
+              <text class="benefit-name">间推团队返利</text>
+              <text class="benefit-desc">间推下级处于本等级时，其购买为您带来的返利</text>
+            </view>
+          </view>
+          <text class="benefit-value">{{currentLevel.grandpa_rebate_rate_pct}}%</text>
+        </view>
+
+        <view class="benefit-divider"></view>
+
+        <!-- 分红池 -->
+        <view class="benefit-item" bindtap="onDividendTap">
+          <view class="benefit-left">
+            <view class="benefit-info">
+              <text class="benefit-name">分红池占比</text>
+              <text class="benefit-desc">本等级成员共享的分红池额度</text>
+            </view>
+          </view>
+          <view class="benefit-right-row">
+            <text class="benefit-value">{{currentLevel.dividend_pool_rate_pct}}%</text>
+            <icon name="arrow-r" size="{{12}}" color="#999" />
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 说明提示 -->
+    <view class="level-tip-card">
+      <text class="level-tip-title">说明</text>
+      <text class="level-tip-text">团队返利以购买者（您的下级）的当前等级为准，与您自身等级无关。下级等级越高，其单笔购买为您带来的返利越多，鼓励团队成员积极升级。</text>
+    </view>
+  </view>
+
+  <!-- 贡献值说明入口 -->
+  <view class="section bottom-links">
+    <view class="bottom-link-item" bindtap="onContributionTap">
+      <text class="bottom-link-text">了解贡献值规则</text>
+      <icon name="arrow-r" size="{{14}}" color="#c9a063" />
+    </view>
+    <view class="bottom-link-divider"></view>
+    <view class="bottom-link-item" bindtap="onDividendTap">
+      <text class="bottom-link-text">了解业绩分红规则</text>
+      <icon name="arrow-r" size="{{14}}" color="#c9a063" />
+    </view>
+  </view>
+
+  <view class="safe-bottom"></view>
+</view>
