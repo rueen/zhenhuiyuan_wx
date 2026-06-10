@@ -1,7 +1,6 @@
 .health-page {
   min-height: 100vh;
   background: var(--color-bg);
-  padding: var(--space-md);
 }
 
 .loading-wrap {
@@ -36,10 +35,14 @@
   width: 400rpx;
 }
 
+.records-scroll {
+  box-sizing: border-box;
+}
 .records-wrap {
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
+  padding: var(--space-md);
 }
 .record-item {
   display: flex;
@@ -67,6 +70,10 @@
   padding: 2rpx 10rpx;
   border-radius: var(--radius-sm);
 }
+.record-phone{
+  font-size: var(--font-base);
+  color: var(--color-text);
+}
 .record-meta-row {
   display: flex;
   gap: var(--space-sm);
@@ -74,4 +81,17 @@
 .record-meta {
   font-size: var(--font-xs);
   color: var(--color-text-hint);
+}
+
+.report-btn {
+  flex-shrink: 0;
+  margin-left: var(--space-sm);
+  padding: 0 var(--space-sm);
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: var(--font-xs);
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  border-radius: var(--radius-xl);
+  border: none;
 }

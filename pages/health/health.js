@@ -7,6 +7,17 @@ Page({
     records: [],
     loading: true,
     userId: null,
+    scrollHeight: 0,
+  },
+
+  onLoad() {
+    wx.getSystemInfo({
+      success: (res) => {
+        // 导航栏高度约 44px + 状态栏，剩余高度留给滚动列表
+        const navBarHeight = res.statusBarHeight + 44;
+        this.setData({ scrollHeight: res.windowHeight - navBarHeight });
+      },
+    });
   },
 
   onShow() {
@@ -41,11 +52,11 @@ Page({
   },
 
   onRecordTap(e) {
-    const { patno } = e.currentTarget.dataset;
+    const { item } = e.currentTarget.dataset;
     const baseUrl = 'https://iot.smfyunpingtai.com/jiayishen/#/pages/pulseReport/pulseReport';
-    const url = `${baseUrl}?patno=${patno}`;
+    const url = `${baseUrl}?patno=${item.patno}`;
     wx.navigateTo({
-      url: `/pages/webview/webview?url=${encodeURIComponent(url)}`,
+      url: `/pages/webview/webview?title=${encodeURIComponent('体检报告')}&url=${encodeURIComponent(url)}`,
     });
   },
 

@@ -17,6 +17,8 @@ Page({
    */
   onLoad(options) {
     const src = decodeURIComponent(options.url || '');
+    const title = options.title ? decodeURIComponent(options.title) : '';
+    if (title) wx.setNavigationBarTitle({ title });
     this.setData({ src });
   },
 });
