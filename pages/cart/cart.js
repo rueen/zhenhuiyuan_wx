@@ -195,4 +195,9 @@ Page({
     const ids = selected.map(i => i.id).join(',');
     wx.navigateTo({ url: `/pages/checkout/checkout?cartItemIds=${ids}` });
   },
+
+  /** 空购物袋：跳转商店页 */
+  onGoShop() {
+    wx.switchTab({ url: '/pages/shop/shop' });
+  },
 });

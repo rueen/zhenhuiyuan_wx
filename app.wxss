@@ -126,6 +126,15 @@ wx-button:not([size=mini]){
   font-size: var(--font-sm);
   padding: 0 var(--space-md);
 }
+.btn-xs {
+  height: 60rpx;
+  font-size: var(--font-xs);
+  padding: 0 var(--space-sm);
+}
+.btn-light {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
 
 /* ─── 通用状态徽章 ─── */
 .badge {

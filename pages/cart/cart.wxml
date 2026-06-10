@@ -63,6 +63,7 @@
   <!-- 空状态 -->
   <view class="cart-empty" wx:if="{{!loading && !items.length}}">
     <empty icon="cart" text="购物袋还是空的" />
+    <button class="btn btn-primary" bindtap="onGoShop">去逛逛</button>
   </view>
 
   <!-- 底部结算栏 -->

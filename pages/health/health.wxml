@@ -30,7 +30,7 @@
             <text class="record-meta">{{item.visitdate}}</text>
           </view>
         </view>
-        <button class="report-btn" bindtap="onRecordTap" data-item="{{item}}">查看报告</button>
+        <button class="btn btn-light btn-xs report-btn" bindtap="onRecordTap" data-item="{{item}}">查看报告</button>
       </view>
       <empty wx:if="{{!loading && records.length === 0}}" text="暂无体检记录" />
     </view>
