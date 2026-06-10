@@ -75,6 +75,8 @@
 .level-hint {
   font-size: var(--font-xs);
   color: var(--color-text-sub);
+  display: flex;
+  align-items: center;
 }
 
 /* 邀请码按钮 */

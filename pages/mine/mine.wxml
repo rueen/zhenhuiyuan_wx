@@ -21,8 +21,13 @@
                 <icon name="arrow-r" size="{{10}}" color="#fff" />
               </view>
             </view>
-            <text class="level-hint" wx:if="{{profile}}">再获得{{profile.points_to_next_level || 1000}}贡献值升级为下一等级</text>
-            <text class="level-hint" wx:if="{{!profile}}">登录后享受更多服务</text>
+            <view class="level-hint" wx:if="{{profile}}">
+              <text>再获得{{profile.points_to_next_level || 1000}}贡献值升级为下一等级</text>
+              <icon name="arrow-r" size="{{12}}" />
+            </view>
+            <view class="level-hint" wx:if="{{!profile}}">
+              <text>登录后享受更多服务</text>
+            </view>
           </view>
         </view>
         <!-- 邀请码，仅登录后显示 -->
