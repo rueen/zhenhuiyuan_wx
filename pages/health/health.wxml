@@ -1,0 +1,38 @@
+<view class="health-page">
+  <view wx:if="{{loading}}" class="loading-wrap">
+    <text class="loading-text">加载中…</text>
+  </view>
+
+  <!-- 未开通 -->
+  <view wx:elif="{{!hardwareEnabled}}" class="disabled-wrap">
+    <icon name="ai" size="80" color="#c9a063" />
+    <text class="disabled-title">AI体检功能未开通</text>
+    <text class="disabled-desc">请联系客服开通AI体检功能</text>
+    <button class="btn btn-primary contact-btn" bindtap="onContactService">联系客服</button>
+  </view>
+
+  <!-- 已开通：记录列表 -->
+  <view wx:else class="records-wrap">
+    <view
+      class="record-item card"
+      wx:for="{{records}}"
+      wx:key="patno"
+      data-patno="{{item.patno}}"
+      bindtap="onRecordTap"
+    >
+      <view class="record-main">
+        <view class="record-name-row">
+          <text class="record-name">{{item.patname}}</text>
+          <text class="record-tag">{{item.sex}}</text>
+          <text class="record-tag">{{item.age}}岁</text>
+        </view>
+        <view class="record-meta-row">
+          <text class="record-meta">就诊：{{item.visitdate}}</text>
+          <text class="record-meta">{{item.phone}}</text>
+        </view>
+      </view>
+      <icon name="arrow-right" size="28" color="#bbbbbb" />
+    </view>
+    <empty wx:if="{{!loading && records.length === 0}}" text="暂无体检记录" />
+  </view>
+</view>

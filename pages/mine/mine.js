@@ -21,7 +21,7 @@ Page({
 
   onShow() {
     if (typeof this.getTabBar === 'function') {
-      this.getTabBar().setData({ selected: 2 });
+      this.getTabBar().setData({ selected: 3 });
     }
     if (isLoggedIn()) {
       this.loadProfile();

@@ -23,7 +23,8 @@
     "pages/article-column/article-column",
     "pages/article-detail/article-detail",
     "pages/product-list/product-list",
-    "pages/webview/webview"
+    "pages/webview/webview",
+    "pages/health/health"
   ],
   "tabBar": {
     "custom": true,
@@ -33,6 +34,7 @@
     "list": [
       { "pagePath": "pages/home/home", "text": "首页" },
       { "pagePath": "pages/shop/shop", "text": "商店" },
+      { "pagePath": "pages/health/health", "text": "体检" },
       { "pagePath": "pages/mine/mine", "text": "我的" }
     ]
   },
