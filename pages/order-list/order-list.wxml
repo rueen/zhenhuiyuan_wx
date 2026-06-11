@@ -19,14 +19,13 @@
     <view class="order-card card" wx:for="{{orders}}" wx:key="id" bindtap="onOrderTap" data-id="{{item.id}}">
       <!-- 订单头部 -->
       <view class="order-header">
-        <text class="order-no">订单号：{{item.order_no}}</text>
-        <text class="order-status status-{{item.status}}">{{item.statusText}}</text>
+        <text class="order-status">{{item.statusText}}</text>
       </view>
 
       <!-- 商品列表（最多显示2个） -->
       <view class="order-items">
         <view class="order-item" wx:for="{{item.items}}" wx:key="id" wx:for-item="good">
-          <image class="item-cover" src="{{good.cover}}" mode="aspectFill" />
+          <image class="item-cover" src="{{good.product_cover}}" mode="aspectFill" />
           <view class="item-info">
             <text class="item-name">{{good.product_name || good.name}}</text>
             <view class="item-bottom">
@@ -39,16 +38,10 @@
 
       <!-- 合计 -->
       <view class="order-footer">
-        <text class="order-total-label">实付：</text>
-        <text class="order-total price"><text class="price-symbol">¥</text>{{item.pay_amount}}</text>
-      </view>
-
-      <!-- 操作按钮 -->
-      <view class="order-actions" catchtap="stopBubble">
-        <button class="btn btn-plain btn-sm" wx:if="{{item.status === 0}}" catchtap="onCancel" data-id="{{item.id}}">取消订单</button>
-        <button class="btn btn-primary btn-sm" wx:if="{{item.status === 0}}" catchtap="onPay" data-id="{{item.id}}">去支付</button>
-        <button class="btn btn-plain btn-sm" wx:if="{{item.status === 1}}" catchtap="onCancel" data-id="{{item.id}}">取消订单</button>
-        <button class="btn btn-primary btn-sm" wx:if="{{item.status === 2}}" catchtap="onConfirm" data-id="{{item.id}}">确认收货</button>
+        <text class="order-footer-left">共 {{item.items.length}} 件商品</text>
+        <view class="order-footer-right">
+          <text class="order-total price"><text class="price-symbol">¥</text>{{item.pay_amount}}</text>
+        </view>
       </view>
     </view>
 

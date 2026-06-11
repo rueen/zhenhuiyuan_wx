@@ -2,7 +2,7 @@
   <scroll-view class="detail-scroll" scroll-y>
 
     <!-- 状态横幅 -->
-    <view class="status-banner status-banner-{{order.status}}">
+    <view class="status-banner">
       <text class="status-text">{{order.statusText}}</text>
       <text class="status-sub">
         <block wx:if="{{order.status === 0}}">请尽快完成支付</block>

@@ -70,60 +70,7 @@ Page({
     wx.navigateTo({ url: `/pages/order-detail/order-detail?id=${e.currentTarget.dataset.id}` });
   },
 
-  stopBubble() {},
-
   onReachBottom() {
     this.loadOrders(false);
-  },
-
-  async onPay(e) {
-    const id = e.currentTarget.dataset.id;
-    wx.showModal({
-      title: '确认支付',
-      content: '确认支付此订单？',
-      success: async (res) => {
-        if (res.confirm) {
-          try {
-            await http.post(`/api/h5/orders/${id}/pay`);
-            wx.showToast({ title: '支付成功', icon: 'success' });
-            this.loadOrders(true);
-          } catch (e) {}
-        }
-      },
-    });
-  },
-
-  async onCancel(e) {
-    const id = e.currentTarget.dataset.id;
-    wx.showModal({
-      title: '取消订单',
-      content: '确认取消此订单？',
-      success: async (res) => {
-        if (res.confirm) {
-          try {
-            await http.post(`/api/h5/orders/${id}/cancel`);
-            wx.showToast({ title: '已取消', icon: 'success' });
-            this.loadOrders(true);
-          } catch (e) {}
-        }
-      },
-    });
-  },
-
-  async onConfirm(e) {
-    const id = e.currentTarget.dataset.id;
-    wx.showModal({
-      title: '确认收货',
-      content: '确认已收到商品？',
-      success: async (res) => {
-        if (res.confirm) {
-          try {
-            await http.post(`/api/h5/orders/${id}/confirm`);
-            wx.showToast({ title: '确认成功', icon: 'success' });
-            this.loadOrders(true);
-          } catch (e) {}
-        }
-      },
-    });
   },
 });
