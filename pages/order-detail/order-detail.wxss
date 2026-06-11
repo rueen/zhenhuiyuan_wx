@@ -2,7 +2,10 @@
   min-height: 100vh;
   background: var(--color-bg);
 }
-.detail-scroll { height: 100vh; }
+.detail-scroll {
+  height: 100vh;
+  padding-bottom: 50rpx;
+}
 
 /* ── 状态横幅 ── */
 .status-banner {
@@ -27,16 +30,20 @@
 .addr-card {
   margin: var(--space-md) var(--space-md) 0;
   padding: var(--space-md);
+  display: flex;
+  justify-content: space-between;
 }
-.addr-row {}
-.addr-meta {
+.addr-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: var(--font-sm); color: var(--color-text-sub);
+  line-height: 1.6;
+}
+.addr-detail{
   display: flex;
   gap: var(--space-sm);
-  margin-bottom: 10rpx;
 }
-.addr-name { font-size: var(--font-md); font-weight: 600; color: var(--color-text); }
-.addr-phone { font-size: var(--font-sm); color: var(--color-text-sub); }
-.addr-detail { font-size: var(--font-sm); color: var(--color-text-sub); line-height: 1.5; }
 
 /* ── 商品列表 ── */
 .items-card {

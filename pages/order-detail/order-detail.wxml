@@ -12,12 +12,16 @@
 
     <!-- 收货地址 -->
     <view class="section card addr-card">
+      <view class="card-title">配送信息</view>
       <view class="addr-row">
-        <view class="addr-meta">
-          <text class="addr-name">{{order.receiver_snapshot.receiver_name}}</text>
-          <text class="addr-phone">{{order.receiver_snapshot.phone}}</text>
+        <text>{{order.receiver_snapshot.receiver_name}}</text>
+        <view class="addr-detail">
+          <text>{{order.receiver_snapshot.province_name}}</text>
+          <text>{{order.receiver_snapshot.city_name}}</text>
+          <text>{{order.receiver_snapshot.district_name}}</text>
         </view>
-        <text class="addr-detail">{{order.receiver_snapshot.province_name}}{{order.receiver_snapshot.city_name}}{{order.receiver_snapshot.district_name}} {{order.receiver_snapshot.detail}}</text>
+        <text>{{order.receiver_snapshot.detail}}</text>
+        <text>{{order.receiver_snapshot.phone}}</text>
       </view>
     </view>
 
@@ -86,7 +90,7 @@
   <!-- 底部操作 -->
   <view class="action-bar" wx:if="{{order.status === 0 || order.status === 1 || order.status === 2}}">
     <view class="action-bar-inner">
-      <button class="btn btn-plain btn-sm" wx:if="{{order.status === 0 || order.status === 1}}" bindtap="onCancel">取消订单</button>
+      <button class="btn btn-plain" wx:if="{{order.status === 0 || order.status === 1}}" bindtap="onCancel">取消订单</button>
       <button class="btn btn-primary" wx:if="{{order.status === 0}}" bindtap="onPay">立即支付</button>
       <button class="btn btn-primary" wx:if="{{order.status === 2}}" bindtap="onConfirm">确认收货</button>
     </view>
