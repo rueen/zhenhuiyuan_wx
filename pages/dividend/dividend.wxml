@@ -1,0 +1,29 @@
+<view class="current-box card">
+  <view class="title">业绩分红</view>
+  <view class="current-tips-text">按周期统计你所在等级分池内的应分金额</view>
+  <view class="divider"></view>
+  <view class="current-tips" bindtap="onDividendTap">
+    <text class="current-tips-text">了解分红规则</text>
+    <icon name="arrow-r" size="{{12}}" />
+  </view>
+</view>
+<view class="log-list card">
+  <view class="list-title">分红明细</view>
+  <view class="divider"></view>
+  <view class="list-item" wx:for="{{list}}" wx:key="period_name">
+    <view class="log-left">
+      <view class="log-remark-box">
+        <text class="log-remark">{{item.period_name}}</text>
+        <text class="level-badge">{{item.level_name}}</text>
+      </view>
+      <text class="log-time">{{item.start_date}} ~ {{item.end_date}}</text>
+      <text class="log-time">周期贡献值：{{item.member_contribution}}</text>
+    </view>
+    <text class="log-amount log-amount--positive"><text class="amount-symbol">¥</text>{{item.share_amount}}</text>
+  </view>
+
+  <empty wx:if="{{!loading && list.length === 0}}" text="暂无分红记录" />
+
+  <view class="load-more" wx:if="{{loading}}">加载中…</view>
+  <view class="load-more" wx:if="{{!loading && noMore && list.length > 0}}">没有更多了</view>
+</view>

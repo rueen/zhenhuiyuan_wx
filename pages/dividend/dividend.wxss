@@ -1,0 +1,63 @@
+page{
+  padding: var(--space-md);
+}
+.current-box{
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+.current-box .title{
+  font-size: var(--font-base);
+  color: #000;
+  margin-top: var(--space-sm);
+  font-weight: bold;
+}
+.current-tips {
+  display: flex;
+  align-items: center;
+  padding-top: var(--space-sm);
+}
+.current-tips-text {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+  padding: var(--space-sm) 0;
+}
+.log-list {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-md);
+}
+.log-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+.log-remark-box{
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+.log-remark {
+  font-size: var(--font-base);
+  color: var(--color-text);
+}
+.level-badge {
+  padding: 4rpx 16rpx;
+  border-radius: 100rpx;
+  font-size: var(--font-xs);
+  font-weight: 600;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+.log-time {
+  font-size: var(--font-xs);
+  color: var(--color-text-hint);
+}
+.log-amount {
+  font-size: var(--font-lg);
+  font-weight: 700;
+}
+.amount-symbol {
+  font-size: var(--font-sm);
+}
+.log-amount--positive { color: var(--color-primary); }
+.log-amount--negative { color: var(--color-danger); }
