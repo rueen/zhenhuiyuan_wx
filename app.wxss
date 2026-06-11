@@ -88,12 +88,17 @@ wx-button:not([size=mini]){
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-md) var(--space-md);
+  padding: var(--space-md) 0;
   background: var(--color-card);
   border-bottom: 1rpx solid var(--color-border);
 }
 .list-item:last-child {
   border-bottom: none;
+}
+.list-title{
+  color: var(--color-text);
+  font-size: var(--font-md);
+  padding: var(--space-sm) 0;
 }
 
 /* ─── 通用按钮 ─── */

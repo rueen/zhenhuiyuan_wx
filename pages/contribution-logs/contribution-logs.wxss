@@ -6,12 +6,6 @@
 .log-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
-}
-.log-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: var(--space-md);
 }
 .log-left {
