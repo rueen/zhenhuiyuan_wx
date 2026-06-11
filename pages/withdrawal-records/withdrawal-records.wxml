@@ -1,13 +1,15 @@
 <view class="records-page">
   <view class="records-list">
     <view class="record-item card" wx:for="{{records}}" wx:key="id">
-      <view class="record-top">
+      <view class="record-left">
         <text class="record-amount price"><text class="price-symbol">¥</text>{{item.amount}}</text>
-        <text class="record-status status-wd-{{item.status}}">{{item.statusText}}</text>
+        <text class="record-time">{{item.created_at}}</text>
+        <text wx:if="{{item.reject_reason}}" class="record-reason">{{item.reject_reason}}</text>
       </view>
       <view class="record-meta">
-        <text class="record-time">{{item.created_at}}</text>
-        <text wx:if="{{item.reject_reason}}" class="record-reason">驳回原因：{{item.reject_reason}}</text>
+        <text class="record-status status-wd-{{item.status}}">{{item.statusText}}</text>
+        <text class="record-status-text" wx:if="{{item.reject_reason}}">已返回至余额</text>
+        <text class="record-status-text" wx:else>{{item.account_snapshot.account_no_mask}}</text>
       </view>
     </view>
 

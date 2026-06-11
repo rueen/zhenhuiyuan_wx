@@ -1,1 +1,8 @@
 @import '../contribution-logs/contribution-logs.wxss';
+
+page{
+  padding: var(--space-md);
+}
+.log-list{
+  padding-top: 0;
+}
