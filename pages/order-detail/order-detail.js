@@ -77,4 +77,11 @@ Page({
       success() { wx.showToast({ title: '已复制', icon: 'success' }); },
     });
   },
+
+  onViewTrack(e) {
+    const shipmentId = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `/pages/logistics/logistics?orderId=${this.orderId}&shipmentId=${shipmentId}`,
+    });
+  },
 });

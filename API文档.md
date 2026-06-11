@@ -1,6 +1,6 @@
 # 贞慧缘电商平台 · 前端对接 API 文档
 
-> 版本：v1.4　｜　最后更新：2026-06-09
+> 版本：v1.5　｜　最后更新：2026-06-10
 > 后端：Node.js + Express + MySQL + JWT。本文档供 C 端（微信小程序）与管理端（Web）前端对接使用。
 
 ---
@@ -109,7 +109,14 @@ Authorization: Bearer <token>
 响应 `data`：`{ token, member, isNew }`。
 
 ### GET /auth/profile — 当前会员资料
-需登录。返回会员信息（含 `level_name`、`cumulative_contribution`、`withdrawable_balance`、`invite_code`、`parent_id`、`first_consumed_at`、`hardware_enabled`、`mac_address`）。
+需登录。返回会员信息（含 `level_name`、`cumulative_contribution`、`withdrawable_balance`、`invite_code`、`parent_id`、`first_consumed_at`、`hardware_enabled`）。
+
+新增字段：
+
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| next_level | object \| null | 下一等级信息（已是最高等级时为 `null`），含 `id`、`name`、`upgrade_threshold` |
+| gap_to_next_level | string \| null | 距升级还需的贡献值（已是最高等级时为 `null`） |
 
 ## 2.2 会员 Member（均需登录）
 
@@ -203,6 +210,29 @@ query：`status?`、`page`、`pageSize`。
 ### POST /orders/:id/confirm — 确认收货
 `待收货 → 已完成`，**同一事务触发结算**（贡献值 + 返利 + 自动升级 + 销量累加）。
 
+### GET /orders/:id/shipments/:shipmentId/track — 查询物流轨迹
+
+按订单下的物流包裹 ID 查询实时轨迹（仅本人订单可查）。
+
+响应 `data`：
+
+```json
+{
+  "shipment_id": 1,
+  "logistics_company": "顺丰速运",
+  "logistics_code": "shunfeng",
+  "tracking_no": "SF1234567890123",
+  "state": 0,
+  "state_text": "在途",
+  "tracks": [
+    { "time": "2026-06-10 10:23:00", "context": "已揽收" },
+    { "time": "2026-06-10 14:50:00", "context": "运往杭州中转中" }
+  ]
+}
+```
+
+> 轨迹来自快递100 API，同单号默认 1 小时内存缓存，避免重复计费；未配置 `LOGISTICS_KEY/LOGISTICS_CUSTOMER` 时返回业务错误。
+
 ## 2.7 提现 Withdrawal（均需登录）
 
 ### 提现账户
@@ -294,6 +324,62 @@ query 参数：
 
 ---
 
+## 2.12 会员等级介绍 Level（公开，无需登录）
+
+### GET /levels — 等级列表
+
+无需登录。返回所有等级（按 `sort` 升序排列），供介绍页展示升级门槛与权益。
+
+响应 `data`：数组，每项字段：
+
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| id | number | 等级 ID |
+| name | string | 等级名称（如"普通会员"、"V1"） |
+| sort | number | 排序值（越小越低级） |
+| upgrade_threshold | string | 累计贡献值升级门槛（`"0"` 表示默认等级，无需门槛） |
+| self_rebate_rate | string | 自购返利比例（0~1） |
+| parent_rebate_rate | string | 直推上级返利比例（0~1） |
+| grandpa_rebate_rate | string | 间推上上级返利比例（0~1） |
+| dividend_pool_rate | string | 分红池占比（0~1） |
+| is_default | boolean | 是否为注册默认等级 |
+
+---
+
+## 2.13 平台规则 Rules（公开，无需登录）
+
+### GET /rules — 贡献值与分红参数
+
+无需登录。返回贡献值计算参数和分红机制参数，供规则介绍页展示。
+
+响应 `data`：
+
+```json
+{
+  "contribution": {
+    "coefficient": "1",
+    "self_rate": "0.25",
+    "direct_rate": "0.20",
+    "indirect_rate": "0.10"
+  },
+  "dividend": {
+    "pool_extract_rate": "0.20",
+    "charity_rate": "0.05"
+  }
+}
+```
+
+| 字段 | 说明 |
+| --- | --- |
+| contribution.coefficient | 贡献值换算系数（订单金额 × 系数 = 基础贡献值） |
+| contribution.self_rate | 自购贡献值比例 |
+| contribution.direct_rate | 直推上级获得的贡献值比例 |
+| contribution.indirect_rate | 间推上上级获得的贡献值比例 |
+| dividend.pool_extract_rate | 分红池提取比例（每周期销售额 × 此比例 = 分红池） |
+| dividend.charity_rate | 公益捐赠占比 |
+
+---
+
 # 三、管理端接口（/api/support）
 
 > 除 `/auth/login` 外，所有接口需管理端鉴权 + 细粒度权限点校验（无权限返回 `1003`）。
@@ -382,11 +468,41 @@ query 参数：
 | 方法 | 路径 | 权限 | 说明 |
 | --- | --- | --- | --- |
 | GET | /orders | order:list | 列表（`keyword?/status?/memberId?` + 分页） |
+| GET | /orders/logistics-companies | — | 物流公司预置列表（发货下拉用） |
 | GET | /orders/:id | order:detail | 详情 |
-| POST | /orders/:id/ship | order:ship | 发货（`logistics_company`、`tracking_no`，支持多包裹） |
+| PUT | /orders/:id/shipments | order:ship | 发货/改物流（传完整 `shipments` 数组，智能 diff：带 id 改、无 id 增、缺失删） |
 | POST | /orders/:id/cancel | order:cancel | 取消（完成前，回补库存） |
+| PUT | /orders/:id/receiver | order:edit | 修改收货信息 |
+| GET | /orders/:id/shipments/:shipmentId/track | order:detail | 查询物流轨迹 |
 
-> 发货：首次发货 `待发货 → 待收货`；可多次录入物流包裹。
+> 发货/改物流：单接口整单覆盖，仅允许 `待发货 / 待收货` 状态（已完成/已取消返回 400）。请求体传该订单**完整**包裹数组，后端按 id diff：元素带 `id` 更新该包裹（`id`/`created_at` 保留），无 `id` 新增，库中存在但本次未提交的 id 删除。包裹数 `>0` 且原为待发货则置 `待收货` 并写首发时间（改货不覆盖）；传空数组 `[]` 清空全部包裹并退回 `待发货`。`logistics_code` 必须取自 `/orders/logistics-companies` 返回的 `code` 字段，否则校验失败。
+>
+> ```json
+> {
+>   "shipments": [
+>     { "id": 5, "logistics_company": "顺丰速运", "logistics_code": "shunfeng", "tracking_no": "SF123" },
+>     { "logistics_company": "中通快递", "logistics_code": "zhongtong", "tracking_no": "ZT456" }
+>   ]
+> }
+> ```
+>
+> 物流轨迹：响应 `data` 同 C 端 `GET /orders/:id/shipments/:shipmentId/track`；管理端无归属校验。轨迹数据来自快递100 API，同单号默认 1 小时内存缓存。
+>
+> 修改收货信息：仅允许 `待付款 / 待发货 / 待收货` 状态；已完成或已取消订单返回 400。请求体需包含完整收货字段，整体覆盖原快照：
+>
+> ```json
+> {
+>   "receiver_name": "张三",
+>   "phone": "13800138000",
+>   "province_code": "440000",
+>   "province_name": "广东省",
+>   "city_code": "440100",
+>   "city_name": "广州市",
+>   "district_code": "440105",
+>   "district_name": "海珠区",
+>   "detail": "滨江东路123号"
+> }
+> ```
 
 ## 3.7 提现管理 Withdrawal　权限前缀 `withdrawal:`
 

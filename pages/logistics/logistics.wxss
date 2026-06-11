@@ -1,0 +1,92 @@
+.track-page {
+  min-height: 100vh;
+  padding-bottom: var(--space-lg);
+}
+
+/* ── 物流概要 ── */
+.summary-card {
+  padding: var(--space-md);
+}
+.summary-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.summary-company {
+  font-size: var(--font-md);
+  font-weight: 700;
+  color: var(--color-text);
+}
+.summary-no-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-sm);
+}
+.summary-no {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+}
+.copy-btn {
+  padding: 4rpx 16rpx;
+  background: var(--color-primary-light);
+  border-radius: 100rpx;
+  font-size: var(--font-xs);
+  color: var(--color-primary);
+}
+
+/* ── 轨迹时间线 ── */
+.timeline-card {
+  padding: var(--space-md) var(--space-md) var(--space-xs);
+}
+.track-node {
+  display: flex;
+  gap: var(--space-sm);
+}
+.track-axis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 24rpx;
+  flex-shrink: 0;
+}
+.track-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background: var(--color-text-hint);
+  margin-top: 8rpx;
+  flex-shrink: 0;
+}
+.track-line {
+  flex: 1;
+  width: 2rpx;
+  background: var(--color-border);
+  margin: 6rpx 0;
+}
+.track-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  padding-bottom: var(--space-md);
+}
+.track-context {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+  line-height: 1.5;
+}
+.track-time {
+  font-size: var(--font-xs);
+  color: var(--color-text-hint);
+}
+
+/* 最新一条高亮 */
+.track-node--active .track-dot {
+  background: var(--color-primary);
+  box-shadow: 0 0 0 6rpx var(--color-primary-light);
+}
+.track-node--active .track-context {
+  color: var(--color-text);
+  font-weight: 600;
+}

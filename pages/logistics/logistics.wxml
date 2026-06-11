@@ -1,0 +1,31 @@
+<view class="track-page" wx:if="{{info}}">
+  <!-- 物流概要 -->
+  <view class="section card summary-card">
+    <view class="summary-top">
+      <text class="summary-company">{{info.logistics_company}}</text>
+    </view>
+    <view class="summary-no-row">
+      <text class="summary-no">运单号 {{info.tracking_no}}</text>
+      <view class="copy-btn" bindtap="onCopyNo">复制</view>
+    </view>
+  </view>
+
+  <!-- 轨迹时间线 -->
+  <view class="section card timeline-card" wx:if="{{info.tracks.length > 0}}">
+    <view class="track-node {{index === 0 ? 'track-node--active' : ''}}"
+          wx:for="{{info.tracks}}" wx:key="index">
+      <view class="track-axis">
+        <view class="track-dot"></view>
+        <view class="track-line" wx:if="{{index !== info.tracks.length - 1}}"></view>
+      </view>
+      <view class="track-body">
+        <text class="track-context">{{item.context}}</text>
+        <text class="track-time">{{item.time}}</text>
+      </view>
+    </view>
+  </view>
+
+  <empty wx:if="{{info.tracks.length === 0}}" text="暂无物流轨迹" />
+</view>
+
+<empty wx:if="{{!loading && !info}}" text="暂无物流信息" />

@@ -9,6 +9,7 @@
     "pages/checkout/checkout",
     "pages/order-list/order-list",
     "pages/order-detail/order-detail",
+    "pages/logistics/logistics",
     "pages/address-list/address-list",
     "pages/address-edit/address-edit",
     "pages/team/team",

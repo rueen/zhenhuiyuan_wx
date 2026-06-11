@@ -110,8 +110,27 @@
 }
 .shipment {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: var(--space-sm);
   padding: var(--space-xs) 0;
+}
+.shipment--hover { opacity: 0.6; }
+.shipment-info {
+  display: flex;
+  gap: var(--space-sm);
+  flex: 1;
+  min-width: 0;
+}
+.shipment-action {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+  flex-shrink: 0;
+}
+.ship-track-text {
+  font-size: var(--font-xs);
+  color: var(--color-text-hint);
 }
 .ship-company {
   font-size: var(--font-sm);

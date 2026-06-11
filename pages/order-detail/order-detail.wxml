@@ -59,9 +59,16 @@
     <!-- 物流信息 -->
     <view class="section card logistics-card" wx:if="{{order.shipments && order.shipments.length > 0}}">
       <view class="card-title">物流信息</view>
-      <view class="shipment" wx:for="{{order.shipments}}" wx:key="id">
-        <text class="ship-company">{{item.logistics_company}}</text>
-        <text class="ship-no">{{item.tracking_no}}</text>
+      <view class="shipment" wx:for="{{order.shipments}}" wx:key="id"
+            data-id="{{item.id}}" bindtap="onViewTrack" hover-class="shipment--hover">
+        <view class="shipment-info">
+          <text class="ship-company">{{item.logistics_company}}</text>
+          <text class="ship-no">{{item.tracking_no}}</text>
+        </view>
+        <view class="shipment-action">
+          <text class="ship-track-text">查看轨迹</text>
+          <icon name="arrow-r" size="12" color="#bbbbbb" />
+        </view>
       </view>
     </view>
 
