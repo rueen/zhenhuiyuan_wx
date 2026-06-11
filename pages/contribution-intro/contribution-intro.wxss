@@ -9,7 +9,7 @@
 /* ── 顶部 header ── */
 .intro-header-card {
   padding: var(--space-md);
-  background: linear-gradient(135deg, var(--color-primary-bg), var(--color-card));
+  background: #fff;
 }
 .intro-title-row {
   display: flex;
@@ -105,24 +105,7 @@
   gap: var(--space-sm);
   margin-bottom: var(--space-xs);
 }
-.earn-badge {
-  padding: 4rpx 16rpx;
-  border-radius: 100rpx;
-  font-size: var(--font-xs);
-  font-weight: 600;
-}
-.earn-badge--self {
-  background: var(--color-primary);
-  color: #fff;
-}
-.earn-badge--direct {
-  background: #e8f4fd;
-  color: #2196f3;
-}
-.earn-badge--indirect {
-  background: #e8f5e9;
-  color: #4caf50;
-}
+
 .earn-title {
   font-size: var(--font-sm);
   color: var(--color-text);

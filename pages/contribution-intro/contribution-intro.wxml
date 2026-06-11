@@ -26,7 +26,7 @@
         <!-- 自购 -->
         <view class="earn-item">
           <view class="earn-item-header">
-            <view class="earn-badge earn-badge--self">自购</view>
+            <view class="earn-badge earn-badge-self">自购</view>
             <text class="earn-title">您自己完成一笔购买</text>
           </view>
           <view class="formula-box">
@@ -37,7 +37,7 @@
         <!-- 直推 -->
         <view class="earn-item">
           <view class="earn-item-header">
-            <view class="earn-badge earn-badge--direct">直推</view>
+            <view class="earn-badge earn-badge-direct">直推</view>
             <text class="earn-title">直接邀请的成员完成购买</text>
           </view>
           <view class="formula-box">
@@ -48,7 +48,7 @@
         <!-- 间推 -->
         <view class="earn-item">
           <view class="earn-item-header">
-            <view class="earn-badge earn-badge--indirect">间推</view>
+            <view class="earn-badge earn-badge-indirect">间推</view>
             <text class="earn-title">邀请链更下层成员完成购买</text>
           </view>
           <view class="formula-box">
@@ -80,7 +80,7 @@
           <view class="usage-divider"></view>
           <view class="usage-item">
             <view class="usage-icon-wrap">
-              <icon name="dividend" size="{{28}}" color="#c9a063" />
+              <icon name="xiaohonghua" size="{{28}}" color="#c9a063" />
             </view>
             <view class="usage-content">
               <text class="usage-title">参与业绩分红</text>

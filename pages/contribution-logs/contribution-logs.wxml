@@ -1,19 +1,31 @@
-<view class="log-page">
-  <view class="log-list card">
-    <view class="list-title">贡献值明细</view>
-    <view class="divider"></view>
-    <view class="list-item" wx:for="{{list}}" wx:key="id">
-      <view class="log-left">
-        <text class="log-remark">{{item.remark || '贡献值变动'}}</text>
-        <text>{{item.type_text}}</text>
-        <text class="log-time">{{item.created_at}}</text>
-      </view>
-      <text class="log-amount log-amount--positive">+{{item.change_amount}}</text>
-    </view>
-
-    <empty wx:if="{{!loading && list.length === 0}}" text="暂无贡献值记录" />
-
-    <view class="load-more" wx:if="{{loading}}">加载中…</view>
-    <view class="load-more" wx:if="{{!loading && noMore && list.length > 0}}">没有更多了</view>
+<view class="current-box card">
+  <view class="title">当前贡献值</view>
+  <view class="current-num-box">
+    <icon name="shixinwujiaoxing" size="{{30}}" color="#c9a063" />
+    <text class="current-num">{{cumulative_contribution}}</text>
   </view>
+  <view class="divider"></view>
+  <view class="current-tips" bindtap="onContributionTap">
+    <text class="current-tips-text">了解贡献值规则</text>
+    <icon name="arrow-r" size="{{12}}" />
+  </view>
+</view>
+<view class="log-list card">
+  <view class="list-title">贡献值明细</view>
+  <view class="divider"></view>
+  <view class="list-item" wx:for="{{list}}" wx:key="id">
+    <view class="log-left">
+      <view class="log-remark-box">
+        <text class="log-remark">{{item.remark || '贡献值变动'}}</text>
+        <text class="earn-badge earn-badge-{{item.type}}">{{item.type_text}}</text>
+      </view>
+      <text class="log-time">{{item.created_at}}</text>
+    </view>
+    <text class="log-amount log-amount--positive">+{{item.change_amount}}</text>
+  </view>
+
+  <empty wx:if="{{!loading && list.length === 0}}" text="暂无贡献值记录" />
+
+  <view class="load-more" wx:if="{{loading}}">加载中…</view>
+  <view class="load-more" wx:if="{{!loading && noMore && list.length > 0}}">没有更多了</view>
 </view>

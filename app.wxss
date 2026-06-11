@@ -53,6 +53,7 @@ page {
   color: var(--color-text);
   font-size: var(--font-base);
   line-height: 1.6;
+  box-sizing: border-box;
 }
 
 /* ─── 通用重置（WXSS 不支持 * 选择器，按需枚举） ─── */
@@ -184,4 +185,23 @@ wx-button:not([size=mini]){
 /* ─── 页面底部安全区 ─── */
 .safe-bottom {
   height: env(safe-area-inset-bottom);
+}
+/* 自购 直推 间推 */
+.earn-badge {
+  padding: 4rpx 16rpx;
+  border-radius: 100rpx;
+  font-size: var(--font-xs);
+  font-weight: 600;
+}
+.earn-badge-self {
+  background: var(--color-primary);
+  color: #fff;
+}
+.earn-badge-direct {
+  background: #e8f4fd;
+  color: #2196f3;
+}
+.earn-badge-indirect {
+  background: #e8f5e9;
+  color: #4caf50;
 }

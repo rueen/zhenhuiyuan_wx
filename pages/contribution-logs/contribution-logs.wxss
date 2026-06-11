@@ -1,7 +1,34 @@
-.log-page {
-  min-height: 100vh;
-  background: var(--color-bg);
+page{
   padding: var(--space-md);
+}
+.current-box{
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+.current-box .title{
+  font-size: var(--font-base);
+  color: #000;
+  margin-top: var(--space-sm);
+}
+.current-num-box{
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+}
+.current-num{
+  color: #000;
+  font-weight: bold;
+  font-size: var(--space-xl);
+}
+.current-tips {
+  display: flex;
+  align-items: center;
+  padding-top: var(--space-sm);
+}
+.current-tips-text {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
 }
 .log-list {
   display: flex;
@@ -12,6 +39,11 @@
   display: flex;
   flex-direction: column;
   gap: 8rpx;
+}
+.log-remark-box{
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
 }
 .log-remark {
   font-size: var(--font-base);

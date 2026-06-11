@@ -8,6 +8,7 @@ Page({
     total: 0,
     loading: false,
     noMore: false,
+    cumulative_contribution: 0
   },
 
   onShow() {
@@ -23,12 +24,22 @@ Page({
     try {
       const res = await http.get('/api/h5/member/contribution-logs', { page, pageSize: this.data.pageSize });
       const list = reset ? (res.list || []) : [...this.data.list, ...(res.list || [])];
-      this.setData({ list, page, total: res.total, noMore: list.length >= res.total });
+      this.setData({
+        list,
+        page,
+        total: res.total,
+        noMore: list.length >= res.total,
+        cumulative_contribution: list.length ? list[0].balance_after : 0
+      });
     } catch (e) {}
     this.setData({ loading: false });
   },
 
   onReachBottom() {
     this.loadList(false);
+  },
+
+  onContributionTap() {
+    wx.navigateTo({ url: '/pages/contribution-intro/contribution-intro' });
   },
 });
