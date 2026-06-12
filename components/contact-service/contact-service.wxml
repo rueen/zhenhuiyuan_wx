@@ -1,5 +1,5 @@
 <view class="contact-service" bindtap="onTap">
   <text class="cs-hint">遇到问题？</text>
-  <icon name="service" size="{{16}}" color="#c9a063" />
+  <icon name="zaixiankefu" size="{{16}}" color="#c9a063" />
   <text class="cs-link">联系客服</text>
 </view>

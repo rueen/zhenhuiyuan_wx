@@ -8,7 +8,7 @@
     <view class="service-item" bindtap="onCallPhone" hover-class="service-item--hover">
       <view class="service-item-left">
         <view class="service-item-icon">
-          <icon name="service" size="{{22}}" color="#c9a063" />
+          <icon name="dianhua" size="{{22}}" color="#c9a063" />
         </view>
         <view class="service-item-info">
           <text class="service-item-label">客服电话</text>
@@ -21,7 +21,7 @@
     <button class="service-item service-contact-btn" open-type="contact" hover-class="service-item--hover">
       <view class="service-item-left">
         <view class="service-item-icon">
-          <icon name="service" size="{{22}}" color="#c9a063" />
+          <icon name="zaixiankefu" size="{{22}}" color="#c9a063" />
         </view>
         <view class="service-item-info">
           <text class="service-item-label">在线客服</text>
