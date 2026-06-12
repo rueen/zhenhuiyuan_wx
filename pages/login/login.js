@@ -84,7 +84,7 @@ Page({
           step: 'register',
           loading: false,
           form: {
-            nickname: data.member.nickname || '',
+            nickname: '',
             phone: data.member.phone || '',
             avatar: data.member.avatar || '',
           },

@@ -6,3 +6,6 @@ page{
 .log-list{
   padding-top: 0;
 }
+.log-remark-box{
+  width: 430rpx;
+}

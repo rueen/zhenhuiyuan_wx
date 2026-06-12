@@ -38,9 +38,10 @@
 
       <!-- 合计 -->
       <view class="order-footer">
-        <text class="order-footer-left">共 {{item.items.length}} 件商品</text>
+        <text class="text-sm">共 {{item.items.length}} 件商品</text>
         <view class="order-footer-right">
-          <text class="order-total price"><text class="price-symbol">¥</text>{{item.pay_amount}}</text>
+          <text class="order-total price">¥{{item.pay_amount}}</text>
+          <text class="text-sm">(含运费 ¥{{item.shipping_fee}})</text>
         </view>
       </view>
     </view>

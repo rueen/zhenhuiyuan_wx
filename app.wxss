@@ -142,6 +142,12 @@ wx-button:not([size=mini]){
   color: var(--color-primary);
 }
 
+/* 通用文字 */
+.text-sm{
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+}
+
 /* ─── 通用状态徽章 ─── */
 .badge {
   display: inline-flex;
@@ -193,15 +199,18 @@ wx-button:not([size=mini]){
   font-size: var(--font-xs);
   font-weight: 600;
 }
-.earn-badge-self {
+.earn-badge-self,
+.earn-badge-self_rebate {
   background: var(--color-primary);
   color: #fff;
 }
-.earn-badge-direct {
+.earn-badge-direct,
+.earn-badge-parent_rebate {
   background: #e8f4fd;
   color: #2196f3;
 }
-.earn-badge-indirect {
+.earn-badge-indirect,
+.earn-badge-grandpa_rebate {
   background: #e8f5e9;
   color: #4caf50;
 }

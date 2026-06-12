@@ -78,7 +78,7 @@
 }
 .item-info { flex: 1; }
 .item-name {
-  font-size: var(--font-sm);
+  font-size: var(--font-base);
   color: var(--color-text);
   line-height: 1.4;
   display: -webkit-box;
@@ -102,9 +102,10 @@
   gap: 8rpx;
   padding: var(--space-xs) var(--space-md) var(--space-md);
 }
-.order-footer-left{
-  font-size: var(--font-sm);
-  color: var(--color-text-sub);
+.order-footer-right{
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
 }
 .order-total { font-size: var(--font-md); font-weight: 700; }
 
