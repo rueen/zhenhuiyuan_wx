@@ -109,6 +109,9 @@
       </view>
     </view>
 
+    <!-- 客服 -->
+    <contact-service />
+
     <view style="height: 160rpx;"></view>
   </scroll-view>
 

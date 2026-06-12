@@ -54,6 +54,7 @@
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "icon": "/components/icon/icon",
-    "empty": "/components/empty/empty"
+    "empty": "/components/empty/empty",
+    "contact-service": "/components/contact-service/contact-service"
   }
 }

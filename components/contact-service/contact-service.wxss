@@ -1,0 +1,24 @@
+@import "/style/iconfont.wxss";
+
+.contact-service {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  padding: var(--space-md) 0;
+}
+
+.cs-icon {
+  font-size: 32rpx;
+  color: var(--color-text-hint);
+}
+
+.cs-hint {
+  font-size: var(--font-sm);
+  color: var(--color-text-hint);
+}
+
+.cs-link {
+  font-size: var(--font-sm);
+  color: var(--color-primary);
+}
