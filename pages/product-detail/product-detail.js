@@ -90,6 +90,14 @@ Page({
     wx.navigateBack();
   },
 
+  /** 复制商品编号 */
+  onCopyProductNo() {
+    wx.setClipboardData({
+      data: this.data.product.product_no,
+      success() { wx.showToast({ title: '已复制', icon: 'success' }); },
+    });
+  },
+
   /** 更多菜单 */
   onMore() {
     wx.showActionSheet({

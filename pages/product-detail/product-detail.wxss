@@ -109,6 +109,35 @@
   font-size: var(--font-xs);
   color: var(--color-primary);
 }
+.product-no-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-xs);
+}
+.product-no-label {
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+  flex-shrink: 0;
+}
+.product-no-value-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  min-width: 0;
+}
+.product-no-value {
+  font-size: var(--font-sm);
+  color: var(--color-text);
+}
+.copy-btn {
+  flex-shrink: 0;
+  padding: 4rpx 16rpx;
+  background: var(--color-primary-light);
+  border-radius: 100rpx;
+  font-size: var(--font-xs);
+  color: var(--color-primary);
+}
 .product-meta {
   display: flex;
   align-items: center;

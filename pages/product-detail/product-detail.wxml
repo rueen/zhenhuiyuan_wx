@@ -59,9 +59,16 @@
           <text class="product-price price"><text class="price-symbol">¥</text>{{product.price}}</text>
           <view class="sales-badge" wx:if="{{product.sales}}">{{product.sales}}人购</view>
         </view>
-        <view class="product-meta" wx:if="{{product.stock !== undefined}}">
-          <text class="meta-item">库存 {{product.stock}} 件</text>
-          <text class="meta-divider" wx:if="{{product.category_name}}">·</text>
+        <view class="product-no-row" wx:if="{{product.product_no}}">
+          <text class="product-no-label">商品编号</text>
+          <view class="product-no-value-row">
+            <text class="product-no-value">{{product.product_no}}</text>
+            <view class="copy-btn" bindtap="onCopyProductNo">复制</view>
+          </view>
+        </view>
+        <view class="product-meta" wx:if="{{product.stock !== undefined || product.category_name}}">
+          <text class="meta-item" wx:if="{{product.stock !== undefined}}">库存 {{product.stock}} 件</text>
+          <text class="meta-divider" wx:if="{{product.category_name && product.stock !== undefined}}">·</text>
           <text class="meta-item" wx:if="{{product.category_name}}">{{product.category_name}}</text>
         </view>
       </view>
