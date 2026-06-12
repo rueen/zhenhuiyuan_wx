@@ -8,7 +8,6 @@ Page({
       { status: 0, label: '待付款', icon: 'daifukuan' },
       { status: 1, label: '待发货', icon: 'daifahuo' },
       { status: 2, label: '待收货', icon: 'daishouhuo' },
-      { status: 3, label: '已完成', icon: 'yiwanchengdingdan' },
     ],
     menuItems: [
       { label: '我的团队',        path: '/pages/team/team',                 auth: true  },

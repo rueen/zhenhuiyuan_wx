@@ -205,3 +205,11 @@ wx-button:not([size=mini]){
   background: #e8f5e9;
   color: #4caf50;
 }
+.earn-badge-refund_clawback {
+  background: #fdecea;
+  color: #e64340;
+}
+.earn-badge-admin_adjust {
+  background: #f0f0f0;
+  color: #666666;
+}

@@ -7,6 +7,7 @@
       <text class="status-sub">
         <block wx:if="{{order.status === 0}}">请尽快完成支付</block>
         <block wx:elif="{{order.status === 2}}">商品已发货，请注意查收</block>
+        <block wx:elif="{{order.status === 5}}">订单已全额退款</block>
       </text>
     </view>
 
@@ -91,15 +92,31 @@
       </view>
     </view>
 
+    <!-- 退款信息 -->
+    <view class="section card order-info-card" wx:if="{{order.status === 5}}">
+      <view class="card-title">退款信息</view>
+      <view class="info-row">
+        <text class="info-label">退款金额</text>
+        <text class="info-value">¥{{order.refund_amount}}</text>
+      </view>
+      <view class="info-row" wx:if="{{order.refund_reason}}">
+        <text class="info-label">退款原因</text>
+        <text class="info-value">{{order.refund_reason}}</text>
+      </view>
+      <view class="info-row" wx:if="{{order.refunded_at}}">
+        <text class="info-label">退款时间</text>
+        <text class="info-value">{{order.refunded_at}}</text>
+      </view>
+    </view>
+
     <view style="height: 160rpx;"></view>
   </scroll-view>
 
   <!-- 底部操作 -->
-  <view class="action-bar" wx:if="{{order.status === 0 || order.status === 1 || order.status === 2}}">
+  <view class="action-bar" wx:if="{{order.status === 0}}">
     <view class="action-bar-inner">
-      <button class="btn btn-plain" wx:if="{{order.status === 0}}" bindtap="onCancel">取消订单</button>
-      <button class="btn btn-primary" wx:if="{{order.status === 0}}" bindtap="onPay">立即支付</button>
-      <button class="btn btn-primary" wx:if="{{order.status === 2}}" bindtap="onConfirm">确认收货</button>
+      <button class="btn btn-plain" bindtap="onCancel">取消订单</button>
+      <button class="btn btn-primary" bindtap="onPay">立即支付</button>
     </view>
     <view class="safe-bottom"></view>
   </view>

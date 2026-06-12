@@ -55,22 +55,6 @@ Page({
     });
   },
 
-  async onConfirm() {
-    wx.showModal({
-      title: '确认收货',
-      content: '确认已收到商品？收货后触发结算。',
-      success: async (res) => {
-        if (res.confirm) {
-          try {
-            await http.post(`/api/h5/orders/${this.orderId}/confirm`);
-            wx.showToast({ title: '确认成功', icon: 'success' });
-            this.loadOrder();
-          } catch (e) {}
-        }
-      },
-    });
-  },
-
   onCopyNo() {
     wx.setClipboardData({
       data: this.data.order.order_no,
