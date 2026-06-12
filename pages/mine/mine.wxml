@@ -70,8 +70,11 @@
           bindtap="onOrderTabTap"
           data-status="{{item.status}}"
         >
-          <view class="order-tab-icon">
-            <icon name="{{item.icon}}" size="{{30}}" color="#000" />
+          <view class="order-tab-icon-wrap">
+            <view class="order-tab-icon">
+              <icon name="{{item.icon}}" size="{{30}}" color="#000" />
+            </view>
+            <text wx:if="{{item.count > 0}}" class="order-tab-badge">{{item.count > 99 ? '99+' : item.count}}</text>
           </view>
           <text class="order-tab-label">{{item.label}}</text>
         </view>

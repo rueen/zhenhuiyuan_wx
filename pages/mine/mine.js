@@ -24,6 +24,7 @@ Page({
     }
     if (isLoggedIn()) {
       this.loadProfile();
+      this.loadStatusCount();
     } else {
       this.setData({ profile: null });
     }
@@ -35,6 +36,17 @@ Page({
       this.setData({ profile });
       const app = getApp();
       app.globalData.userInfo = profile;
+    } catch (e) {}
+  },
+
+  async loadStatusCount() {
+    try {
+      const res = await http.get('/api/h5/orders/status-count');
+      const orderTabs = this.data.orderTabs.map(t => ({
+        ...t,
+        count: res[String(t.status)] || 0,
+      }));
+      this.setData({ orderTabs });
     } catch (e) {}
   },
 

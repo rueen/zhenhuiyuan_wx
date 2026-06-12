@@ -149,12 +149,33 @@
   gap: 12rpx;
   padding: var(--space-xs) 0;
 }
+.order-tab-icon-wrap {
+  position: relative;
+  width: 52rpx;
+  height: 52rpx;
+}
 .order-tab-icon {
   width: 52rpx;
   height: 52rpx;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.order-tab-badge {
+  position: absolute;
+  top: -10rpx;
+  right: -16rpx;
+  min-width: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  padding: 0 8rpx;
+  background: var(--color-danger, #e74c3c);
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 100rpx;
+  text-align: center;
+  font-style: normal;
+  box-sizing: border-box;
 }
 .order-tab-label {
   font-size: var(--font-xs);
