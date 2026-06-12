@@ -106,6 +106,11 @@ Page({
     });
   },
 
+  /** 跳转客服页面 */
+  onServiceTap() {
+    wx.navigateTo({ url: '/pages/service/service' });
+  },
+
   /** 跳转购物袋页面 */
   onCartTap() {
     if (!isLoggedIn()) {

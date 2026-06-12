@@ -96,7 +96,7 @@
     <view class="buy-bar-inner">
       <!-- 左侧图标区 -->
       <view class="buy-icon-group">
-        <view class="buy-icon-item">
+        <view class="buy-icon-item" bindtap="onServiceTap">
           <view class="buy-icon">
             <icon name="service" size="{{24}}" />
           </view>

@@ -29,7 +29,8 @@
     "pages/health/health",
     "pages/contribution-intro/contribution-intro",
     "pages/dividend-intro/dividend-intro",
-    "pages/level-intro/level-intro"
+    "pages/level-intro/level-intro",
+    "pages/service/service"
   ],
   "tabBar": {
     "custom": true,

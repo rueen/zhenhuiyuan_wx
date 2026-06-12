@@ -1,0 +1,34 @@
+<view class="service-page">
+  <view class="service-header">
+    <text class="service-title">需要帮助？</text>
+    <text class="service-desc">我们随时为您服务</text>
+  </view>
+
+  <view class="section card service-list">
+    <view class="service-item" bindtap="onCallPhone" hover-class="service-item--hover">
+      <view class="service-item-left">
+        <view class="service-item-icon">
+          <icon name="service" size="{{22}}" color="#c9a063" />
+        </view>
+        <view class="service-item-info">
+          <text class="service-item-label">客服电话</text>
+          <text class="service-item-value">{{servicePhone}}</text>
+        </view>
+      </view>
+      <icon name="arrow-r" size="{{14}}" color="#bbbbbb" />
+    </view>
+
+    <button class="service-item service-contact-btn" open-type="contact" hover-class="service-item--hover">
+      <view class="service-item-left">
+        <view class="service-item-icon">
+          <icon name="service" size="{{22}}" color="#c9a063" />
+        </view>
+        <view class="service-item-info">
+          <text class="service-item-label">在线客服</text>
+          <text class="service-item-desc">微信客服，即时沟通</text>
+        </view>
+      </view>
+      <icon name="arrow-r" size="{{14}}" color="#bbbbbb" />
+    </button>
+  </view>
+</view>
