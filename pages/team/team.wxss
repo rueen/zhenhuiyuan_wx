@@ -103,6 +103,10 @@
   align-items: flex-end;
   gap: 4rpx;
 }
+.member-contribution-box{
+  display: flex;
+  align-items: center;
+}
 .member-contribution {
   font-size: var(--font-md);
   font-weight: 700;

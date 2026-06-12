@@ -36,8 +36,12 @@
         <text class="member-level">{{item.level_name || '普通会员'}}</text>
       </view>
       <view class="member-right">
-        <text class="member-contribution">{{item.cumulative_contribution || 0}}</text>
-        <text class="member-contrib-label">贡献值</text>
+        <view class="member-contribution-box">
+          <text class="member-contribution">{{item.contributed_to_me || 0}}</text>
+          <text>/</text>
+          <text>{{item.cumulative_contribution || 0}}</text>
+        </view>
+        <text class="member-contrib-label">为我贡献/总贡献值</text>
       </view>
     </view>
 
