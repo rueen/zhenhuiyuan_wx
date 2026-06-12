@@ -2,46 +2,122 @@
   <!-- 顶部安全距离 -->
   <safe-area-top extra-height="80"></safe-area-top>
 
-  <!-- logo -->
-  <view class="logo-area">
-    <image src="https://zhenhuiyuan.oss-cn-hangzhou.aliyuncs.com/images/logo.png" mode="aspectFit" class="logo" />
-  </view>
-
-  <!-- 弹性占位 -->
-  <view class="login-spacer"></view>
-
-  <!-- 邀请码输入 -->
-  <view class="invite-wrap">
-    <input
-      class="invite-input"
-      placeholder="邀请码（选填）"
-      placeholder-class="invite-placeholder"
-      value="{{inviteCode}}"
-      bindinput="onInviteInput"
-    />
-  </view>
-
-  <!-- 底部操作区 -->
-  <view class="login-footer">
-    <!-- 用户协议勾选 -->
-    <view class="agreement-wrap" bindtap="toggleAgreed">
-      <view class="checkbox {{agreed ? 'checkbox--checked' : ''}}"></view>
-      <text class="agreement-text">我已认真阅读并同意 </text>
-      <text class="agreement-link" catchtap="onAgreementTap">《用户协议和隐私条款》</text>
+  <!-- ───── 登录 ───── -->
+  <block wx:if="{{step === 'login'}}">
+    <!-- logo -->
+    <view class="logo-area">
+      <image src="https://zhenhuiyuan.oss-cn-hangzhou.aliyuncs.com/images/logo.png" mode="aspectFit" class="logo" />
     </view>
 
-    <!-- 微信登录按钮 -->
-    <button
-      class="btn btn-primary btn-full wx-login-btn {{loading ? 'btn-disabled' : ''}}"
-      bindtap="onWxLogin"
-      disabled="{{loading}}"
-    >{{loading ? '登录中…' : '微信登录'}}</button>
+    <!-- 弹性占位 -->
+    <view class="login-spacer"></view>
 
-    <!-- 游客登录 -->
-    <view class="guest-login" bindtap="onGuestLogin">
-      <text class="guest-login-text">游客登录</text>
+    <!-- 邀请码输入 -->
+    <view class="invite-wrap">
+      <input
+        class="invite-input"
+        placeholder="邀请码（选填）"
+        placeholder-class="invite-placeholder"
+        value="{{inviteCode}}"
+        bindinput="onInviteInput"
+      />
     </view>
-  </view>
+
+    <!-- 底部操作区 -->
+    <view class="login-footer">
+      <!-- 用户协议勾选 -->
+      <view class="agreement-wrap" bindtap="toggleAgreed">
+        <view class="checkbox {{agreed ? 'checkbox--checked' : ''}}"></view>
+        <text class="agreement-text">我已认真阅读并同意 </text>
+        <text class="agreement-link" catchtap="onAgreementTap">《用户协议和隐私条款》</text>
+      </view>
+
+      <!-- 微信登录按钮 -->
+      <button
+        class="btn btn-primary btn-full wx-login-btn {{loading ? 'btn-disabled' : ''}}"
+        bindtap="onWxLogin"
+        disabled="{{loading}}"
+      >{{loading ? '登录中…' : '微信登录'}}</button>
+
+      <!-- 游客登录 -->
+      <view class="guest-login" bindtap="onGuestLogin">
+        <text class="guest-login-text">游客登录</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- ───── 注册完善信息 ───── -->
+  <block wx:elif="{{step === 'register'}}">
+    <!-- 欢迎语 -->
+    <view class="welcome-area">
+      <text class="welcome-title">欢迎加入贞慧缘</text>
+      <text class="welcome-sub">请完善个人信息完成会员注册</text>
+    </view>
+
+    <!-- 头像 -->
+    <view class="reg-avatar-area">
+      <view class="avatar-wrap" bindtap="onChooseAvatar">
+        <image
+          wx:if="{{form.avatar}}"
+          class="avatar-img"
+          src="{{form.avatar}}"
+          mode="aspectFill"
+        />
+        <view wx:else class="avatar-placeholder">
+          <view class="avatar-icon">👤</view>
+        </view>
+        <view class="avatar-edit-badge">
+          <icon name="edit" size="{{12}}" color="#fff" />
+        </view>
+      </view>
+    </view>
+
+    <!-- 表单 -->
+    <view class="reg-form">
+      <!-- 昵称 -->
+      <view class="form-row">
+        <view class="form-label">
+          <text>昵称</text>
+          <text class="required">*</text>
+        </view>
+        <input
+          type="nickname"
+          class="form-input"
+          placeholder="请输入昵称"
+          placeholder-class="form-placeholder"
+          value="{{form.nickname}}"
+          bindinput="onNicknameInput"
+          maxlength="20"
+        />
+      </view>
+      <view class="form-divider"></view>
+      <!-- 手机号 -->
+      <view class="form-row">
+        <view class="form-label">
+          <text>手机号</text>
+        </view>
+        <text wx:if="{{form.phone}}" class="form-value">{{form.phone}}</text>
+        <button
+          wx:else
+          class="get-phone-btn"
+          open-type="getPhoneNumber"
+          bindgetphonenumber="onGetPhoneNumber"
+        >获取微信手机号</button>
+      </view>
+    </view>
+
+    <!-- 弹性占位 -->
+    <view class="login-spacer"></view>
+
+    <!-- 完成注册 -->
+    <view class="login-footer">
+      <button
+        class="btn btn-primary btn-full wx-login-btn {{submitting ? 'btn-disabled' : ''}}"
+        bindtap="onCompleteRegister"
+        disabled="{{submitting}}"
+      >{{submitting ? '提交中…' : '完成注册'}}</button>
+    </view>
+  </block>
 
   <view class="safe-bottom"></view>
 </view>

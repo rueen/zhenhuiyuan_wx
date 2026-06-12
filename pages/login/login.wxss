@@ -115,3 +115,119 @@
   color: var(--color-text-sub);
   text-decoration: underline;
 }
+
+/* ── 注册：欢迎语 ── */
+.welcome-area {
+  display: flex;
+  flex-direction: column;
+  padding-top: 60rpx;
+}
+.welcome-title {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: var(--color-text);
+}
+.welcome-sub {
+  margin-top: var(--space-sm);
+  font-size: var(--font-sm);
+  color: var(--color-text-sub);
+}
+
+/* ── 注册：头像 ── */
+.reg-avatar-area {
+  display: flex;
+  justify-content: center;
+  padding: 60rpx 0 40rpx;
+}
+.avatar-wrap {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+}
+.avatar-img,
+.avatar-placeholder {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.avatar-placeholder {
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatar-icon {
+  font-size: 80rpx;
+  line-height: 1;
+  opacity: 0.5;
+}
+.avatar-edit-badge {
+  position: absolute;
+  bottom: 4rpx;
+  right: 4rpx;
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3rpx solid #fff;
+}
+
+/* ── 注册：表单 ── */
+.reg-form {
+  padding: 0 var(--space-xs);
+}
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 110rpx;
+}
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+  font-size: var(--font-md);
+  font-weight: 600;
+  color: var(--color-text);
+  flex-shrink: 0;
+  width: 160rpx;
+}
+.required {
+  color: var(--color-danger);
+  font-size: var(--font-base);
+}
+.form-input {
+  flex: 1;
+  font-size: var(--font-base);
+  color: var(--color-text);
+  height: 60rpx;
+}
+.form-placeholder {
+  color: var(--color-text-hint);
+}
+.form-value {
+  font-size: var(--font-base);
+  color: var(--color-text);
+}
+.form-divider {
+  height: 1rpx;
+  background: var(--color-border);
+}
+button.get-phone-btn {
+  font-size: var(--font-base);
+  color: var(--color-primary);
+  background: transparent;
+  padding: 4rpx 24rpx;
+  margin: 0;
+  height: auto;
+  line-height: 1.8;
+  border: 1rpx solid var(--color-primary);
+  border-radius: 100rpx;
+  font-weight: normal;
+}
+button.get-phone-btn::after { border: none; }
+
