@@ -7,7 +7,7 @@ const TABS = [
   { label: '待发货', status: 1  },
   { label: '待收货', status: 2  },
   { label: '已取消', status: 4  },
-  { label: '已退款', status: 5  },
+  // { label: '已退款', status: 5  },
 ];
 
 Page({

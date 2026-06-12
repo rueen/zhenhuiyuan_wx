@@ -16,11 +16,13 @@
   display: flex;
 }
 .tab-cell {
+  flex: 1;
   flex-shrink: 0;
   padding: var(--space-sm) var(--space-md);
   font-size: var(--font-sm);
   color: var(--color-text-sub);
   position: relative;
+  text-align: center;
 }
 .tab-cell--active {
   color: var(--color-primary);
