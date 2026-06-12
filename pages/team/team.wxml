@@ -2,12 +2,12 @@
   <!-- 统计卡片 -->
   <view class="stats-card card">
     <view class="stat-item">
-      <text class="stat-value">{{teamData.direct_count || 0}}</text>
+      <text class="stat-value">{{teamData.directCount || 0}}</text>
       <text class="stat-label">直推人数</text>
     </view>
     <view class="stat-divider"></view>
     <view class="stat-item">
-      <text class="stat-value">{{teamData.indirect_count || 0}}</text>
+      <text class="stat-value">{{teamData.indirectCount || 0}}</text>
       <text class="stat-label">间推人数</text>
     </view>
   </view>
