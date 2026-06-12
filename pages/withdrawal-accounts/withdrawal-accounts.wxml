@@ -101,7 +101,7 @@
   <!-- 设为默认（仅新增时显示） -->
   <view class="panel-section panel-section--switch" wx:if="{{!editingId}}">
     <text class="panel-label">设为默认账户</text>
-    <switch color="#869478" checked="{{form.is_default}}" bindchange="onDefaultChange" />
+    <switch color="#c9a063" checked="{{form.is_default}}" bindchange="onDefaultChange" />
   </view>
 
   <button

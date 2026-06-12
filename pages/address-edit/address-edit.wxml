@@ -56,7 +56,7 @@
     <view class="form-row form-row--switch">
       <text class="field-label">设为默认</text>
       <switch
-        color="#869478"
+        color="#c9a063"
         checked="{{form.is_default}}"
         bindchange="onDefaultChange"
       />

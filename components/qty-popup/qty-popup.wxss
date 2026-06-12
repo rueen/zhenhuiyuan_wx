@@ -15,7 +15,7 @@
   z-index: 1000;
   background: #fff;
   border-radius: 32rpx 32rpx 0 0;
-  padding: var(--space-md) var(--space-md) 0;
+  padding: var(--space-md) var(--space-md);
 }
 
 .popup-header {
