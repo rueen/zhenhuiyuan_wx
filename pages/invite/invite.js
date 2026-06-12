@@ -5,13 +5,17 @@ Page({
     profile: null,
     qrcodeUrl: '',
     qrcodeLoading: true,
+    hasInviteAccess: false,
   },
 
   onLoad() {
     const profile = getApp().globalData.userInfo;
     if (profile) {
-      this.setData({ profile });
-      this.loadQrCode();
+      const hasInviteAccess = !!profile.first_consumed_at;
+      this.setData({ profile, hasInviteAccess });
+      if (hasInviteAccess) {
+        this.loadQrCode();
+      }
     }
   },
 
@@ -154,5 +158,10 @@ Page({
       data: code,
       success: () => wx.showToast({ title: '邀请码已复制', icon: 'success' }),
     });
+  },
+
+  // 去商店逛一逛
+  onGoToShop() {
+    wx.switchTab({ url: '/pages/shop/shop' });
   },
 });
