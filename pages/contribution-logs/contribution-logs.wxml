@@ -1,7 +1,7 @@
 <view class="current-box card">
   <view class="title">当前贡献值</view>
   <view class="current-num-box">
-    <icon name="shixinwujiaoxing" size="{{30}}" color="#c9a063" />
+    <icon name="contribution" size="{{30}}" color="#c9a063" />
     <text class="current-num">{{cumulative_contribution}}</text>
   </view>
   <view class="divider"></view>

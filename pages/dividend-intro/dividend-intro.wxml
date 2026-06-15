@@ -6,7 +6,7 @@
       <view class="intro-header-card card">
         <view class="intro-title-row">
           <view class="intro-icon-wrap">
-            <icon name="xiaohonghua" size="{{30}}" color="#c9a063" />
+            <icon name="fenhong" size="{{30}}" color="#c9a063" />
           </view>
           <text class="intro-main-title">业绩分红</text>
         </view>

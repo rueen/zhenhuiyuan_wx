@@ -6,7 +6,7 @@
       <view class="intro-header-card card">
         <view class="intro-title-row">
           <view class="intro-icon-wrap">
-            <icon name="shixinwujiaoxing" size="{{30}}" color="#c9a063" />
+            <icon name="contribution" size="{{30}}" color="#c9a063" />
           </view>
           <text class="intro-main-title">贡献值</text>
         </view>
@@ -80,7 +80,7 @@
           <view class="usage-divider"></view>
           <view class="usage-item">
             <view class="usage-icon-wrap">
-              <icon name="xiaohonghua" size="{{28}}" color="#c9a063" />
+              <icon name="fenhong" size="{{28}}" color="#c9a063" />
             </view>
             <view class="usage-content">
               <text class="usage-title">参与业绩分红</text>
