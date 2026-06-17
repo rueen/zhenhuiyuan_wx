@@ -1,6 +1,7 @@
 {
   "navigationStyle": "custom",
   "usingComponents": {
-    "qty-popup": "/components/qty-popup/qty-popup"
+    "qty-popup": "/components/qty-popup/qty-popup",
+    "nav-back": "/components/nav-back/nav-back"
   }
 }

@@ -1,0 +1,9 @@
+.nav-back {
+  position: fixed;
+  z-index: 20;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

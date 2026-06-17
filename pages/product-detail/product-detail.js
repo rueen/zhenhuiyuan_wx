@@ -6,8 +6,6 @@ Page({
     product: null,
     currentImg: 0,
     loading: true,
-    /** 返回按钮距左边距（px） */
-    navBackLeft: 16,
     /** 分享按钮距右边距（px）：紧靠系统胶囊左侧 */
     navShareRight: 100,
     /** 导航按钮顶部位置（px），与系统胶囊垂直居中对齐 */
@@ -46,8 +44,8 @@ Page({
   },
 
   /**
-   * 计算自定义导航按钮位置，使其与系统胶囊按钮垂直对齐
-   * 分享按钮紧贴系统胶囊左侧，避免遮挡
+   * 计算分享按钮位置，使其紧靠系统胶囊左侧，并与胶囊垂直对齐
+   * 返回/首页按钮位置由 nav-back 组件内部自行计算
    */
   _initNavLayout() {
     const sys = wx.getSystemInfoSync();
@@ -57,7 +55,6 @@ Page({
     // 分享按钮 right = 屏幕宽度 - 胶囊左边距 + 间距
     const shareRight = sys.screenWidth - menuBtn.left + 8;
     this.setData({
-      navBackLeft: 16,
       navShareRight: shareRight,
       navBtnTop: btnTop,
       navBtnSize: btnSize,
@@ -83,11 +80,6 @@ Page({
       current: e.currentTarget.dataset.src,
       urls: product.main_images,
     });
-  },
-
-  /** 返回上一页 */
-  onBack() {
-    wx.navigateBack();
   },
 
   /** 复制商品编号 */

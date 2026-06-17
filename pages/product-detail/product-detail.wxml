@@ -31,14 +31,8 @@
 
   <!-- ② 自定义顶部导航（z-index 最高，始终悬浮）
        位置通过 JS 计算：与系统胶囊按钮垂直对齐，分享按钮紧靠胶囊左侧 -->
-  <!-- 返回按钮（左侧） -->
-  <view
-    class="nav-btn nav-btn--circle"
-    style="position:fixed;left:{{navBackLeft}}px;top:{{navBtnTop}}px;width:{{navBtnSize}}px;height:{{navBtnSize}}px;z-index:20;"
-    bindtap="onBack"
-  >
-    <icon name="arrow-l" size="{{20}}" color="#000" />
-  </view>
+  <!-- 返回/首页按钮（左侧，公共组件） -->
+  <nav-back />
   <!-- 分享按钮（系统胶囊左侧，避免重叠） -->
   <button
     class="nav-btn nav-btn--circle"
