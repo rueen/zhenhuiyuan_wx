@@ -16,7 +16,7 @@
             <view class="user-name-row">
               <text class="user-name">{{profile ? (profile.nickname || '未设置昵称') : '点击登录'}}</text>
               <view class="level-badge" wx:if="{{profile}}" bindtap="onLevelTap">
-                <icon name="grade" size="{{12}}" color="#fff" />
+                <icon name="grade" size="{{18}}" color="#fff" />
                 <text>{{profile.level_name}}</text>
                 <icon name="arrow-r" size="{{10}}" color="#fff" />
               </view>
