@@ -3,5 +3,5 @@
   style="left:{{left}}px;top:{{top}}px;width:{{size}}px;height:{{size}}px;"
   bindtap="onTap"
 >
-  <icon name="{{hasBack ? 'arrow-l' : 'home'}}" size="20" color="#000" />
+  <icon name="{{hasBack ? 'arrow-l' : 'home-line'}}" size="20" color="#000" />
 </view>
