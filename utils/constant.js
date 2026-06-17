@@ -1,9 +1,9 @@
 /* 环境切换：'development' | 'production' */
-const ENV = 'development';
+const ENV = 'production';
 
 const BASE_URL_MAP = {
   development: 'http://localhost:3000',
-  production:  'https://api.zhenhuiyuan.com',
+  production:  'https://api.zhenhuiyuan.cn',
 };
 
 const BASE_URL = BASE_URL_MAP[ENV];

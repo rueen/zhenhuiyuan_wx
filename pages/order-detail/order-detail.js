@@ -1,5 +1,6 @@
 const http = require('../../utils/request');
 const { ORDER_STATUS } = require('../../utils/constant');
+const { requestWxPay } = require('../../utils/pay');
 
 Page({
   data: {
@@ -24,16 +25,25 @@ Page({
   },
 
   async onPay() {
+    if (this.data.submitting) return;
+
     wx.showModal({
       title: '确认支付',
       content: '确认支付此订单？',
       success: async (res) => {
-        if (res.confirm) {
-          try {
-            await http.post(`/api/h5/orders/${this.orderId}/pay`);
-            wx.showToast({ title: '支付成功', icon: 'success' });
-            this.loadOrder();
-          } catch (e) {}
+        if (!res.confirm) return;
+        this.setData({ submitting: true });
+        try {
+          await requestWxPay(this.orderId);
+          wx.showToast({ title: '支付成功', icon: 'success' });
+          this.loadOrder();
+        } catch (err) {
+          const errMsg = (err && err.errMsg) || '';
+          if (!errMsg.includes('cancel')) {
+            wx.showToast({ title: '支付失败，请重试', icon: 'none' });
+          }
+        } finally {
+          this.setData({ submitting: false });
         }
       },
     });

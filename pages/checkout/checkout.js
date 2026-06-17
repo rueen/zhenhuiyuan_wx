@@ -1,4 +1,5 @@
 const http = require('../../utils/request');
+const { requestWxPay } = require('../../utils/pay');
 
 Page({
   data: {
@@ -79,34 +80,21 @@ Page({
         this._pendingOrderId = orderId;
       }
 
-      // 2. 调用支付接口，获取 wx.requestPayment 所需参数
-      const payParams = await http.post(`/api/h5/orders/${orderId}/pay`);
+      // 2. 调起微信收银台
+      await requestWxPay(orderId);
 
-      // 3. 调起微信收银台
-      await new Promise((resolve, reject) => {
-        wx.requestPayment({
-          timeStamp: payParams.timeStamp,
-          nonceStr:  payParams.nonceStr,
-          package:   payParams.package,
-          signType:  payParams.signType || 'RSA',
-          paySign:   payParams.paySign,
-          success:   resolve,
-          fail:      reject,
-        });
-      });
-
-      // 4. 支付成功，清除缓存订单 ID，跳转订单详情
+      // 3. 支付成功，清除缓存订单 ID，跳转订单详情
       this._pendingOrderId = null;
       wx.redirectTo({ url: `/pages/order-detail/order-detail?id=${orderId}` });
     } catch (err) {
       const errMsg = (err && err.errMsg) || '';
       if (errMsg.includes('cancel')) {
         // 用户主动取消支付：保留待付款订单，navigateTo 保留页面栈方便重试
-        wx.navigateTo({ url: `/pages/order-detail/order-detail?id=${this._pendingOrderId}` });
+        wx.redirectTo({ url: `/pages/order-detail/order-detail?id=${this._pendingOrderId}` });
       } else if (this._pendingOrderId) {
         // 支付接口报错：提示后跳转订单详情
         wx.showToast({ title: '支付失败，请重试', icon: 'none' });
-        wx.navigateTo({ url: `/pages/order-detail/order-detail?id=${this._pendingOrderId}` });
+        wx.redirectTo({ url: `/pages/order-detail/order-detail?id=${this._pendingOrderId}` });
       }
       // 创建订单失败时 _pendingOrderId 为空，由 request.js 统一 toast，不额外跳转
     } finally {
