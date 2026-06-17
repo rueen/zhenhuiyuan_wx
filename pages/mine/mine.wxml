@@ -16,7 +16,7 @@
             <view class="user-name-row">
               <text class="user-name">{{profile ? (profile.nickname || '未设置昵称') : '点击登录'}}</text>
               <view class="level-badge" wx:if="{{profile}}" bindtap="onLevelTap">
-                <icon name="grade" size="{{18}}" color="#fff" />
+                <icon name="grade" size="{{16}}" color="#fff" />
                 <text>{{profile.level_name}}</text>
                 <icon name="arrow-r" size="{{10}}" color="#fff" />
               </view>
@@ -40,6 +40,15 @@
       </view>
       <!-- 资产行 -->
       <view class="stats-row">
+        <view class="stat-item">
+          <text class="stat-label">
+            <text>累计消费</text>
+          </text>
+          <view class="stat-value-wrap">
+            <text class="stat-value {{!profile ? 'stat-value--empty' : ''}}">{{profile ? '¥' + profile.total_consumption : '--'}}</text>
+          </view>
+        </view>
+        <view class="stat-divider"></view>
         <view class="stat-item" bindtap="onWithdrawTap">
           <text class="stat-label">余额</text>
           <view class="stat-value-wrap">
