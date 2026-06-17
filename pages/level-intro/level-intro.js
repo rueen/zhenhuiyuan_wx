@@ -68,8 +68,4 @@ Page({
   onContributionTap() {
     wx.navigateTo({ url: '/pages/contribution-intro/contribution-intro' });
   },
-
-  onDividendTap() {
-    wx.navigateTo({ url: '/pages/dividend-intro/dividend-intro' });
-  },
 });

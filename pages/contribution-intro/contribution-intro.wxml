@@ -83,7 +83,7 @@
               <icon name="fenhong" size="{{24}}" color="#c9a063" />
             </view>
             <view class="usage-content">
-              <text class="usage-title">参与业绩分红</text>
+              <text class="usage-title">参与线下业绩分红</text>
               <text class="usage-desc">贡献值越多，在所在等级内的分红占比越高</text>
             </view>
           </view>

@@ -110,7 +110,6 @@
           </view>
           <view class="benefit-right-row">
             <text class="benefit-value">{{currentLevel.dividend_pool_rate_pct}}%</text>
-            <icon name="arrow-r" size="{{12}}" color="#999" />
           </view>
         </view>
       </view>
