@@ -1,7 +1,7 @@
 <view class="login-page">
   <!-- 顶部安全距离 -->
   <safe-area-top extra-height="80"></safe-area-top>
-
+  <nav-back />
   <!-- ───── 登录 ───── -->
   <block wx:if="{{step === 'login'}}">
     <!-- logo -->

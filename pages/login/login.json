@@ -1,6 +1,7 @@
 {
   "navigationStyle": "custom",
   "usingComponents": {
-    "safe-area-top": "/components/safe-area-top/safe-area-top"
+    "safe-area-top": "/components/safe-area-top/safe-area-top",
+    "nav-back": "/components/nav-back/nav-back"
   }
 }
