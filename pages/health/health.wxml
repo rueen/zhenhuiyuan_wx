@@ -5,7 +5,7 @@
 
   <!-- 未开通 -->
   <view wx:elif="{{!hardwareEnabled}}" class="disabled-wrap">
-    <icon name="ai" size="80" color="#c9a063" />
+    <icon name="tijianxinxi" size="80" color="#cccccc" />
     <text class="disabled-title">AI体检功能未开通</text>
     <text class="disabled-desc">请联系客服开通AI体检功能</text>
     <button class="btn btn-primary contact-btn" bindtap="onContactService">联系客服</button>

@@ -119,6 +119,9 @@
 .stat-label {
   font-size: var(--font-xs);
   color: var(--color-text-sub);
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
 }
 .stat-value-wrap{
   font-size: var(--font-lg);

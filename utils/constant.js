@@ -1,5 +1,5 @@
 /* 环境切换：'development' | 'production' */
-const ENV = 'production';
+const ENV = 'development';
 
 const BASE_URL_MAP = {
   development: 'http://localhost:3000',

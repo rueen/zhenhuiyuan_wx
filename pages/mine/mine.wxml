@@ -41,9 +41,10 @@
       <!-- 资产行 -->
       <view class="stats-row">
         <view class="stat-item">
-          <text class="stat-label">
+          <view class="stat-label" bindtap="viewTotalConsumptionHelp">
             <text>累计消费</text>
-          </text>
+            <icon name="bangzhu" size="{{14}}" />
+          </view>
           <view class="stat-value-wrap">
             <text class="stat-value {{!profile ? 'stat-value--empty' : ''}}">{{profile ? '¥' + profile.total_consumption : '--'}}</text>
           </view>

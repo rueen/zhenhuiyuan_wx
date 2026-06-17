@@ -70,6 +70,14 @@ Page({
     wx.navigateTo({ url: '/pages/invite/invite' });
   },
 
+  viewTotalConsumptionHelp() {
+    wx.showModal({
+      title: '累计消费金额',
+      content: '不包含运费和已退款',
+      showCancel: false
+    })
+  },
+
   onOrderTabTap(e) {
     if (!this._requireLogin()) return;
     const status = e.currentTarget.dataset.status;
@@ -109,5 +117,6 @@ Page({
         if (res.confirm) getApp().logout();
       },
     });
-  },
+  }
+
 });
