@@ -70,7 +70,7 @@
         <view class="usage-list">
           <view class="usage-item">
             <view class="usage-icon-wrap">
-              <icon name="grade" size="{{28}}" color="#c9a063" />
+              <icon name="grade" size="{{24}}" color="#c9a063" />
             </view>
             <view class="usage-content">
               <text class="usage-title">升级会员等级</text>
@@ -80,7 +80,7 @@
           <view class="usage-divider"></view>
           <view class="usage-item">
             <view class="usage-icon-wrap">
-              <icon name="fenhong" size="{{28}}" color="#c9a063" />
+              <icon name="fenhong" size="{{24}}" color="#c9a063" />
             </view>
             <view class="usage-content">
               <text class="usage-title">参与业绩分红</text>

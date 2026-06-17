@@ -130,10 +130,10 @@
       <icon name="arrow-r" size="{{14}}" color="#c9a063" />
     </view>
     <view class="bottom-link-divider"></view>
-    <view class="bottom-link-item" bindtap="onDividendTap">
+    <!-- <view class="bottom-link-item" bindtap="onDividendTap">
       <text class="bottom-link-text">了解业绩分红规则</text>
       <icon name="arrow-r" size="{{14}}" color="#c9a063" />
-    </view>
+    </view> -->
   </view>
 
   <view class="safe-bottom"></view>

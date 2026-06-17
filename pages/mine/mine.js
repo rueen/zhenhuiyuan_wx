@@ -12,7 +12,7 @@ Page({
     menuItems: [
       { label: '我的团队',        path: '/pages/team/team',                 auth: true  },
       { label: '我的地址',        path: '/pages/address-list/address-list', auth: true  },
-      { label: '我的分红',        path: '/pages/dividend/dividend',         auth: true  },
+      // { label: '我的分红',        path: '/pages/dividend/dividend',         auth: true  },
       { label: '用户协议与隐私条款', path: '/pages/agreement/agreement',      auth: false },
       { label: '联系客服',        path: '/pages/service/service',           auth: false },
     ],
