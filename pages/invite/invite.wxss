@@ -121,43 +121,4 @@ button.action-btn {
   color: var(--color-text-sub);
 }
 
-/* ── 无邀请资格引导区 ── */
-.no-access-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 70vh;
-  padding: 0 var(--space-xl);
-}
 
-.no-access-icon {
-  width: 200rpx;
-  height: 200rpx;
-  opacity: 0.35;
-  margin-bottom: var(--space-lg);
-}
-
-.no-access-title {
-  font-size: var(--font-lg);
-  font-weight: 600;
-  color: var(--color-text);
-  margin-bottom: var(--space-sm);
-}
-
-.no-access-desc {
-  font-size: var(--font-base);
-  color: var(--color-text-sub);
-  text-align: center;
-  line-height: 1.7;
-  margin-bottom: var(--space-xl);
-}
-
-.no-access-btn {
-  background: var(--color-primary);
-  color: #ffffff;
-  font-size: var(--font-base);
-  font-weight: 500;
-  padding: 26rpx 80rpx;
-  border-radius: 100rpx;
-}

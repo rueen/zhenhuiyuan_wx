@@ -1,7 +1,7 @@
 <view class="invite-page">
 
   <!-- 有邀请资格：展示海报 -->
-  <block wx:if="{{hasInviteAccess}}">
+  <block>
 
     <!-- 海报卡片 -->
     <view class="poster-wrap">
@@ -65,13 +65,5 @@
     </view>
 
   </block>
-
-  <!-- 无邀请资格：引导去消费 -->
-  <view wx:else class="no-access-wrap">
-    <image class="no-access-icon" src="/assets/icons/invite-lock.png" mode="aspectFit" />
-    <text class="no-access-title">邀请资格未解锁</text>
-    <text class="no-access-desc">完成首次购买后，即可获得专属邀请码{{"\n"}}邀请好友一起加入贞慧缘</text>
-    <view class="no-access-btn" bindtap="onGoToShop">去逛一逛</view>
-  </view>
 
 </view>
