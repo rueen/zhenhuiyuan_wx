@@ -25,7 +25,10 @@ Page({
       this.getTabBar().setData({ selected: 2 });
     }
     if (!isLoggedIn()) {
-      wx.navigateTo({ url: '/pages/login/login' });
+      this.setData({
+        loading: false,
+        hardwareEnabled: false
+      })
       return;
     }
     this.init();
