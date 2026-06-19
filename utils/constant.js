@@ -1,5 +1,5 @@
 /* 环境切换：'development' | 'production' */
-const ENV = 'development';
+const ENV = 'production';
 
 const BASE_URL_MAP = {
   development: 'http://localhost:3000',
@@ -32,9 +32,18 @@ const ACCOUNT_TYPE = {
   3: '微信',
 };
 
+/** @type {{ dailyLimit: string, applyTime: string, arrivalTime: string, fee: string }} */
+const WITHDRAWAL_RULES = {
+  dailyLimit: '不限制',
+  applyTime: '全天 24 小时可申请',
+  arrivalTime: '审核通过后 7 个工作日内到账',
+  fee: '不收取手续费',
+};
+
 module.exports = {
   BASE_URL,
   ORDER_STATUS,
   WITHDRAWAL_STATUS,
   ACCOUNT_TYPE,
+  WITHDRAWAL_RULES,
 };

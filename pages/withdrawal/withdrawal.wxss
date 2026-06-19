@@ -150,3 +150,33 @@
 }
 .amount-hint { font-size: var(--font-xs); color: var(--color-text-hint); }
 .field-placeholder { color: var(--color-text-hint); }
+
+.add-account-link {
+  display: block;
+  text-align: center;
+  font-size: var(--font-sm);
+  color: var(--color-primary);
+  padding: var(--space-xs) 0;
+}
+
+.panel-rules {
+  margin-bottom: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+}
+.panel-rules-title {
+  display: block;
+  font-size: var(--font-xs);
+  font-weight: 600;
+  color: var(--color-text-sub);
+  margin-bottom: var(--space-xs);
+}
+.panel-rules-item {
+  font-size: var(--font-xs);
+  color: var(--color-text-hint);
+  line-height: 1.6;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}

@@ -38,6 +38,16 @@
       </view>
     </view>
   </view>
+  
+  <!-- 提现规则 -->
+  <view class="panel-rules">
+    <view class="panel-rules-title">提现规则</view>
+    <view class="panel-rules-item" wx:for="{{ruleItems}}" wx:key="*this">
+      <text>{{index + 1}}. {{item.label}}:</text>
+      <text>{{item.value}}</text>
+    </view>
+    <view class="panel-rules-item">8. 提现需经平台审核，审核通过后将打款至您绑定的银行卡/支付宝/微信账户</view>
+  </view>
 
   <!-- 申请弹窗遮罩 -->
   <view class="mask" wx:if="{{showApplyPanel}}" bindtap="onClosePanel"></view>
@@ -63,7 +73,10 @@
           <text class="account-type">{{item.typeName}}</text>
           <text class="account-no">{{item.account_no_mask}}</text>
         </view>
-        <empty wx:if="{{accounts.length === 0}}" text="暂无提现账户，请先添加" />
+        <block wx:if="{{accounts.length === 0}}">
+          <empty text="暂无提现账户，请先添加" />
+          <text class="add-account-link" bindtap="onAddAccountTap">去添加提现账户</text>
+        </block>
       </view>
     </view>
 

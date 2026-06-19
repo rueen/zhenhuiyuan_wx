@@ -1,9 +1,44 @@
 const http = require('../../utils/request');
-const { ACCOUNT_TYPE } = require('../../utils/constant');
+const { ACCOUNT_TYPE, WITHDRAWAL_RULES } = require('../../utils/constant');
+
+/**
+ * 组装主页面提现规则列表
+ * @param {string|number|undefined} minAmount 最低提现金额
+ * @returns {Array<{ label: string, value: string }>}
+ */
+function buildRuleItems(minAmount) {
+  const min = minAmount ?? '--';
+  return [
+    { label: '最低提现金额', value: `¥${min}` },
+    { label: '单次最高提现', value: '不超过当前可用余额' },
+    { label: '每日提现次数', value: WITHDRAWAL_RULES.dailyLimit },
+    { label: '提现时间', value: WITHDRAWAL_RULES.applyTime },
+    { label: '到账时间', value: WITHDRAWAL_RULES.arrivalTime },
+    { label: '手续费', value: WITHDRAWAL_RULES.fee },
+    { label: '提现门槛', value: `可用余额满 ¥${min} 方可申请` },
+  ];
+}
+
+/**
+ * 组装申请弹窗精简规则摘要
+ * @param {string|number|undefined} minAmount 最低提现金额
+ * @returns {string[]}
+ */
+function buildPanelRuleItems(minAmount) {
+  const min = minAmount ?? '--';
+  return [
+    `最低提现 ¥${min}，单次最高不超过可用余额`,
+    `每日提现次数：${WITHDRAWAL_RULES.dailyLimit}`,
+    `到账时间：${WITHDRAWAL_RULES.arrivalTime}`,
+    `手续费：${WITHDRAWAL_RULES.fee}`,
+  ];
+}
 
 Page({
   data: {
     info: null,
+    ruleItems: [],
+    panelRuleItems: [],
     accounts: [],
     showApplyPanel: false,
     selectedAccountId: null,
@@ -20,7 +55,11 @@ Page({
   async loadInfo() {
     try {
       const info = await http.get('/api/h5/withdrawals/info');
-      this.setData({ info });
+      this.setData({
+        info,
+        ruleItems: buildRuleItems(info?.min_amount),
+        panelRuleItems: buildPanelRuleItems(info?.min_amount),
+      });
     } catch (e) {}
   },
 
@@ -44,6 +83,11 @@ Page({
   },
 
   onAccountsTap() {
+    wx.navigateTo({ url: '/pages/withdrawal-accounts/withdrawal-accounts' });
+  },
+
+  onAddAccountTap() {
+    this.onClosePanel();
     wx.navigateTo({ url: '/pages/withdrawal-accounts/withdrawal-accounts' });
   },
 
