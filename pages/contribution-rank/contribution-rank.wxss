@@ -47,7 +47,6 @@
 }
 .rank-item--self {
   border-radius: var(--radius-sm);
-  padding: var(--space-sm);
   border-bottom: none;
 }
 
