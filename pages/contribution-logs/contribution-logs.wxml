@@ -9,6 +9,10 @@
     <text class="current-tips-text">了解贡献值规则</text>
     <icon name="arrow-r" size="{{12}}" />
   </view>
+  <view class="current-tips" bindtap="onRankTap">
+    <text class="current-tips-text current-tips-text2">贡献值排行榜</text>
+    <icon name="arrow-r" size="{{12}}" color="#c9a063" />
+  </view>
 </view>
 <view class="log-list card">
   <view class="list-title">贡献值明细</view>

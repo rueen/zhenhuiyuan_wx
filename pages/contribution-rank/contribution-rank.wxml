@@ -1,0 +1,64 @@
+<view class="rank-page">
+
+  <!-- 我的排名 -->
+  <view class="my-rank-card card" wx:if="{{myInfo}}">
+    <view class="my-rank-header">
+      <text class="my-rank-title">我的排名</text>
+      <text class="my-rank-no">第 {{myInfo.rank}} 名</text>
+    </view>
+    <view class="rank-item rank-item--self">
+      <view class="rank-badge rank-badge--me">{{myInfo.rank}}</view>
+      <view class="rank-avatar">
+        <image wx:if="{{myInfo.avatar}}" class="avatar-img" src="{{myInfo.avatar}}" mode="aspectFill" />
+        <view wx:else class="avatar-default">
+          <text>{{myInfo.nickname ? myInfo.nickname[0] : '我'}}</text>
+        </view>
+      </view>
+      <view class="rank-info">
+        <view class="rank-name-row">
+          <text class="rank-name">{{myInfo.nickname}}</text>
+          <text class="rank-level">{{myInfo.level_name}}</text>
+        </view>
+        <text class="rank-phone" wx:if="{{myInfo.phone}}">{{myInfo.phone}}</text>
+      </view>
+      <view class="rank-score">
+        <text class="rank-score-value">{{myInfo.cumulative_contribution}}</text>
+        <text class="rank-score-label">贡献值</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 排行榜 -->
+  <view class="rank-list-card card">
+    <view class="list-title">排行榜 TOP20</view>
+    <view class="divider"></view>
+
+    <view
+      class="rank-item {{item.isMe ? 'rank-item--me' : ''}}"
+      wx:for="{{list}}"
+      wx:key="rank"
+    >
+      <view class="rank-badge rank-badge--{{item.rank <= 3 ? item.rank : 'normal'}}">{{item.rank}}</view>
+      <view class="rank-avatar">
+        <image wx:if="{{item.avatar}}" class="avatar-img" src="{{item.avatar}}" mode="aspectFill" />
+        <view wx:else class="avatar-default">
+          <text>{{item.nickname ? item.nickname[0] : '?'}}</text>
+        </view>
+      </view>
+      <view class="rank-info">
+        <view class="rank-name-row">
+          <text class="rank-name">{{item.nickname || '未设置昵称'}}</text>
+          <text class="rank-level">{{item.level_name || '普通会员'}}</text>
+        </view>
+        <text class="rank-phone" wx:if="{{item.phone}}">{{item.phone}}</text>
+      </view>
+      <view class="rank-score">
+        <text class="rank-score-value">{{item.cumulative_contribution}}</text>
+        <text class="rank-score-label">贡献值</text>
+      </view>
+    </view>
+
+    <empty wx:if="{{!loading && list.length === 0}}" text="暂无排行数据" />
+    <view class="load-more" wx:if="{{loading}}">加载中…</view>
+  </view>
+</view>

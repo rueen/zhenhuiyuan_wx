@@ -1,0 +1,153 @@
+.rank-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding: var(--space-md);
+}
+
+.my-rank-card {
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+.my-rank-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-sm);
+}
+.my-rank-title {
+  font-size: var(--font-base);
+  font-weight: 600;
+  color: var(--color-text);
+}
+.my-rank-no {
+  font-size: var(--font-sm);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.rank-list-card {
+  padding: var(--space-md);
+}
+
+.rank-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+  border-bottom: 1rpx solid var(--color-border);
+}
+.rank-item:last-child {
+  border-bottom: none;
+}
+.rank-item--me {
+  background: var(--color-primary-bg);
+  margin: 0 calc(-1 * var(--space-md));
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: none;
+}
+.rank-item--self {
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm);
+  border-bottom: none;
+}
+
+.rank-badge {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-sm);
+  font-weight: 700;
+  flex-shrink: 0;
+  background: var(--color-bg);
+  color: var(--color-text-sub);
+}
+.rank-badge--1 {
+  background: var(--color-primary);
+  color: #fff;
+}
+.rank-badge--2 {
+  background: #b0b0b0;
+  color: #fff;
+}
+.rank-badge--3 {
+  background: #c17f59;
+  color: #fff;
+}
+.rank-badge--me {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.rank-avatar {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--color-bg);
+}
+.avatar-img {
+  width: 100%;
+  height: 100%;
+}
+.avatar-default {
+  width: 100%;
+  height: 100%;
+  background: var(--color-primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-md);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.rank-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+.rank-name-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+.rank-name {
+  font-size: var(--font-base);
+  color: var(--color-text);
+  font-weight: 500;
+}
+.rank-level {
+  font-size: var(--font-xs);
+  color: var(--color-primary);
+  padding: 2rpx 12rpx;
+  background: var(--color-primary-bg);
+  border-radius: 100rpx;
+}
+.rank-phone {
+  font-size: var(--font-xs);
+  color: var(--color-text-hint);
+}
+
+.rank-score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4rpx;
+  flex-shrink: 0;
+}
+.rank-score-value {
+  font-size: var(--font-md);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.rank-score-label {
+  font-size: var(--font-xs);
+  color: var(--color-text-hint);
+}

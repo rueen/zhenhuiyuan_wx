@@ -17,6 +17,7 @@
     "pages/withdrawal-records/withdrawal-records",
     "pages/withdrawal-accounts/withdrawal-accounts",
     "pages/contribution-logs/contribution-logs",
+    "pages/contribution-rank/contribution-rank",
     "pages/dividend/dividend",
     "pages/balance-logs/balance-logs",
     "pages/profile-edit/profile-edit",

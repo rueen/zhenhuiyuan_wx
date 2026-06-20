@@ -42,4 +42,8 @@ Page({
   onContributionTap() {
     wx.navigateTo({ url: '/pages/contribution-intro/contribution-intro' });
   },
+
+  onRankTap() {
+    wx.navigateTo({ url: '/pages/contribution-rank/contribution-rank' });
+  },
 });

@@ -30,6 +30,9 @@ page{
   font-size: var(--font-sm);
   color: var(--color-text-sub);
 }
+.current-tips-text2{
+  color: var(--color-primary);
+}
 .log-list {
   display: flex;
   flex-direction: column;
